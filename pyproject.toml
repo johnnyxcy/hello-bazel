@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "hello-bazel"
+version = "0.1.0"
+description = ""
+authors = ["johnnyxcy <johnny.xcy1997@outlook.com>"]
+readme = "README.md"
+packages = [{ include = "hello_bazel" }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.2.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

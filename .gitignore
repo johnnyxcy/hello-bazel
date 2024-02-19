@@ -1,6 +1,2 @@
-# bazel MODULE support is still in beta
-MODULE.bazel
-MODULE.bazel.lock
-
 # Bazel generated files
 bazel-*
