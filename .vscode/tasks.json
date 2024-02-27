@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "[bazel]cxx-compile-commands",
+      "type": "shell",
+      "command": "bazel",
+      "args": ["run", "//:refresh_cc"],
+      "detail": "bazel generate compile_comands.json",
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(INFO|WARNING|ERROR):\\s+(.*)$",
+          "severity": 1,
+          "message": 2
+        }
+      }
+    }
+  ]
+}

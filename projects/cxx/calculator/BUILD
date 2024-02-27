@@ -1,5 +1,3 @@
-# load("@rules_foreign_cc//foreign_cc:defs.bzl", "cmake", "runnable_binary")
-
 filegroup(
     name = "srcs",
     srcs = glob(["**"]),
@@ -7,7 +5,10 @@ filegroup(
 )
 
 cc_binary(
-    name = "sayhi",
+    name = "main",
     srcs = [":srcs"],
-    includes = ["include"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//projects/cxx/libcalc",
+    ],
 )

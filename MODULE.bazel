@@ -6,18 +6,19 @@
 ###############################################################################
 module(
     name = "hello_bazel",
-    version = "0.0.1",
 )
 
 bazel_dep(name = "platforms", version = "0.0.6")
 
-# 1. The metadata of glog is fetched from the BCR, including its dependencies (gflags).
-# 2. The `repo_name` attribute allows users to reference this dependency via the `com_github_google_glog` repo name.
-bazel_dep(name = "rules_foreign_cc", version = "0.10.1")
-tools = use_extension("@rules_foreign_cc//foreign_cc:extensions.bzl", "tools")
-tools.cmake(version = "3.28")
-
-# tools.ninja(version = "1.11")
-use_repo(
-    tools,
+# Hedron's Compile Commands Extractor for Bazel
+# https://github.com/hedronvision/bazel-compile-commands-extractor
+bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
+git_override(
+    module_name = "hedron_compile_commands",
+    remote = "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
+    commit = "0e990032f3c5a866e72615cf67e5ce22186dcb97",
+    # Replace the commit hash (above) with the latest (https://github.com/hedronvision/bazel-compile-commands-extractor/commits/main).
+    # Even better, set up Renovate and let it do the work for you (see "Suggestion: Updates" in the README).
 )
+
+bazel_dep(name = "rules_python", version = "0.31.0")

@@ -1,2 +1,15 @@
-# Bazel generated files
+# bazel build output
 bazel-*
+
+# temporary files
+.tmp
+.temp
+temp
+tmp
+
+.build/**
+build/**
+
+.cache/**
+
+compile_commands.json
