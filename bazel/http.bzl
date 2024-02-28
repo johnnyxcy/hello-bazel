@@ -1,3 +1,5 @@
+"""http_archive wrapper that uses maybe to allow for conditional"""
+
 load("@bazel_tools//tools/build_defs/repo:http.bzl", _http_archive = "http_archive")
 load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 

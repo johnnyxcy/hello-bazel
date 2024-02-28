@@ -9,10 +9,11 @@ refresh_compile_commands(
 py_venv(
     name = "venv",
     # deps = all_requirements + [
-    deps = [] + [
+    deps = [
         requirement("pandas"),
         requirement("numpy"),
         requirement("pydantic"),
+        requirement("ruff"),
         # Add any additional requirements here
     ],
 )

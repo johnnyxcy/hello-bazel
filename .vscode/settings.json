@@ -27,10 +27,10 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     // exclude bazel build directory except bin
-    "bazel-[^b]*": true,
-    "bazel-b[^i]*": true,
-    "bazel-bi[^n]*": true,
-    "external": true,
+    // "bazel-[^b]*": true,
+    // "bazel-b[^i]*": true,
+    // "bazel-bi[^n]*": true,
+    // "external": true,
     // exclude python venv
     ".venv": true,
     // exclude clangd cache

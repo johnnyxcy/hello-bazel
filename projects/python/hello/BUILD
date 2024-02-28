@@ -4,7 +4,7 @@ load("@aspect_rules_py//py:defs.bzl", "py_binary")
 load("@pypi//:requirements.bzl", "requirement")
 
 py_binary(
-    name = "main",
+    name = "hello",
     srcs = ["main.py"],
     imports = [".."],
     deps = [

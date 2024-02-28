@@ -1,3 +1,6 @@
+"""Implementation of the poetry_lock rule.
+"""
+
 def _poetry_impl(ctx):
     if ctx.attr.poetry != None:
         cmd = [ctx.path(ctx.attr.poetry), "export"]

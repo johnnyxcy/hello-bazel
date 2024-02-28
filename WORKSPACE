@@ -12,13 +12,19 @@ load("//:deps.bzl", "download_deps")
 
 download_deps()
 
-load("//bazel/poetry:defs.bzl", "poetry_lock")
+# Skilib & Buildifier
 
-# Skilib
+load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")
+
+buildifier_prebuilt_deps()
 
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 
 bazel_skylib_workspace()
+
+load("@buildifier_prebuilt//:defs.bzl", "buildifier_prebuilt_register_toolchains")
+
+buildifier_prebuilt_register_toolchains()
 
 # region CXX
 
@@ -60,6 +66,8 @@ python_register_toolchains(
 )
 
 py_repositories()
+
+load("//bazel/poetry:defs.bzl", "poetry_lock")
 
 # poetry.lock converted to requirements.txt
 poetry_lock(

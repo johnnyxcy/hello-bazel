@@ -1,3 +1,5 @@
+"""External bazel rules dependencies for the project."""
+
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 load("//bazel:http.bzl", "http_archive")
 
@@ -11,6 +13,15 @@ def download_deps():
         urls = [
             "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.5.0/bazel-skylib-1.5.0.tar.gz",
             "https://github.com/bazelbuild/bazel-skylib/releases/download/1.5.0/bazel-skylib-1.5.0.tar.gz",
+        ],
+    )
+
+    http_archive(
+        name = "buildifier_prebuilt",
+        sha256 = "8ada9d88e51ebf5a1fdff37d75ed41d51f5e677cdbeafb0a22dda54747d6e07e",
+        strip_prefix = "buildifier-prebuilt-6.4.0",
+        urls = [
+            "http://github.com/keith/buildifier-prebuilt/archive/6.4.0.tar.gz",
         ],
     )
 
