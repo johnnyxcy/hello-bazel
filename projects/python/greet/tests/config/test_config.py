@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from greet import CommonConfiguration
+from greet.config import CommonConfiguration
 
 
 class TestConfig(TestCase):
