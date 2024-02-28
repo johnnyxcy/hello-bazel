@@ -2,12 +2,15 @@
 
 filegroup(
     name = "srcs",
-    srcs = glob(["**"]),
+    srcs = glob([
+        "**/*.cc",
+        "**/*.h",
+    ]),
     visibility = ["//visibility:public"],
 )
 
 cc_binary(
-    name = "sayhi",
+    name = "main",
     srcs = [":srcs"],
     includes = ["include"],
 )

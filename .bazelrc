@@ -1,17 +1,18 @@
 # This forces Bazel's C++ rules use platforms to select toolchains instead of the default
-
 # --crosstool_top, --compiler, etc.
-
 build --incompatible_enable_cc_toolchain_resolution
 
-# Enable Bazel's MODULE support
-
-common --enable_bzlmod
+# Dont enable Bazel's MODULE support
+common --noenable_bzlmod
 
 # use platform config feature
-
 common --enable_platform_specific_config
 
-# For MacOS, use clang as the default compiler
+# Enable Windows symlink support
+startup --windows_enable_symlinks
 
+# Enable runfiles support
+build --enable_runfiles
+
+# For MacOS, use clang as the default compiler
 build:macos --action_env=CC=clang

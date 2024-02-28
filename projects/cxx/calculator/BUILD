@@ -1,6 +1,9 @@
 filegroup(
     name = "srcs",
-    srcs = glob(["**"]),
+    srcs = glob([
+        "**/*.cc",
+        "**/*.h",
+    ]),
     visibility = ["//visibility:public"],
 )
 

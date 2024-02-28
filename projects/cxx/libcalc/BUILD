@@ -1,6 +1,8 @@
 filegroup(
     name = "srcs",
-    srcs = glob(["**"]),
+    srcs = glob([
+        "src/**/*.hpp",
+    ]),
     visibility = ["//visibility:public"],
 )
 

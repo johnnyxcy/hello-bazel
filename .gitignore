@@ -12,4 +12,6 @@ build/**
 
 .cache/**
 
+.venv
+*.venv
 compile_commands.json

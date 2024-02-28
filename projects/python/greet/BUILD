@@ -1,0 +1,43 @@
+load("@aspect_rules_py//py:defs.bzl", "py_library", "py_pytest_main", "py_test")
+load("@pypi//:requirements.bzl", "requirement")
+
+filegroup(
+    name = "srcs",
+    srcs = glob(["src/**/*.py"]),
+    visibility = ["//visibility:public"],
+)
+
+py_library(
+    name = "greet",
+    srcs = [":srcs"],
+    imports = ["./src"],
+    visibility = ["//projects/python:__subpackages__"],
+    deps = [requirement("pydantic")],
+)
+
+filegroup(
+    name = "test_srcs",
+    srcs = glob(["tests/**/*.py"]),
+    visibility = ["//visibility:public"],
+)
+
+py_pytest_main(
+    name = "__test__",
+    deps = [requirement("pytest")],
+)
+
+py_test(
+    name = "greet_test",
+    srcs = [
+        ":__test__",
+        ":test_srcs",
+    ],
+    imports = ["./src"],
+    main = ":__test__.py",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":__test__",
+        ":greet",
+        requirement("pytest"),
+    ],
+)
