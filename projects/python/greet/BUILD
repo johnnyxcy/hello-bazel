@@ -1,9 +1,16 @@
-load("@aspect_rules_py//py:defs.bzl", "py_library", "py_pytest_main", "py_test")
+# load("@//bazel/ruff:defs.bzl", "ruff_format_test")
+load("@aspect_rules_py//py:defs.bzl", "py_library")
 load("@pypi//:requirements.bzl", "requirement")
+
+# load("//bazel/ruff:defs.bzl", "ruff_format_fix")
+load("//tools/lint:linters.bzl", "ruff_lint_test")
 
 filegroup(
     name = "srcs",
-    srcs = glob(["src/**/*.py"]),
+    srcs = glob([
+        "src/**/*.py",
+        "src/**/*.pyi",
+    ]),
     visibility = ["//visibility:public"],
 )
 
@@ -15,29 +22,13 @@ py_library(
     deps = [requirement("pydantic")],
 )
 
-filegroup(
-    name = "test_srcs",
-    srcs = glob(["tests/**/*.py"]),
-    visibility = ["//visibility:public"],
-)
+# ruff_format_fix(
+#     name = "format_fix",
+#     srcs = [":srcs"],
+#     visibility = ["//visibility:public"],
+# )
 
-py_pytest_main(
-    name = "__test__",
-    deps = [requirement("pytest")],
-)
-
-py_test(
-    name = "greet_test",
-    srcs = [
-        ":__test__",
-        ":test_srcs",
-    ],
-    imports = ["./src"],
-    main = ":__test__.py",
-    visibility = ["//visibility:public"],
-    deps = [
-        ":__test__",
-        ":greet",
-        requirement("pytest"),
-    ],
+ruff_lint_test(
+    name = "lint_test",
+    srcs = [":srcs"],
 )

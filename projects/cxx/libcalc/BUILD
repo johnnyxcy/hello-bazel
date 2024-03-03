@@ -13,6 +13,9 @@ cc_library(
     includes = ["./src"],
     visibility = [
         "//projects/cxx/calculator:__pkg__",
-        "//projects/cxx/libcalc/examples:__pkg__",
+        "//projects/cxx/libcalc:__subpackages__",
+    ],
+    deps = [
+        "@com_gitlab_libeigen_eigen//:eigen",
     ],
 )

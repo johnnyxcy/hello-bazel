@@ -1,15 +1,7 @@
 """Python Binary"""
 
-load("@aspect_rules_py//py:defs.bzl", "py_binary")
-load("@pypi//:requirements.bzl", "data_requirement", "requirement")
-
-py_binary(
+alias(
     name = "ruff",
-    srcs = ["cli.py"],
-    data = [
-        data_requirement("ruff"),
-    ],
-    deps = [
-        requirement("ruff"),
-    ],
+    actual = "@pypi_ruff//:ruff.copy",
+    visibility = ["//visibility:public"],
 )

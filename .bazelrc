@@ -16,3 +16,8 @@ build --enable_runfiles
 
 # For MacOS, use clang as the default compiler
 build:macos --action_env=CC=clang
+
+# cxx debug build
+build:debug -c dbg --copt="-g" --strip="never"
+build:debug --features=oso_prefix_is_pwd
+build:debug --spawn_strategy=standalone

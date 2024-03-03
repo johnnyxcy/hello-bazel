@@ -8,8 +8,13 @@ filegroup(
 )
 
 cc_binary(
-    name = "main",
+    name = "calculator",
     srcs = [":srcs"],
+    copts = [
+        "-std=c++17",
+        "-DEIGEN_USE_BLAS=0",
+        "-gdwarf-4",
+    ],
     visibility = ["//visibility:public"],
     deps = [
         "//projects/cxx/libcalc",

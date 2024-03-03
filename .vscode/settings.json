@@ -1,5 +1,10 @@
 {
   "bazel.lsp.enabled": true,
+  "lldb.verboseLogging": true,
+  "ruff.lint.enable": true,
+  "ruff.organizeImports": true,
+  "ruff.trace.server": "verbose",
+  "ruff.path": ["external/pypi_ruff/bin/ruff", "ruff"],
   "clangd.arguments": [
     "--query-driver=**",
     // 支持读取 .clangd 文件
@@ -35,5 +40,24 @@
     ".venv": true,
     // exclude clangd cache
     ".cache": true
-  }
+  },
+  "testMate.cpp.debug.configTemplate": {
+    "args": "${argsArray}",
+    "cwd": "${cwd}",
+    "env": "${envObj}",
+    "initCommands": [],
+    "program": "${exec}",
+    "sourceFileMap": "${sourceFileMapObj}",
+    "terminal": "integrated",
+    "type": "lldb"
+  },
+  "testMate.cpp.log.logpanel": true,
+  "testMate.cpp.test.advancedExecutables": [
+    {
+      "pattern": "bazel-bin/projects/cxx/**/*test*",
+      "runTask": {
+        "before": ["[Bazel]build:debug"]
+      }
+    }
+  ]
 }

@@ -10,7 +10,7 @@ filegroup(
 )
 
 cc_binary(
-    name = "main",
+    name = "sayhi",
     srcs = [":srcs"],
     includes = ["include"],
 )

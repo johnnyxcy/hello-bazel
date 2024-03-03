@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Bazel C++ launch",
+      "type": "lldb",
+      "request": "launch",
+      "sourceMap": {
+        // "/proc/self/cwd": "${workspaceFolder}",
+        ".": "${workspaceFolder}"
+      },
+      "stopOnEntry": false,
+      "program": "${workspaceRoot}/bazel-bin/${input:pickBazelCCTargets}",
+      "args": [],
+      "env": {},
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "[Bazel]build:debug"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "pickBazelCCTargets",
+      "type": "pickString",
+      "description": "Select a Bazel C++ target to launch",
+      "options": [
+        "projects/cxx/calculator/calculator",
+        "projects/cxx/sayhi/sayhi"
+      ]
+    }
+  ]
+}

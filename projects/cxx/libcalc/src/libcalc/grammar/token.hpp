@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace libcalc::grammar::token {
+namespace calc::grammar::token {
 
 class Token {
 public:
@@ -26,4 +26,4 @@ private:
   std::string value_;
 };
 
-} // namespace libcalc::grammar::token
+} // namespace calc::grammar::token

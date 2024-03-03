@@ -2,11 +2,11 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "[bazel]cxx-compile-commands",
+      "label": "[Bazel]build:debug",
       "type": "shell",
       "command": "bazel",
-      "args": ["run", "//:refresh_cc"],
-      "detail": "bazel generate compile_comands.json",
+      "args": ["build", "--config", "debug", "${input:pickBazelBuildTarget}"],
+      "detail": "bazel build with '--config debug' flag",
       "problemMatcher": {
         "pattern": {
           "regexp": "^(INFO|WARNING|ERROR):\\s+(.*)$",
@@ -14,6 +14,22 @@
           "message": 2
         }
       }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "pickBazelBuildTarget",
+      "type": "pickString",
+      "description": "Select a Bazel build target",
+      "options": [
+        "//projects/cxx/calculator:calculator",
+        "//projects/cxx/libcalc:libcalc",
+        "//projects/cxx/libcalc/tests:tests",
+        "//projects/cxx/sayhi:sayhi",
+        "//projects/python/greet:greet",
+        "//projects/python/greet/tests:greet_test",
+        "//projects/python/hello:hello"
+      ]
     }
   ]
 }

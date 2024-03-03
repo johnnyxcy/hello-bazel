@@ -4,7 +4,7 @@
 
 int main() {
 
-  double val = libcalc::math::arithmetic::add(1, 2);
+  double val = calc::math::arithmetic::add(1, 2);
 
   std::cout << "1 + 2 = " << val << std::endl;
   return 0;

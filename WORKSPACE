@@ -12,6 +12,11 @@ load("//:deps.bzl", "download_deps")
 
 download_deps()
 
+load("@aspect_bazel_lib//lib:repositories.bzl", "aspect_bazel_lib_dependencies")
+
+# aspect_bazel_lib depends on bazel_skylib
+aspect_bazel_lib_dependencies()
+
 # Skilib & Buildifier
 
 load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")
@@ -27,6 +32,18 @@ load("@buildifier_prebuilt//:defs.bzl", "buildifier_prebuilt_register_toolchains
 buildifier_prebuilt_register_toolchains()
 
 # region CXX
+
+# toolchain
+load("@toolchains_llvm//toolchain:deps.bzl", "bazel_toolchain_dependencies")
+
+bazel_toolchain_dependencies()
+
+load("@toolchains_llvm//toolchain:rules.bzl", "llvm_toolchain")
+
+llvm_toolchain(
+    name = "llvm_toolchain",
+    llvm_version = "16.0.0",
+)
 
 # hedron_compile_commands setups
 # See https://github.com/hedronvision/bazel-compile-commands-extractor
@@ -78,12 +95,19 @@ poetry_lock(
 load("@python_toolchain//:defs.bzl", "interpreter")
 
 # Load the pip_parse macro which will parse the requirements_lock.txt file
-load("@rules_python//python:pip.bzl", "pip_parse")
+load("@rules_python//python:pip.bzl", "package_annotation", "pip_parse")
 
 # Create a central repo that knows about the dependencies needed from
 # requirements_lock.txt.
 pip_parse(
     name = "pypi",
+    annotations = {
+        "ruff": package_annotation(
+            copy_executables = {
+                "bin/ruff": "ruff",
+            },
+        ),
+    },
     python_interpreter_target = interpreter,
     requirements_lock = "@py_requirements_lock//:requirements_lock.txt",
 )
@@ -96,3 +120,9 @@ install_deps(
     python_interpreter_target = interpreter,
     quiet = False,
 )
+
+# Nodejs
+
+load("@aspect_rules_js//js:repositories.bzl", "rules_js_dependencies")
+
+rules_js_dependencies()
