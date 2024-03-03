@@ -5,11 +5,38 @@
 # For more details, please check https://github.com/bazelbuild/bazel/issues/18958
 ###############################################################################
 
-# module(
-#     name = "hello_bazel",
+module(
+    name = "hello_bazel",
+)
+
+bazel_dep(name = "bazel_skylib", version = "1.5.0")
+
+# bazel_dep(name = "rules_python", version = "0.31.0")
+bazel_dep(name = "platforms", version = "0.0.8")
+
+# Hedron's Compile Commands Extractor for Bazel
+# https://github.com/hedronvision/bazel-compile-commands-extractor
+bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
+git_override(
+    module_name = "hedron_compile_commands",
+    remote = "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
+    commit = "204aa593e002cbd177d30f11f54cff3559110bb9",
+)
+
+bazel_dep(name = "aspect_bazel_lib", version = "2.5.1")
+
+bazel_dep(name = "aspect_rules_py", version = "0.7.1")
+bazel_dep(name = "rules_python", dev_dependency = True, version = "0.29.0")
+# python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+# python.toolchain(
+#     configure_coverage_tool = True,
+#     python_version = "3.11",
 # )
 
-# bazel_dep(name = "bazel_skylib", version = "1.5.0")
-# bazel_dep(name = "rules_python", version = "0.31.0")
-# bazel_dep(name = "platforms", version = "0.0.7")
-# bazel_dep(name = "aspect_rules_py", version = "0.5.0")
+bazel_dep(name = "aspect_rules_lint", version = "0.12.0")
+
+bazel_dep(name = "eigen", version = "3.4.0")
+bazel_dep(name = "googletest", version = "1.14.0")
+
+bazel_dep(name = "buildifier_prebuilt", version = "6.4.0", dev_dependency = True)
+bazel_dep(name = "toolchains_llvm", version = "0.10.3")

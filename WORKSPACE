@@ -1,35 +1,35 @@
-"""Workspace Configuration for Bazel.
-"""
+# """Workspace Configuration for Bazel.
+# """
 
-# Declares that this directory is the root of a Bazel workspace.
-# See https://docs.bazel.build/versions/main/build-ref.html#workspace
-workspace(
-    # How this workspace would be referenced with absolute labels from another workspace
-    name = "hello_bazel",
-)
+# # Declares that this directory is the root of a Bazel workspace.
+# # See https://docs.bazel.build/versions/main/build-ref.html#workspace
+# workspace(
+#     # How this workspace would be referenced with absolute labels from another workspace
+#     name = "hello_bazel",
+# )
 
-load("//:deps.bzl", "download_deps")
+# load("deps.bzl", "download_deps")
 
-download_deps()
+# download_deps()
 
-load("@aspect_bazel_lib//lib:repositories.bzl", "aspect_bazel_lib_dependencies")
+# load("@aspect_bazel_lib//lib:repositories.bzl", "aspect_bazel_lib_dependencies")
 
-# aspect_bazel_lib depends on bazel_skylib
-aspect_bazel_lib_dependencies()
+# # aspect_bazel_lib depends on bazel_skylib
+# aspect_bazel_lib_dependencies()
 
-# Skilib & Buildifier
+# # Skilib & Buildifier
 
-load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")
+# load("@buildifier_prebuilt//:deps.bzl", "buildifier_prebuilt_deps")
 
-buildifier_prebuilt_deps()
+# buildifier_prebuilt_deps()
 
-load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
+# load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 
-bazel_skylib_workspace()
+# bazel_skylib_workspace()
 
-load("@buildifier_prebuilt//:defs.bzl", "buildifier_prebuilt_register_toolchains")
+# load("@buildifier_prebuilt//:defs.bzl", "buildifier_prebuilt_register_toolchains")
 
-buildifier_prebuilt_register_toolchains()
+# buildifier_prebuilt_register_toolchains()
 
 # region CXX
 
@@ -45,25 +45,25 @@ llvm_toolchain(
     llvm_version = "16.0.0",
 )
 
-# hedron_compile_commands setups
-# See https://github.com/hedronvision/bazel-compile-commands-extractor
-load("@hedron_compile_commands//:workspace_setup.bzl", "hedron_compile_commands_setup")
+# # hedron_compile_commands setups
+# # See https://github.com/hedronvision/bazel-compile-commands-extractor
+# load("@hedron_compile_commands//:workspace_setup.bzl", "hedron_compile_commands_setup")
 
-hedron_compile_commands_setup()
+# hedron_compile_commands_setup()
 
-load("@hedron_compile_commands//:workspace_setup_transitive.bzl", "hedron_compile_commands_setup_transitive")
+# load("@hedron_compile_commands//:workspace_setup_transitive.bzl", "hedron_compile_commands_setup_transitive")
 
-hedron_compile_commands_setup_transitive()
+# hedron_compile_commands_setup_transitive()
 
-load("@hedron_compile_commands//:workspace_setup_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive")
+# load("@hedron_compile_commands//:workspace_setup_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive")
 
-hedron_compile_commands_setup_transitive_transitive()
+# hedron_compile_commands_setup_transitive_transitive()
 
-load("@hedron_compile_commands//:workspace_setup_transitive_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive_transitive")
+# load("@hedron_compile_commands//:workspace_setup_transitive_transitive_transitive.bzl", "hedron_compile_commands_setup_transitive_transitive_transitive")
 
-hedron_compile_commands_setup_transitive_transitive_transitive()
+# hedron_compile_commands_setup_transitive_transitive_transitive()
 
-# endreigon
+# # endreigon
 
 # Python
 
@@ -84,7 +84,7 @@ python_register_toolchains(
 
 py_repositories()
 
-load("//bazel/poetry:defs.bzl", "poetry_lock")
+load("//tools/poetry:repositories.bzl", "poetry_lock")
 
 # poetry.lock converted to requirements.txt
 poetry_lock(
@@ -121,8 +121,8 @@ install_deps(
     quiet = False,
 )
 
-# Nodejs
+# # Nodejs
 
-load("@aspect_rules_js//js:repositories.bzl", "rules_js_dependencies")
+# load("@aspect_rules_js//js:repositories.bzl", "rules_js_dependencies")
 
-rules_js_dependencies()
+# rules_js_dependencies()

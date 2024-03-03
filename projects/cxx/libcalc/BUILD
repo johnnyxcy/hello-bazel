@@ -16,6 +16,6 @@ cc_library(
         "//projects/cxx/libcalc:__subpackages__",
     ],
     deps = [
-        "@com_gitlab_libeigen_eigen//:eigen",
+        "@eigen",
     ],
 )

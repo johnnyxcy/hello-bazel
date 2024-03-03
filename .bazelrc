@@ -3,7 +3,10 @@
 build --incompatible_enable_cc_toolchain_resolution
 
 # Dont enable Bazel's MODULE support
-common --noenable_bzlmod
+common --enable_bzlmod
+
+# # Python version
+# common --@aspect_rules_py//py:interpreter_version=3.11.7
 
 # use platform config feature
 common --enable_platform_specific_config

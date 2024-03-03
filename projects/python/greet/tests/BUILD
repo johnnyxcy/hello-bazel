@@ -13,17 +13,17 @@ py_pytest_main(
 )
 
 py_test(
-    name = "greet_test",
+    name = "tests",
     srcs = [
         ":__test__",
-        ":test_srcs",
+        ":srcs",
     ],
-    imports = ["./src"],
+    imports = ["../src"],
     main = ":__test__.py",
     visibility = ["//visibility:public"],
     deps = [
         ":__test__",
-        ":greet",
+        "//projects/python/greet",
         requirement("pytest"),
     ],
 )
