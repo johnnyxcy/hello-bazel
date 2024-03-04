@@ -1,8 +1,5 @@
-# load("@//bazel/ruff:defs.bzl", "ruff_format_test")
 load("@aspect_rules_py//py:defs.bzl", "py_library")
 load("@pypi//:requirements.bzl", "requirement")
-
-# load("//bazel/ruff:defs.bzl", "ruff_format_fix")
 load("//tools/lint:linters.bzl", "ruff_lint_test")
 
 filegroup(
@@ -22,13 +19,7 @@ py_library(
     deps = [requirement("pydantic")],
 )
 
-# ruff_format_fix(
-#     name = "format_fix",
-#     srcs = [":srcs"],
-#     visibility = ["//visibility:public"],
-# )
-
 ruff_lint_test(
-    name = "lint_test",
-    srcs = [":srcs"],
+    name = "lint",
+    srcs = [":greet"],
 )

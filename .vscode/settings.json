@@ -32,9 +32,9 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     // exclude bazel build directory except bin
-    // "bazel-[^b]*": true,
-    // "bazel-b[^i]*": true,
-    // "bazel-bi[^n]*": true,
+    "bazel-[^b]*": true,
+    "bazel-b[^i]*": true,
+    "bazel-bi[^n]*": true,
     // "external": true,
     // exclude python venv
     ".venv": true,
@@ -47,14 +47,19 @@
     "env": "${envObj}",
     "initCommands": [],
     "program": "${exec}",
-    "sourceFileMap": "${sourceFileMapObj}",
+    "sourceMap": {
+      ".": "${workspaceFolder}"
+    },
     "terminal": "integrated",
+    "request": "launch",
     "type": "lldb"
   },
   "testMate.cpp.log.logpanel": true,
   "testMate.cpp.test.advancedExecutables": [
     {
-      "pattern": "bazel-bin/projects/cxx/**/*test*",
+      "pattern": "bazel-bin/**/_main/projects/cxx/**/*test*",
+      "description": "Bazel C++ Test Targets",
+      "cwd": "${workspaceFolder}",
       "runTask": {
         "before": ["[Bazel]build:debug"]
       }

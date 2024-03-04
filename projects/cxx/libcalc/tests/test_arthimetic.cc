@@ -30,5 +30,5 @@ TEST(TestArithmetic, TestMultiply) {
   using namespace calc::math;
 
   EXPECT_EQ(arithmetic::mul(2, 3), 6);
-  EXPECT_DOUBLE_EQ(arithmetic::mul(2.2, 3.3), 8);
+  EXPECT_DOUBLE_EQ(arithmetic::mul(2.2, 3.3), 7.26);
 }

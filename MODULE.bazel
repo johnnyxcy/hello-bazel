@@ -10,9 +10,8 @@ module(
 )
 
 bazel_dep(name = "bazel_skylib", version = "1.5.0")
-
-# bazel_dep(name = "rules_python", version = "0.31.0")
 bazel_dep(name = "platforms", version = "0.0.8")
+bazel_dep(name = "rules_python", dev_dependency = True, version = "0.29.0")
 
 # Hedron's Compile Commands Extractor for Bazel
 # https://github.com/hedronvision/bazel-compile-commands-extractor
@@ -23,20 +22,30 @@ git_override(
     commit = "204aa593e002cbd177d30f11f54cff3559110bb9",
 )
 
-bazel_dep(name = "aspect_bazel_lib", version = "2.5.1")
-
+bazel_dep(name = "aspect_bazel_lib", version = "1.40.0")
+bazel_dep(name = "aspect_rules_js", version = "1.38.0")
+bazel_dep(name = "aspect_rules_ts", version = "2.2.0")
 bazel_dep(name = "aspect_rules_py", version = "0.7.1")
-bazel_dep(name = "rules_python", dev_dependency = True, version = "0.29.0")
-# python = use_extension("@rules_python//python/extensions:python.bzl", "python")
-# python.toolchain(
-#     configure_coverage_tool = True,
-#     python_version = "3.11",
-# )
-
-bazel_dep(name = "aspect_rules_lint", version = "0.12.0")
-
+bazel_dep(name = "aspect_rules_lint", version = "0.12.0", dev_dependency = True)
+git_override(
+    module_name = "aspect_rules_lint",
+    remote = "https://github.com/aspect-build/rules_lint.git",
+    commit = "c22174195342e4d4f87b258edb4b22a2574a6427",
+)
 bazel_dep(name = "eigen", version = "3.4.0")
 bazel_dep(name = "googletest", version = "1.14.0")
 
 bazel_dep(name = "buildifier_prebuilt", version = "6.4.0", dev_dependency = True)
 bazel_dep(name = "toolchains_llvm", version = "0.10.3")
+
+# # llvm toolchain registry
+llvm = use_extension("@toolchains_llvm//toolchain/extensions:llvm.bzl", "llvm")
+
+llvm.toolchain(
+    name = "llvm_toolchain",
+    llvm_version = "17.0.6",
+    # For this toolchain to work, the LLVM distribution archive would need to be unpacked here.
+    toolchain_roots = {"": "/opt/homebrew/opt/llvm"},
+)
+use_repo(llvm, "llvm_toolchain")
+register_toolchains("@llvm_toolchain//:all")

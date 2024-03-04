@@ -24,7 +24,7 @@ http_archive(
     url = "https://github.com/bazelbuild/rules_python/archive/refs/tags/0.13.0.tar.gz",
 )
 
-load("//bazel/poetry:defs.bzl", "poetry_lock")
+load("//tools/poetry:defs.bzl", "poetry_lock")
 
 # Generate a requirements lock file from our poetry lock
 poetry_lock(

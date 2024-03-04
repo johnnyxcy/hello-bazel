@@ -5,9 +5,6 @@ build --incompatible_enable_cc_toolchain_resolution
 # Dont enable Bazel's MODULE support
 common --enable_bzlmod
 
-# # Python version
-# common --@aspect_rules_py//py:interpreter_version=3.11.7
-
 # use platform config feature
 common --enable_platform_specific_config
 
@@ -17,8 +14,8 @@ startup --windows_enable_symlinks
 # Enable runfiles support
 build --enable_runfiles
 
-# For MacOS, use clang as the default compiler
-build:macos --action_env=CC=clang
+# MacOS
+build:macos --features=-libtool
 
 # cxx debug build
 build:debug -c dbg --copt="-g" --strip="never"
