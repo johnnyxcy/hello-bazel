@@ -15,21 +15,6 @@
       "env": {},
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "[Bazel]build:debug"
-    },
-    {
-      "name": "Gtest Example",
-      "type": "lldb",
-      "request": "launch",
-      "sourceMap": {
-        // "/proc/self/cwd": "${workspaceFolder}",
-        ".": "${workspaceFolder}"
-      },
-      "stopOnEntry": false,
-      "program": "${workspaceFolder}/bazel-bin/projects/cxx/libcalc/tests/tests.runfiles/_main/projects/cxx/libcalc/tests/tests",
-      "args": [],
-      "env": {},
-      "cwd": "${workspaceFolder}"
-      // "preLaunchTask": "[Bazel]build:debug"
     }
   ],
   "inputs": [
