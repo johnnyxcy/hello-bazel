@@ -575,6 +575,8 @@ class FreeFunctionStubsGenerator(StubsGenerator):
                     module_name = t[: t.rindex(".")]
                     if self.is_valid_module(module_name):
                         involved_modules_names.add(module_name)
+                    else:
+                        pass
                 except ValueError:
                     pass
         return involved_modules_names
@@ -999,7 +1001,7 @@ class ModuleStubsGenerator(StubsGenerator):
     def write(self):
         with DirectoryWalkerGuard(self.short_name + self.stub_suffix):
             with open("__init__.pyi", "w", encoding="utf-8") as init_pyi:
-                init_pyi.write("# pyright: reportUnusedImport=false\n\n")
+                init_pyi.write("# pyright: basic\n\n")
                 init_pyi.write("\n".join(self.to_lines()))
             for m in self.submodules:
                 m.write()
@@ -1133,7 +1135,6 @@ def main(args=None):
 
     with DirectoryWalkerGuard(sys_args.output_dir):
         for _module_name in sys_args.module_names:
-            print("Processing module: {}".format(_module_name))
             _module = ModuleStubsGenerator(_module_name)
             _module.parse()
             if FunctionSignature.n_fatal_errors() == 0:

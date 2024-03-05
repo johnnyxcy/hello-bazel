@@ -1,8 +1,9 @@
-import libcalc._libcalc as libcalc
+import projects.cxx.libcalc._libcalc as libcalc
 
-print(libcalc)
-import os
+print(libcalc.math.add(1, 2))
+print(libcalc.math.sub(2, 1))
 
-print(os.path.abspath(libcalc.__file__))
-print(os.path.abspath(__file__))
-print(libcalc.add(1, 2))
+
+import numpy as np
+
+print(libcalc.math.add(np.array([1, 2]), np.array([3, 4])))

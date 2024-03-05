@@ -24,6 +24,7 @@
       "options": [
         "//projects/cxx/calculator:calculator",
         "//projects/cxx/libcalc:libcalc",
+        "//projects/cxx/libcalc:_libcalc",
         "//projects/cxx/libcalc/tests:tests",
         "//projects/cxx/sayhi:sayhi",
         "//projects/python/greet:greet",

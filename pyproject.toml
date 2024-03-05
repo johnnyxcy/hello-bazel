@@ -19,9 +19,11 @@ ruff = "^0.2"
 include = ["projects/python"]
 exclude = ["**/__pycache__"]
 typeCheckingMode = "strict"
+
 executionEnvironments = [
-    { root = "projects/cxx/libcalc/examples/python", extraPaths = [
-        "projects/cxx/libcalc/src",
+    { root = "projects/cxx/libcalc", extraPaths = [
+        "projects/cxx/libcalc",
+        ".",
     ] },
     { root = "projects/python/greet", extraPaths = [
         "projects/python/greet/src",
@@ -52,7 +54,6 @@ exclude = [
     ".svn",
     ".tox",
     ".venv",
-    ".vscode",
     "__pypackages__",
     "_build",
     "buck-out",

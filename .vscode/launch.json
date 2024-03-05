@@ -6,15 +6,48 @@
       "type": "lldb",
       "request": "launch",
       "sourceMap": {
-        // "/proc/self/cwd": "${workspaceFolder}",
         ".": "${workspaceFolder}"
       },
       "stopOnEntry": false,
-      "program": "${workspaceRoot}/bazel-bin/${input:pickBazelCCTargets}",
+      "program": "${workspaceFolder}/bazel-bin/${input:pickBazelCCTargets}",
       "args": [],
       "env": {},
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "[Bazel]build:debug"
+    },
+    {
+      "name": "Python Run File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/.vscode/.debug/pylauncher.py",
+      "console": "integratedTerminal",
+      "args": ["--file", "${file}"],
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}:${workspaceFolder}/.vscode/.debug"
+      },
+      "autoReload": {
+        "enable": true
+      },
+      "windows": {
+        "env": {
+          "PYTHONPATH": "${workspaceFolder};${workspaceFolder}/.vscode/.debug"
+        }
+      }
+    },
+    {
+      "name": "Attach Python/C++ Debug",
+      "type": "lldb",
+      "request": "attach",
+      "program": "${workspaceFolder}/.venv/bin/python",
+      "sourceMap": {
+        ".": "${workspaceFolder}"
+      },
+      "linux": {
+        "sourceMap": {
+          "/proc/self/cwd": "${workspaceFolder}"
+        }
+      },
+      "pid": "${command:pickProcess}"
     }
   ],
   "inputs": [

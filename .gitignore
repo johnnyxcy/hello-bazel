@@ -11,6 +11,7 @@ tmp
 build/**
 
 .cache/**
+__pycache__
 
 .venv
 *.venv

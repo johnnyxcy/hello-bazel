@@ -1,8 +1,12 @@
 load("@aspect_rules_py//py:defs.bzl", "py_binary")
+load("@pypi//:requirements.bzl", "requirement")
 
 py_binary(
     name = "simple",
     srcs = ["simple.py"],
-    imports = ["../../.."],
-    deps = ["//projects/cxx/libcalc:py_libcalc"],
+    imports = ["../../../../.."],
+    deps = [
+        "//projects/cxx/libcalc:_libcalc",
+        requirement("numpy"),
+    ],
 )

@@ -1,2 +1,3 @@
-_libcalc.*
+_libcalc.so
+_libcalc.pyd
 _libcalc/**

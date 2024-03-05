@@ -108,7 +108,7 @@ def pybind_extension(
                 "--no-setup-py",
                 "--ignore-invalid",
                 "all",
-                "--bare-numpy-ndarray",
+                # "--bare-numpy-ndarray",
                 "--root-module-suffix",
                 "",
                 name,
