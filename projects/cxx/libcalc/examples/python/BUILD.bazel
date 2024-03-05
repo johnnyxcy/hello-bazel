@@ -1,0 +1,8 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary")
+
+py_binary(
+    name = "simple",
+    srcs = ["simple.py"],
+    imports = ["../../.."],
+    deps = ["//projects/cxx/libcalc:py_libcalc"],
+)

@@ -1,8 +1,20 @@
+load("//tools/pybind11:defs.bzl", "pybind_extension")
+
 filegroup(
     name = "srcs",
-    srcs = glob([
-        "src/**/*.hpp",
+    srcs = ["src/libcalc/libcalc.hpp"] + glob([
+        "src/libcalc/grammar/**/*.hpp",
+        "src/libcalc/math/**/*.hpp",
     ]),
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "_pyext_srcs",
+    srcs = [
+        # entry
+        "src/libcalc/_libcalc.py.cc",
+    ],
     visibility = ["//visibility:public"],
 )
 
@@ -19,3 +31,15 @@ cc_library(
         "@eigen",
     ],
 )
+
+pybind_extension(
+    name = "_libcalc",
+    srcs = [":_pyext_srcs"],
+    stubgen = True,
+)
+
+# py_library(
+#     name = "py_libcalc",
+#     data = [":_libcalc"],
+#     visibility = ["//visibility:public"],
+# )

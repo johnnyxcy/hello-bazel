@@ -1,7 +1,5 @@
 """Workspace Compatability with bzlmod support"""
 
-# region CXX
-
 # toolchain
 load("@aspect_bazel_lib//lib:repositories.bzl", "register_coreutils_toolchains")
 
@@ -61,3 +59,8 @@ install_deps(
     python_interpreter_target = interpreter,
     quiet = False,
 )
+
+# Third Party Dependencies
+load("//vendor:repository.bzl", "vendor_repository")
+
+vendor_repository()

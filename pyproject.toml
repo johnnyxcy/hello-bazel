@@ -20,6 +20,9 @@ include = ["projects/python"]
 exclude = ["**/__pycache__"]
 typeCheckingMode = "strict"
 executionEnvironments = [
+    { root = "projects/cxx/libcalc/examples/python", extraPaths = [
+        "projects/cxx/libcalc/src",
+    ] },
     { root = "projects/python/greet", extraPaths = [
         "projects/python/greet/src",
     ] },
