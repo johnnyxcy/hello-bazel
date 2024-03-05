@@ -53,4 +53,5 @@ def main():
     spec.loader.exec_module(module)
 
 
-main()
+if __name__ == "__main__":
+    main()

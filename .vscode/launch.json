@@ -16,10 +16,10 @@
       "preLaunchTask": "[Bazel]build:debug"
     },
     {
-      "name": "Python Run File",
+      "name": "Debug Python",
       "type": "debugpy",
       "request": "launch",
-      "program": "${workspaceFolder}/.vscode/.debug/pylauncher.py",
+      "program": "${workspaceFolder}/.vscode/.debug/pydev.py",
       "console": "integratedTerminal",
       "args": ["--file", "${file}"],
       "env": {
@@ -35,7 +35,7 @@
       }
     },
     {
-      "name": "Attach Python/C++ Debug",
+      "name": "Attach C++ w/ Python",
       "type": "lldb",
       "request": "attach",
       "program": "${workspaceFolder}/.venv/bin/python",
