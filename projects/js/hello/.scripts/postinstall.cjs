@@ -23,30 +23,49 @@ const packageRelPath = path.relative(workspaceRoot, packageRoot);
 const buildArtifacts = [".dist"];
 
 buildArtifacts.forEach((target) => {
-  const targetPath = path.join(packageRoot, target);
+  const destPath = path.join(packageRoot, target);
 
-  try {
-    const stats = fs.lstatSync(targetPath);
-    if (stats.isSymbolicLink()) {
-      fs.unlinkSync(targetPath);
-    } else {
-      fs.rmdirSync(targetPath);
-    }
-  } catch (e) {
-    // noop
+  if (!fs.existsSync(destPath)) {
+    fs.mkdirSync(destPath);
+  } else if (fs.existsSync(destPath)) {
+    // remove every content in the directory
+    fs.readdirSync(destPath).forEach((file) => {
+      const joined = path.join(destPath, file);
+      if (fs.lstatSync(joined).isDirectory()) {
+        fs.rmdirSync(joined, { recursive: true });
+      } else {
+        fs.unlinkSync(joined);
+      }
+    });
   }
 
-  const targetDir = path.join(
+  const sourceDir = path.join(
     workspaceRoot,
     "bazel-bin",
     packageRelPath,
     target
   );
-  fs.symlinkSync(targetDir, targetPath, "junction");
+
+  if (!fs.existsSync(sourceDir)) {
+    console.warn(
+      `No build artifacts found for '${packageRelPath}'. Consider to build the package with bazel first.`
+    );
+    console.warn(`bazel build //${packageRelPath}`);
+    return;
+  }
+
+  // symlink the build artifacts
+  fs.readdirSync(sourceDir).forEach((file) => {
+    const source = path.join(sourceDir, file);
+    const dest = path.join(destPath, file);
+    fs.symlinkSync(source, dest, "junction");
+  });
+
+  // fs.symlinkSync(targetDir, targetPath, "junction");
 
   console.log(
-    path.relative(workspaceRoot, targetDir),
+    path.relative(workspaceRoot, sourceDir),
     " -> ",
-    path.relative(workspaceRoot, targetPath)
+    path.relative(workspaceRoot, destPath)
   );
 });

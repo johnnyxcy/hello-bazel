@@ -29,7 +29,6 @@ runtime_deps = [
 node_modules_deps = [
     ":node_modules/vite",
     ":node_modules/rollup-plugin-visualizer",
-    ":node_modules/vite-tsconfig-paths",
     ":node_modules/vite-plugin-dts",
 ]
 
@@ -41,11 +40,11 @@ node_modules_deps_test = [
 vite.vite_binary(
     name = "vite",
     chdir = package_name(),
-    data = ["vite.config.ts"],
+    data = ["vite.config.mts"],
 )
 
 js_run_binary(
-    name = "build",
+    name = "hello",
     srcs = [":src"] + runtime_deps + node_modules_deps,
     args = ["build"],
     mnemonic = "ViteBuild",

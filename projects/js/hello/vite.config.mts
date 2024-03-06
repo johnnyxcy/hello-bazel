@@ -5,14 +5,12 @@ import type { UserConfig } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
 
 import dts from "vite-plugin-dts";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 import pkg from "./package.json";
 
 export default defineConfig((): UserConfig => {
   return {
     plugins: [
-      tsconfigPaths(),
       {
         ...dts({
           outDir: ".dist/types",
