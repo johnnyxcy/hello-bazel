@@ -1,0 +1,81 @@
+load("@aspect_rules_js//js:defs.bzl", "js_run_binary")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@npm//projects/js/hello:vite/package_json.bzl", vite = "bin")
+
+npm_link_all_packages(name = "node_modules")
+
+filegroup(
+    name = "src",
+    srcs = glob(
+        include = ["src/**"],
+        exclude = ["**/*.test.ts"],
+    ),
+)
+
+# filegroup(
+#     name = "src_test",
+#     srcs = glob(
+#         include = ["src/**/*.test.ts"],
+#     ),
+# )
+
+runtime_deps = [
+    "package.json",
+    "tsconfig.json",
+    "tsconfig.node.json",
+]
+
+node_modules_deps = [
+    ":node_modules/vite",
+    # ":node_modules/rollup-plugin-visualizer",
+    ":node_modules/vite-plugin-dts",
+]
+
+vite.vite_binary(
+    name = "vite",
+    chdir = package_name(),
+    data = ["vite.config.mts"] + runtime_deps,
+    visibility = ["//projects/js/vite-electron-plugin:__subpackages__"],
+)
+
+js_run_binary(
+    name = "build",
+    srcs = [":src"] + runtime_deps + node_modules_deps,
+    args = ["build"],
+    mnemonic = "ViteBuild",
+    out_dirs = [
+        ".dist",
+        ".build",
+    ],
+    tool = ":vite",
+)
+
+# vitest.vitest_test(
+#     name = "test",
+#     args = [
+#         "run",
+#         "--coverage",
+#     ],
+#     chdir = package_name(),
+#     data = [
+#         "vite.config.ts",
+#         ":src",
+#         ":src_test",
+#     ] + runtime_deps + node_modules_deps + node_modules_deps_test,
+# )
+
+# vitest.vitest_binary(
+#     name = "test.ui",
+#     args = [
+#         "--ui",
+#         "--coverage",
+#     ],
+#     chdir = package_name(),
+#     data = [
+#         "vite.config.ts",
+#         ":build",
+#         ":node_modules/@vitest/ui",
+#         ":src",
+#         ":src_test",
+#     ] + runtime_deps + node_modules_deps + node_modules_deps_test,
+# )

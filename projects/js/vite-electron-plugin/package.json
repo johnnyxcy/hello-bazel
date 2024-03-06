@@ -1,0 +1,34 @@
+{
+  "name": "@mas/vite-electron-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "exports": {
+    ".": {
+      "types": "./.dist/types/src/index.d.ts",
+      "default": "./.dist/lib/vite-electron-plugin.js"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "postinstall": "node ./.scripts/postinstall.cjs"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "eslint": "latest",
+    "typescript": "latest",
+    "vite": "latest",
+    "vite-plugin-dts": "latest",
+    "vitest": "latest"
+  },
+  "peerDependencies": {
+    "electron": "latest"
+  }
+}
