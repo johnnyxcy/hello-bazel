@@ -1,12 +1,23 @@
 load("@aspect_rules_js//js:defs.bzl", "js_run_binary")
 load("@npm//:defs.bzl", "npm_link_all_packages")
-load("@npm//projects/js/hello:vite/package_json.bzl", vi = "bin")
+load("@npm//projects/js/hello:vite/package_json.bzl", vite = "bin")
+load("@npm//projects/js/hello:vitest/package_json.bzl", vitest = "bin")
 
 npm_link_all_packages(name = "node_modules")
 
 filegroup(
     name = "src",
-    srcs = glob(["src/**"]),
+    srcs = glob(
+        include = ["src/**"],
+        exclude = ["**/*.test.ts"],
+    ),
+)
+
+filegroup(
+    name = "src_test",
+    srcs = glob(
+        include = ["src/**/*.test.ts"],
+    ),
 )
 
 runtime_deps = [
@@ -22,7 +33,12 @@ node_modules_deps = [
     ":node_modules/vite-plugin-dts",
 ]
 
-vi.vite_binary(
+node_modules_deps_test = [
+    ":node_modules/vitest",
+    ":node_modules/@vitest/coverage-istanbul",
+]
+
+vite.vite_binary(
     name = "vite",
     chdir = package_name(),
     data = ["vite.config.ts"],
@@ -33,6 +49,39 @@ js_run_binary(
     srcs = [":src"] + runtime_deps + node_modules_deps,
     args = ["build"],
     mnemonic = "ViteBuild",
-    out_dirs = [".dist"],
+    out_dirs = [
+        ".dist",
+        ".build",
+    ],
     tool = ":vite",
+)
+
+vitest.vitest_test(
+    name = "test",
+    args = [
+        "run",
+        "--coverage",
+    ],
+    chdir = package_name(),
+    data = [
+        "vite.config.ts",
+        ":src",
+        ":src_test",
+    ] + runtime_deps + node_modules_deps + node_modules_deps_test,
+)
+
+vitest.vitest_binary(
+    name = "test.ui",
+    args = [
+        "--ui",
+        "--coverage",
+    ],
+    chdir = package_name(),
+    data = [
+        "vite.config.ts",
+        ":build",
+        ":node_modules/@vitest/ui",
+        ":src",
+        ":src_test",
+    ] + runtime_deps + node_modules_deps + node_modules_deps_test,
 )

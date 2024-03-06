@@ -44,7 +44,7 @@
     // "bazel-[^b]*": true,
     // "bazel-b[^i]*": true,
     // "bazel-bi[^n]*": true,
-    "external": true,
+    // "external": true,
     // exclude python venv
     ".venv": true,
     // exclude clangd cache

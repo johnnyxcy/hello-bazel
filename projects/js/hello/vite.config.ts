@@ -46,7 +46,9 @@ export default defineConfig((): UserConfig => {
       globals: true,
       coverage: {
         provider: "istanbul" as const,
+        reporter: ["lcov" as const, "html" as const, "text-summary" as const],
       },
+      reporters: ["verbose" as const],
     },
   };
 });

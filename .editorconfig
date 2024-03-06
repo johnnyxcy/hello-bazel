@@ -6,5 +6,5 @@ insert_final_newline = true
 [*.py, *.bzl]
 indent_size = 4
 
-[*.yml, *.yaml, *.md, *.json]
+[*.yml, *.yaml, *.md, *.json, *.h, *.cpp, *.hpp, *.cc, *.ts, *.tsx, *.js]
 indent_size = 2
