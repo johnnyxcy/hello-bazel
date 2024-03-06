@@ -48,7 +48,8 @@
     // exclude python venv
     // ".venv": true,
     // exclude clangd cache
-    ".cache": true
+    ".cache": true,
+    ".ruff_cache": true
   },
   "lldb.verboseLogging": true,
   "ruff.lint.enable": true,
