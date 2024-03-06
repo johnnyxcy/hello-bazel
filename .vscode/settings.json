@@ -1,4 +1,7 @@
 {
+  "[cpp]": {
+    "editor.rulers": [80]
+  },
   "[python]": {
     "editor.rulers": [80]
   },
@@ -8,9 +11,9 @@
   "[typescriptreact]": {
     "editor.rulers": [80]
   },
-  "bazel.lsp.enabled": true,
   // Disable the following to not use debug configs
   "bazel.commandLine.commandArgs": ["--config", "debug"],
+  "bazel.lsp.enabled": true,
   "clangd.arguments": [
     "--query-driver=**",
     // 支持读取 .clangd 文件
