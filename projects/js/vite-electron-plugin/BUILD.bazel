@@ -39,7 +39,7 @@ vite.vite_binary(
 )
 
 js_run_binary(
-    name = "build",
+    name = "vite-electron-plugin",
     srcs = [":src"] + runtime_deps + node_modules_deps,
     args = ["build"],
     mnemonic = "ViteBuild",

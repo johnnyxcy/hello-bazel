@@ -27,7 +27,7 @@ buildArtifacts.forEach((target) => {
 
   if (!fs.existsSync(destPath)) {
     fs.mkdirSync(destPath);
-  } else {
+  } else if (fs.existsSync(destPath)) {
     // remove every content in the directory
     fs.readdirSync(destPath).forEach((file) => {
       const joined = path.join(destPath, file);
@@ -45,6 +45,14 @@ buildArtifacts.forEach((target) => {
     packageRelPath,
     target
   );
+
+  if (!fs.existsSync(sourceDir)) {
+    console.warn(
+      `No build artifacts found for '${packageRelPath}'. Consider to build the package with bazel first.`
+    );
+    console.warn(`bazel build //${packageRelPath}`);
+    return;
+  }
 
   // symlink the build artifacts
   fs.readdirSync(sourceDir).forEach((file) => {
