@@ -1,0 +1,32 @@
+{
+  "name": "@hello-bazel/app",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".dist/e/main.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "e2e": "playwright test",
+    "e2e:pre": "vite build --mode=test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hello-bazel/hello": "workspace:^1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@hello-bazel/vite-electron-plugin": "workspace:^1",
+    "@types/react-dom": "^18.2.18",
+    "@types/react": "^18.2.48",
+    "@vitejs/plugin-react": "latest",
+    "chalk": "latest",
+    "electron-builder": "24.9.1",
+    "electron": "^28.1.4",
+    "vite": "latest"
+  }
+}

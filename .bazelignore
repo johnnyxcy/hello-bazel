@@ -1,3 +1,4 @@
 node_modules
 projects/js/hello/node_modules
 projects/js/vite-electron-plugin/node_modules
+projects/js/app/node_modules

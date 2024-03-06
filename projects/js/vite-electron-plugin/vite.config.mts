@@ -18,6 +18,7 @@ export default defineConfig(({ command }) => {
           outDir: ".dist/types",
           exclude: ["**/tests"],
           include: ["src"],
+          root: __dirname,
         }),
         apply: "build",
       },
