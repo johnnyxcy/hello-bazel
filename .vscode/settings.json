@@ -1,10 +1,16 @@
 {
+  "[python]": {
+    "editor.rulers": [80]
+  },
+  "[typescript]": {
+    "editor.rulers": [80]
+  },
+  "[typescriptreact]": {
+    "editor.rulers": [80]
+  },
   "bazel.lsp.enabled": true,
-  "lldb.verboseLogging": true,
-  "ruff.lint.enable": true,
-  "ruff.organizeImports": true,
-  "ruff.trace.server": "verbose",
-  "ruff.path": ["external/pypi_ruff/bin/ruff", "ruff"],
+  // Disable the following to not use debug configs
+  "bazel.commandLine.commandArgs": ["--config", "debug"],
   "clangd.arguments": [
     "--query-driver=**",
     // 支持读取 .clangd 文件
@@ -25,11 +31,11 @@
     "--completion-style=detailed"
   ],
   "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
     "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.svn": true,
+    "**/CVS": true,
     "**/Thumbs.db": true,
     // exclude bazel build directory except bin
     // "bazel-[^b]*": true,
@@ -41,25 +47,30 @@
     // exclude clangd cache
     ".cache": true
   },
+  "lldb.verboseLogging": true,
+  "ruff.lint.enable": true,
+  "ruff.organizeImports": true,
+  "ruff.path": ["external/pypi_ruff/bin/ruff", "ruff"],
+  "ruff.trace.server": "verbose",
   "testMate.cpp.debug.configTemplate": {
     "args": "${argsArray}",
     "cwd": "${cwd}",
     "env": "${envObj}",
     "initCommands": [],
     "program": "${exec}",
+    "request": "launch",
     "sourceMap": {
       ".": "${workspaceFolder}"
     },
     "terminal": "integrated",
-    "request": "launch",
     "type": "lldb"
   },
   "testMate.cpp.log.logpanel": true,
   "testMate.cpp.test.advancedExecutables": [
     {
-      "pattern": "bazel-bin/**/_main/projects/cxx/**/*test*",
-      "description": "Bazel C++ Test Targets",
       "cwd": "${workspaceFolder}",
+      "description": "Bazel C++ Test Targets",
+      "pattern": "bazel-bin/**/_main/projects/cxx/**/*test*",
       "runTask": {
         "before": ["[Bazel]build:debug"]
       }

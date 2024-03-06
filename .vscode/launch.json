@@ -12,8 +12,7 @@
       "program": "${workspaceFolder}/bazel-bin/${input:pickBazelCCTargets}",
       "args": [],
       "env": {},
-      "cwd": "${workspaceFolder}",
-      "preLaunchTask": "[Bazel]build:debug"
+      "cwd": "${workspaceFolder}"
     },
     {
       "name": "Debug Python",

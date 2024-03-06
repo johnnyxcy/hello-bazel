@@ -1,18 +1,3 @@
-# _*_ coding: utf-8 _*_
-############################################################
-# File: pybind11_stubgen/__init__.py
-#
-# Author: Chongyi Xu <johnny.xcy1997@outlook.com>
-#
-# File Created: 09/07/2023 10:37 am
-#
-# Last Modified: 09/07/2023 10:37 am
-#
-# Modified By: Chongyi Xu <johnny.xcy1997@outlook.com>
-#
-# Copyright (c) 2023 Maspectra Dev Team
-############################################################
-
 # pyright: basic
 
 import ast
@@ -120,13 +105,17 @@ class FunctionSignature(object):
             0 if cls.ignore_invalid_defaultarg else cls.n_invalid_default_values
         ) + (0 if cls.ignore_invalid_signature else cls.n_invalid_signatures)
 
-    def __init__(self, name, args="*args, **kwargs", rtype="None", validate=True):
+    def __init__(
+        self, name, args="*args, **kwargs", rtype="None", validate=True
+    ):
         self.name = name
         self.args = args
         self.rtype = rtype
 
         if validate:
-            invalid_defaults, self.args = replace_default_pybind11_repr(self.args)
+            invalid_defaults, self.args = replace_default_pybind11_repr(
+                self.args
+            )
             if invalid_defaults:
                 FunctionSignature.n_invalid_default_values += 1
                 lvl = (
@@ -135,13 +124,16 @@ class FunctionSignature(object):
                     else logging.ERROR
                 )
                 logger.log(
-                    lvl, "Default argument value(s) replaced with ellipses (...):"
+                    lvl,
+                    "Default argument value(s) replaced with ellipses (...):",
                 )
                 for invalid_default in invalid_defaults:
                     logger.log(lvl, "    {}".format(invalid_default))
 
-            function_def_str = "def {sig.name}({sig.args}) -> {sig.rtype}: ...".format(
-                sig=self
+            function_def_str = (
+                "def {sig.name}({sig.args}) -> {sig.rtype}: ...".format(
+                    sig=self
+                )
             )
             try:
                 ast.parse(function_def_str)
@@ -321,12 +313,15 @@ class StubsGenerator(object):
         if module_name == "builtins":
             return class_name
         else:
-            return "{module}.{klass}".format(module=module_name, klass=class_name)
+            return "{module}.{klass}".format(
+                module=module_name, klass=class_name
+            )
 
     @staticmethod
     def apply_classname_replacements(s):  # type: (str) -> Any
         for k, v in StubsGenerator.GLOBAL_CLASSNAME_REPLACEMENTS.items():
             s = k.sub(v, s)
+
         return s
 
     @staticmethod
@@ -336,7 +331,9 @@ class StubsGenerator(object):
                 r"(\s*(?P<overload_number>\d+).)"
                 r"?\s*{name}\s*\((?P<args>{balanced_parentheses})\)"
                 r"\s*->\s*"
-                r"(?P<rtype>[^\(\)]+)\s*".format(name=name, balanced_parentheses=".*")
+                r"(?P<rtype>[^\(\)]+)\s*".format(
+                    name=name, balanced_parentheses=".*"
+                )
             )
             docstring = func.__doc__
 
@@ -361,7 +358,9 @@ class StubsGenerator(object):
 
             for sig in signatures:
                 sig.args = StubsGenerator.apply_classname_replacements(sig.args)
-                sig.rtype = StubsGenerator.apply_classname_replacements(sig.rtype)
+                sig.rtype = StubsGenerator.apply_classname_replacements(
+                    sig.rtype
+                )
 
             return sorted(list(set(signatures)), key=lambda fs: fs.args)
         except AttributeError:
@@ -443,7 +442,9 @@ class StubsGenerator(object):
     @staticmethod
     def format_docstring(docstring):
         docstring = inspect.cleandoc("\n" + docstring)
-        return StubsGenerator.indent('"""\n{}\n"""'.format(docstring.strip("\n")))
+        return StubsGenerator.indent(
+            '"""\n{}\n"""'.format(docstring.strip("\n"))
+        )
 
 
 class AttributeStubsGenerator(StubsGenerator):
@@ -472,24 +473,35 @@ class AttributeStubsGenerator(StubsGenerator):
             return True
         if isinstance(value, dict):
             for k, v in value.items():
-                if not self.is_safe_to_use_repr(k) or not self.is_safe_to_use_repr(v):
+                if not self.is_safe_to_use_repr(
+                    k
+                ) or not self.is_safe_to_use_repr(v):
                     return False
             return True
         return False
 
     def to_lines(self):  # type: () -> List[str]
         if self.is_safe_to_use_repr(self.attr):
-            return ["{name} = {repr}".format(name=self.name, repr=repr(self.attr))]
+            return [
+                "{name} = {repr}".format(name=self.name, repr=repr(self.attr))
+            ]
 
         # special case for modules
         # https://github.com/sizmailov/pybind11-stubgen/issues/43
         if type(self.attr) is type(os) and hasattr(self.attr, "__name__"):
-            return ["{name} = {repr}".format(name=self.name, repr=self.attr.__name__)]
+            return [
+                "{name} = {repr}".format(
+                    name=self.name, repr=self.attr.__name__
+                )
+            ]
 
         # special case for PyCapsule
         # https://github.com/sizmailov/pybind11-stubgen/issues/86
         attr_type = type(self.attr)
-        if attr_type.__name__ == "PyCapsule" and attr_type.__module__ == "builtins":
+        if (
+            attr_type.__name__ == "PyCapsule"
+            and attr_type.__module__ == "builtins"
+        ):
             return ["{name}: typing.Any  # PyCapsule()".format(name=self.name)]
 
         value_lines = repr(self.attr).split("\n")
@@ -505,7 +517,9 @@ class AttributeStubsGenerator(StubsGenerator):
                 value_comment = " # value = {value}".format(value=value)
             return [
                 "{name}: {typename}{value_comment}".format(
-                    name=self.name, typename=typename, value_comment=value_comment
+                    name=self.name,
+                    typename=typename,
+                    value_comment=value_comment,
                 )
             ]
         else:
@@ -524,7 +538,10 @@ class AttributeStubsGenerator(StubsGenerator):
         attr_type = type(self.attr)
         if attr_type is type(os):
             return {self.attr.__name__}
-        if attr_type.__name__ == "PyCapsule" and attr_type.__module__ == "builtins":
+        if (
+            attr_type.__name__ == "PyCapsule"
+            and attr_type.__module__ == "builtins"
+        ):
             # PyCapsule rendered as typing.Any
             return {"typing"}
         return {self.attr.__class__.__module__}
@@ -549,7 +566,8 @@ class FreeFunctionStubsGenerator(StubsGenerator):
             self.name.startswith("__") and self.name.endswith("__")
         ):
             logger.debug(
-                "Docstring is empty for '%s'" % self.fully_qualified_name(self.member)
+                "Docstring is empty for '%s'"
+                % self.fully_qualified_name(self.member)
             )
         for sig in self.signatures:
             if len(self.signatures) > 1:
@@ -595,7 +613,8 @@ class ClassMemberStubsGenerator(FreeFunctionStubsGenerator):
             self.name.startswith("__") and self.name.endswith("__")
         ):
             logger.debug(
-                "Docstring is empty for '%s'" % self.fully_qualified_name(self.member)
+                "Docstring is empty for '%s'"
+                % self.fully_qualified_name(self.member)
             )
         for sig in self.signatures:
             args = sig.args
@@ -739,7 +758,9 @@ class ClassStubsGenerator(StubsGenerator):
                 continue
             if inspect.isroutine(member):
                 self.methods.append(
-                    ClassMemberStubsGenerator(name, member, self.klass.__module__)
+                    ClassMemberStubsGenerator(
+                        name, member, self.klass.__module__
+                    )
                 )
             elif name != "__class__" and inspect.isclass(member):
                 if (
@@ -862,7 +883,9 @@ class ModuleStubsGenerator(StubsGenerator):
         for name, member in inspect.getmembers(self.module):
             if inspect.ismodule(member):
                 m = ModuleStubsGenerator(member)
-                if m.module.__name__.split(".")[:-1] == self.module.__name__.split("."):
+                if m.module.__name__.split(".")[
+                    :-1
+                ] == self.module.__name__.split("."):
                     self.submodules.append(m)
                 else:
                     self.imported_modules += [m.module.__name__]
@@ -872,7 +895,9 @@ class ModuleStubsGenerator(StubsGenerator):
                     )
             elif inspect.isbuiltin(member) or inspect.isfunction(member):
                 self.free_functions.append(
-                    FreeFunctionStubsGenerator(name, member, self.module.__name__)
+                    FreeFunctionStubsGenerator(
+                        name, member, self.module.__name__
+                    )
                 )
             elif inspect.isclass(member):
                 if member.__module__ == self.module.__name__:
@@ -930,7 +955,9 @@ class ModuleStubsGenerator(StubsGenerator):
         result = []
 
         if self.doc_string:
-            result += ['"""' + self.doc_string.replace('"""', r"\"\"\"") + '"""']
+            result += [
+                '"""' + self.doc_string.replace('"""', r"\"\"\"") + '"""'
+            ]
 
         if sys.version_info[:2] >= (3, 7):
             result += ["from __future__ import annotations"]
@@ -947,7 +974,9 @@ class ModuleStubsGenerator(StubsGenerator):
             else:
                 suffix = " as {}".format(name)
             result += [
-                "from {} import {}{}".format(class_.__module__, class_name, suffix)
+                "from {} import {}{}".format(
+                    class_.__module__, class_name, suffix
+                )
             ]
 
         # import used packages
@@ -955,7 +984,9 @@ class ModuleStubsGenerator(StubsGenerator):
         if used_modules:
             # result.append("if TYPE_CHECKING:")
             # result.extend(map(self.indent, map(lambda m: "import {}".format(m), used_modules)))
-            result.extend(map(lambda mod: "import {}".format(mod), used_modules))
+            result.extend(
+                map(lambda mod: "import {}".format(mod), used_modules)
+            )
 
         # if "numpy" in used_modules and not BARE_NUPMY_NDARRAY:
         #     result += [
@@ -980,16 +1011,18 @@ class ModuleStubsGenerator(StubsGenerator):
 
         globals_ = {}
         exec("from {} import *".format(self.module.__name__), globals_)
-        all_ = set(member for member in globals_.keys() if member.isidentifier()) - {
-            "__builtins__"
-        }
+        all_ = set(
+            member for member in globals_.keys() if member.isidentifier()
+        ) - {"__builtins__"}
         result.append(
             "__all__ = [\n    "
             + ",\n    ".join(map(lambda s: '"%s"' % s, sorted(all_)))
             + "\n]\n\n"
         )
 
-        for x in itertools.chain(self.classes, self.free_functions, self.attributes):
+        for x in itertools.chain(
+            self.classes, self.free_functions, self.attributes
+        ):
             result.extend(x.to_lines())
         result.append("")  # Newline at EOF
         return result
@@ -1038,7 +1071,8 @@ setup(
 
 def main(args=None):
     parser = ArgumentParser(
-        prog="pybind11-stubgen", description="Generates stubs for specified modules"
+        prog="pybind11-stubgen",
+        description="Generates stubs for specified modules",
     )
     parser.add_argument("--working-dir", default=None, dest="working_dir")
     parser.add_argument(
@@ -1063,7 +1097,9 @@ def main(args=None):
     )
     parser.add_argument("--no-setup-py", action="store_true")
     parser.add_argument(
-        "--non-stop", action="store_true", help="Deprecated. Use `--ignore-invalid=all`"
+        "--non-stop",
+        action="store_true",
+        help="Deprecated. Use `--ignore-invalid=all`",
     )
     parser.add_argument(
         "--ignore-invalid",
@@ -1084,9 +1120,15 @@ def main(args=None):
         help="Render `numpy.ndarray` without (non-standardized) bracket-enclosed type and shape info",
     )
     parser.add_argument(
-        "module_names", nargs="+", metavar="MODULE_NAME", type=str, help="modules names"
+        "module_names",
+        nargs="+",
+        metavar="MODULE_NAME",
+        type=str,
+        help="modules names",
     )
-    parser.add_argument("--log-level", default="INFO", help="Set output log level")
+    parser.add_argument(
+        "--log-level", default="INFO", help="Set output log level"
+    )
 
     sys_args = parser.parse_args(args or sys.argv[1:])
 
