@@ -40,7 +40,7 @@ bazel_dep(name = "googletest", version = "1.14.0")
 bazel_dep(name = "buildifier_prebuilt", version = "6.4.0", dev_dependency = True)
 bazel_dep(name = "toolchains_llvm", version = "0.10.3")
 
-# # llvm toolchain registry
+# llvm toolchain registry
 llvm = use_extension("@toolchains_llvm//toolchain/extensions:llvm.bzl", "llvm")
 
 llvm.toolchain(
@@ -51,3 +51,24 @@ llvm.toolchain(
 )
 use_repo(llvm, "llvm_toolchain")
 register_toolchains("@llvm_toolchain//:all")
+
+# npm
+pnpm = use_extension("@aspect_rules_js//npm:extensions.bzl", "pnpm", dev_dependency = True)
+use_repo(pnpm, "pnpm")
+
+npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm", dev_dependency = True)
+npm.npm_translate_lock(
+    name = "npm",
+    npmrc = "//:.npmrc",
+    pnpm_lock = "//:pnpm-lock.yaml",
+    verify_node_modules_ignored = "//:.bazelignore",
+)
+use_repo(npm, "npm")
+
+rules_ts_ext = use_extension(
+    "@aspect_rules_ts//ts:extensions.bzl",
+    "ext",
+    dev_dependency = True,
+)
+rules_ts_ext.deps()
+use_repo(rules_ts_ext, "npm_typescript")

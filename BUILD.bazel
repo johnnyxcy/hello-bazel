@@ -1,6 +1,10 @@
 load("@aspect_rules_py//py:defs.bzl", "py_venv")
 load("@hedron_compile_commands//:refresh_compile_commands.bzl", "refresh_compile_commands")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@npm//:eslint/package_json.bzl", eslint_bin = "bin")
 load("@pypi//:requirements.bzl", "requirement")
+
+package(default_visibility = ["//:__subpackages__"])
 
 exports_files([
     "pyproject.toml",
@@ -21,3 +25,9 @@ py_venv(
         # Add any additional requirements here
     ],
 )
+
+# Create the root of the "virtual store" of npm dependencies under bazel-out.
+# This must be done in the package where the pnpm workspace is rooted.
+npm_link_all_packages(name = "node_modules")
+
+eslint_bin.eslint_binary(name = "eslint")

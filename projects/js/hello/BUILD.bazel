@@ -1,0 +1,38 @@
+load("@aspect_rules_js//js:defs.bzl", "js_run_binary")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@npm//projects/js/hello:vite/package_json.bzl", vi = "bin")
+
+npm_link_all_packages(name = "node_modules")
+
+filegroup(
+    name = "src",
+    srcs = glob(["src/**"]),
+)
+
+runtime_deps = [
+    "package.json",
+    "tsconfig.json",
+    "tsconfig.node.json",
+]
+
+node_modules_deps = [
+    ":node_modules/vite",
+    ":node_modules/rollup-plugin-visualizer",
+    ":node_modules/vite-tsconfig-paths",
+    ":node_modules/vite-plugin-dts",
+]
+
+vi.vite_binary(
+    name = "vite",
+    chdir = package_name(),
+    data = ["vite.config.ts"],
+)
+
+js_run_binary(
+    name = "build",
+    srcs = [":src"] + runtime_deps + node_modules_deps,
+    args = ["build"],
+    mnemonic = "ViteBuild",
+    out_dirs = [".dist"],
+    tool = ":vite",
+)

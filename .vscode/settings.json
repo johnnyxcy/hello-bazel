@@ -44,12 +44,13 @@
     // "bazel-[^b]*": true,
     // "bazel-b[^i]*": true,
     // "bazel-bi[^n]*": true,
-    // "external": true,
+    "external": true,
     // exclude python venv
-    // ".venv": true,
+    ".venv": true,
     // exclude clangd cache
     ".cache": true,
-    ".ruff_cache": true
+    ".ruff_cache": true,
+    "**/node_modules": true
   },
   "lldb.verboseLogging": true,
   "ruff.lint.enable": true,

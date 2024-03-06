@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "devDependencies": {
+    "eslint": "latest",
+    "vite": "latest",
+    "vitest": "latest"
+  }
+}
