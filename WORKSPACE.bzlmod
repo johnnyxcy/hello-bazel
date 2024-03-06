@@ -28,6 +28,7 @@ load("//tools/poetry:repositories.bzl", "poetry_lock")
 # poetry.lock converted to requirements.txt
 poetry_lock(
     name = "py_requirements_lock",
+    groups = ["dev"],
     lockfile = "//:poetry.lock",
 )
 

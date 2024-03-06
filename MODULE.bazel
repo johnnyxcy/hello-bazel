@@ -11,7 +11,7 @@ module(
 
 bazel_dep(name = "bazel_skylib", version = "1.5.0")
 bazel_dep(name = "platforms", version = "0.0.8")
-bazel_dep(name = "rules_python", dev_dependency = True, version = "0.29.0")
+bazel_dep(name = "rules_python", dev_dependency = True, version = "0.31.0")
 
 # Hedron's Compile Commands Extractor for Bazel
 # https://github.com/hedronvision/bazel-compile-commands-extractor
