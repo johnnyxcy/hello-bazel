@@ -18,7 +18,8 @@
   "keywords": [],
   "license": "MIT",
   "dependencies": {
-    "chalk": "latest"
+    "chalk": "latest",
+    "electron": "*"
   },
   "devDependencies": {
     "@types/node": "latest",
@@ -27,8 +28,5 @@
     "vite": "latest",
     "vite-plugin-dts": "latest",
     "vitest": "latest"
-  },
-  "peerDependencies": {
-    "electron": "latest"
   }
 }

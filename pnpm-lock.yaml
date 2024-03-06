@@ -33,6 +33,9 @@ importers:
       '@hello-bazel/vite-electron-plugin':
         specifier: workspace:^1
         version: link:../vite-electron-plugin
+      '@types/node':
+        specifier: latest
+        version: 20.11.24
       '@types/react':
         specifier: ^18.2.48
         version: 18.2.63
@@ -89,8 +92,8 @@ importers:
         specifier: latest
         version: 5.3.0
       electron:
-        specifier: latest
-        version: 29.1.0
+        specifier: '*'
+        version: 28.2.5
     devDependencies:
       '@types/node':
         specifier: latest
@@ -1082,7 +1085,6 @@ packages:
     resolution: {integrity: sha512-2Q2NeB6BmiTFQi4DHBzncSoq/cJMLDdhPaAoJFnFCyD9a8VPZRf7a1GAwp1Edb7ROaZc5Jz/tnZyL6EsWMRaqw==}
     dependencies:
       undici-types: 5.26.5
-    dev: true
 
   /@types/node@20.11.24:
     resolution: {integrity: sha512-Kza43ewS3xoLgCEpQrsT+xRo/EJej1y0kVYGiLFE1NEODXGzTfwiC6tXTLMQskn1X4/Rjlh0MQUvx9W+L9long==}
@@ -1966,20 +1968,6 @@ packages:
       extract-zip: 2.0.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /electron@29.1.0:
-    resolution: {integrity: sha512-giJVIm0sWVp+8V1GXrKqKTb+h7no0P3ooYqEd34AD9wMJzGnAeL+usj+R0155/0pdvvP1mgydnA7lcaFA2M9lw==}
-    engines: {node: '>= 12.20.55'}
-    hasBin: true
-    requiresBuild: true
-    dependencies:
-      '@electron/get': 2.0.3
-      '@types/node': 20.11.24
-      extract-zip: 2.0.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
 
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}

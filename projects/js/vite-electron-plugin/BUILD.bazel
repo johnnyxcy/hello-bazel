@@ -12,13 +12,6 @@ filegroup(
     ),
 )
 
-# filegroup(
-#     name = "src_test",
-#     srcs = glob(
-#         include = ["src/**/*.test.ts"],
-#     ),
-# )
-
 runtime_deps = [
     "package.json",
     "tsconfig.json",
@@ -26,8 +19,8 @@ runtime_deps = [
 ]
 
 node_modules_deps = [
+    ":node_modules/electron",
     ":node_modules/vite",
-    # ":node_modules/rollup-plugin-visualizer",
     ":node_modules/vite-plugin-dts",
 ]
 
@@ -49,33 +42,3 @@ js_run_binary(
     ],
     tool = ":vite",
 )
-
-# vitest.vitest_test(
-#     name = "test",
-#     args = [
-#         "run",
-#         "--coverage",
-#     ],
-#     chdir = package_name(),
-#     data = [
-#         "vite.config.ts",
-#         ":src",
-#         ":src_test",
-#     ] + runtime_deps + node_modules_deps + node_modules_deps_test,
-# )
-
-# vitest.vitest_binary(
-#     name = "test.ui",
-#     args = [
-#         "--ui",
-#         "--coverage",
-#     ],
-#     chdir = package_name(),
-#     data = [
-#         "vite.config.ts",
-#         ":build",
-#         ":node_modules/@vitest/ui",
-#         ":src",
-#         ":src_test",
-#     ] + runtime_deps + node_modules_deps + node_modules_deps_test,
-# )
