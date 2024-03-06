@@ -63,7 +63,7 @@ vitest.vitest_test(
     ],
     chdir = package_name(),
     data = [
-        "vite.config.ts",
+        "vite.config.mts",
         ":src",
         ":src_test",
     ] + runtime_deps + node_modules_deps + node_modules_deps_test,
@@ -77,8 +77,8 @@ vitest.vitest_binary(
     ],
     chdir = package_name(),
     data = [
-        "vite.config.ts",
-        ":build",
+        "vite.config.mts",
+        ":hello",
         ":node_modules/@vitest/ui",
         ":src",
         ":src_test",

@@ -2517,7 +2517,7 @@
         "accumulatedFileDigests": {
           "@@aspect_bazel_lib~1.40.0~toolchains~yq_darwin_arm64//:yq": "db8c11ca4c1dda8fe7c211e82e28191d48bd9ae83471b952003e819de79bcb51",
           "@@//:.npmrc": "25afec638a4a1dc4a7277d8babd30464e9d942cf93d3e47505a4677adad1a901",
-          "@@//:pnpm-lock.yaml": "53db9ba3c98777b0aed116a1074104a29960c0da8f87df00c282ca77364448c1"
+          "@@//:pnpm-lock.yaml": "89747e06905de876a3e6541cd85244c17bba7c02fc72be7c07a42db6d032988c"
         },
         "envVariables": {},
         "generatedRepoSpecs": {
@@ -20164,6 +20164,38 @@
               "replace_package": ""
             }
           },
+          "npm__inversify__6.0.2__links": {
+            "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_links",
+            "attributes": {
+              "name": "aspect_rules_js~1.38.0~npm~npm__inversify__6.0.2__links",
+              "package": "inversify",
+              "version": "6.0.2",
+              "dev": false,
+              "root_package": "",
+              "link_packages": {
+                "projects/js/hello": [
+                  "inversify"
+                ]
+              },
+              "deps": {},
+              "transitive_closure": {
+                "inversify": [
+                  "6.0.2"
+                ]
+              },
+              "lifecycle_build_target": false,
+              "lifecycle_hooks_env": [],
+              "lifecycle_hooks_execution_requirements": [],
+              "lifecycle_hooks_use_default_shell_env": false,
+              "bins": {},
+              "npm_translate_lock_repo": "npm",
+              "package_visibility": [
+                "//visibility:public"
+              ],
+              "replace_package": ""
+            }
+          },
           "npm__istanbul-reports__3.1.7__links": {
             "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
             "ruleClassName": "npm_import_links",
@@ -24772,6 +24804,35 @@
                 "install",
                 "postinstall"
               ],
+              "extra_build_content": "",
+              "generate_bzl_library_targets": false
+            }
+          },
+          "npm__inversify__6.0.2": {
+            "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_rule",
+            "attributes": {
+              "name": "aspect_rules_js~1.38.0~npm~npm__inversify__6.0.2",
+              "package": "inversify",
+              "version": "6.0.2",
+              "root_package": "",
+              "link_workspace": "",
+              "link_packages": {
+                "projects/js/hello": [
+                  "inversify"
+                ]
+              },
+              "integrity": "sha512-i9m8j/7YIv4mDuYXUAcrpKPSaju/CIly9AHK5jvCBeoiM/2KEsuCQTTP+rzSWWpLYWRukdXFSl6ZTk2/uumbiA==",
+              "url": "https://registry.npmjs.org/inversify/-/inversify-6.0.2.tgz",
+              "commit": "",
+              "patch_args": [],
+              "patches": [],
+              "custom_postinstall": "",
+              "npm_auth": "",
+              "npm_auth_basic": "",
+              "npm_auth_username": "",
+              "npm_auth_password": "",
+              "lifecycle_hooks": [],
               "extra_build_content": "",
               "generate_bzl_library_targets": false
             }

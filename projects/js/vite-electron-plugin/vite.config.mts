@@ -12,7 +12,16 @@ export default defineConfig(({ command }) => {
   }
 
   return {
-    plugins: [dts({ outDir: ".dist/types" })],
+    plugins: [
+      {
+        ...dts({
+          outDir: ".dist/types",
+          exclude: ["**/tests"],
+          include: ["src"],
+        }),
+        apply: "build",
+      },
+    ],
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
@@ -21,7 +30,7 @@ export default defineConfig(({ command }) => {
     build: {
       outDir: ".dist/lib",
       lib: {
-        entry: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
+        entry: "./src/index.ts",
         formats: ["cjs" as const],
       },
       rollupOptions: {

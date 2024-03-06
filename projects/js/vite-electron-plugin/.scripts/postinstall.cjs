@@ -58,7 +58,7 @@ buildArtifacts.forEach((target) => {
   fs.readdirSync(sourceDir).forEach((file) => {
     const source = path.join(sourceDir, file);
     const dest = path.join(destPath, file);
-    fs.symlinkSync(source, dest, "junction");
+    fs.symlinkSync(source, dest);
   });
 
   // fs.symlinkSync(targetDir, targetPath, "junction");
