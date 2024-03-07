@@ -6,9 +6,13 @@
 
 import * as React from "react";
 
+import { sayHi } from "@hello-bazel/hello";
+
 const App: React.FC = () => {
   React.useEffect(() => {
-    console.log("hello");
+    sayHi({
+      log: console.log,
+    });
   }, []);
   return <div>Hello</div>;
 };
