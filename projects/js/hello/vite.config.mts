@@ -1,5 +1,7 @@
 /// <reference types="vitest" />
-
+import fs from "node:fs";
+import path from "node:path";
+import chalk from "chalk";
 import { defineConfig } from "vite";
 import type { UserConfig } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
@@ -8,14 +10,35 @@ import dts from "vite-plugin-dts";
 
 import pkg from "./package.json";
 
-export default defineConfig((): UserConfig => {
+export default defineConfig(({ command }): UserConfig => {
+  const isBuild = command === "build";
+
+  if (isBuild) {
+    console.info(
+      `Cleaning up the .dist/ directory before ${chalk.green("build")}...`
+    );
+    if (fs.existsSync(".dist")) {
+      // remove every content in the directory
+      fs.readdirSync(".dist").forEach((file) => {
+        const joined = path.join(".dist", file);
+        if (fs.lstatSync(joined).isDirectory()) {
+          fs.rmSync(joined, { recursive: true });
+        } else {
+          fs.unlinkSync(joined);
+        }
+      });
+    }
+  }
+
+  const isProduction = process.env.NODE_ENV === "production";
   return {
     plugins: [
       {
         ...dts({
           outDir: ".dist/types",
-          exclude: ["**/tests"],
+          exclude: ["**/tests", "**/*.test.*", "**/*.spec.*"],
           include: ["src"],
+          root: __dirname,
         }),
         apply: "build",
       },
@@ -25,6 +48,8 @@ export default defineConfig((): UserConfig => {
       },
     ],
     build: {
+      minify: isProduction && "esbuild",
+      sourcemap: !isProduction,
       outDir: ".dist/lib",
       lib: {
         entry: {

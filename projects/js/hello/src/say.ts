@@ -8,5 +8,5 @@ const SayHiProvider: interfaces.ServiceIdentifier<SayHiProvider> =
   Symbol("SayHiProvider");
 
 export function sayHi(provider: SayHiProvider) {
-  provider.log("Hello from say.ts");
+  provider.log("Hello World!");
 }

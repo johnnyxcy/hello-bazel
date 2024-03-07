@@ -1,17 +1,13 @@
+load("@aspect_rules_js//js:defs.bzl", "js_run_devserver")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@npm//projects/js/app:vite/package_json.bzl", vite = "bin")
 
 npm_link_all_packages(name = "node_modules")
 
 runtime_deps = [
-    "vite.config.mts",
     "package.json",
     "tsconfig.json",
     "tsconfig.node.json",
-]
-
-internal_deps = [
-    # "//projects/js/hello",
 ]
 
 node_modules_deps = [
@@ -33,26 +29,18 @@ filegroup(
     ),
 )
 
-# vite.vite_binary(
-#     name = "vite",
-#     chdir = package_name(),
-#     data = runtime_deps,
-# )
-
-# Fast developer round-trip under ibazel
-# js_run_devserver(
-#     name = "dev",
-#     data = [
-#         "vite.config.mts",
-#         ":src",
-#     ] + runtime_deps + internal_deps + node_modules_deps,
-#     tool = ":vite",
-# )
-
 vite.vite_binary(
-    name = "dev",
+    name = "vite",
     chdir = package_name(),
+    data = ["vite.config.mts"],
+)
+
+js_run_devserver(
+    name = "dev",
     data = [
+        "vite.config.mts",
         ":src",
-    ] + runtime_deps + internal_deps + node_modules_deps,
+    ] + runtime_deps + node_modules_deps,
+    tags = ["ibazel_notify_changes"],
+    tool = ":vite",
 )

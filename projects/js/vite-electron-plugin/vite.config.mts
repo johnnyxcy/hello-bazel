@@ -1,22 +1,37 @@
 /// <reference types="vitest" />
-
+import fs from "node:fs";
+import path from "node:path";
+import chalk from "chalk";
 import { fileURLToPath, URL } from "node:url";
-import { rmSync } from "node:fs";
 import { defineConfig } from "vite";
 
 import dts from "vite-plugin-dts";
 import pkg from "./package.json";
 export default defineConfig(({ command }) => {
-  if (command === "build") {
-    rmSync(".dist/", { recursive: true, force: true });
-  }
+  const isBuild = command === "build";
 
+  if (isBuild) {
+    console.info(
+      `Cleaning up the .dist/ directory before ${chalk.green("build")}...`
+    );
+    if (fs.existsSync(".dist")) {
+      // remove every content in the directory
+      fs.readdirSync(".dist").forEach((file) => {
+        const joined = path.join(".dist", file);
+        if (fs.lstatSync(joined).isDirectory()) {
+          fs.rmSync(joined, { recursive: true });
+        } else {
+          fs.unlinkSync(joined);
+        }
+      });
+    }
+  }
   return {
     plugins: [
       {
         ...dts({
           outDir: ".dist/types",
-          exclude: ["**/tests"],
+          exclude: ["**/tests", "**/*.test.*", "**/*.spec.*"],
           include: ["src"],
           root: __dirname,
         }),

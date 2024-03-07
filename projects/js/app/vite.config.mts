@@ -1,4 +1,4 @@
-import { rmSync } from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
 import type { UserConfig } from "vite";
 import { defineConfig } from "vite";
@@ -19,7 +19,17 @@ export default defineConfig(({ command }): UserConfig => {
     console.info(
       `Cleaning up the .dist/ directory before ${chalk.green("build")}...`
     );
-    rmSync(".dist/", { recursive: true, force: true });
+    if (fs.existsSync(".dist")) {
+      // remove every content in the directory
+      fs.readdirSync(".dist").forEach((file) => {
+        const joined = path.join(".dist", file);
+        if (fs.lstatSync(joined).isDirectory()) {
+          fs.rmdirSync(joined, { recursive: true });
+        } else {
+          fs.unlinkSync(joined);
+        }
+      });
+    }
   }
 
   const isVscodeDebug = !!process.env._VSCODE_DEBUG;
@@ -37,9 +47,12 @@ export default defineConfig(({ command }): UserConfig => {
             build: {
               sourcemap,
               minify: isBuild,
-              outDir: ".dist/e",
+              outDir: ".dist/main",
               rollupOptions: {
                 external: [...Object.keys(pkg.dependencies || {}), /^node:/],
+              },
+              watch: {
+                include: ["node_modules/@hello-bazel/**"],
               },
             },
             plugins: [isServe && notBundle()],
@@ -78,13 +91,9 @@ export default defineConfig(({ command }): UserConfig => {
             build: {
               sourcemap: sourcemap ? "inline" : undefined, // #332
               minify: isBuild,
-              outDir: ".dist/e",
+              outDir: ".dist/main",
               rollupOptions: {
-                external: [
-                  ...Object.keys(pkg.dependencies || {}),
-                  /@mas\/i18n(.+)?/,
-                  /^node:/,
-                ],
+                external: [...Object.keys(pkg.dependencies || {}), /^node:/],
               },
             },
           },
@@ -107,6 +116,9 @@ export default defineConfig(({ command }): UserConfig => {
     build: {
       sourcemap,
       minify: isBuild,
+      watch: {
+        include: ["node_modules/@hello-bazel/**"],
+      },
       rollupOptions: {
         input: {
           workbench: path.resolve(__dirname, "src/workbench/index.html"),
@@ -132,7 +144,7 @@ export default defineConfig(({ command }): UserConfig => {
           },
         ],
       },
-      outDir: "./.dist/r",
+      outDir: "./.dist/renderer",
       assetsDir: "chunks",
     },
     // #endregion

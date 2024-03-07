@@ -29,6 +29,7 @@
     "@types/node": "latest",
     "@vitest/coverage-istanbul": "latest",
     "@vitest/ui": "latest",
+    "chalk": "latest",
     "rollup-plugin-visualizer": "latest",
     "vite": "latest",
     "vite-plugin-dts": "latest",

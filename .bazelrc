@@ -42,8 +42,5 @@ test --test_output=errors --action_env="GTEST_COLOR=1"
 
 # passes an argument `--skipLibCheck` to _every_ spawn of the TypeScript compiler, tsc
 
-build --@aspect_rules_ts//ts:skipLibCheck=always
-fetch --@aspect_rules_ts//ts:skipLibCheck=always
-query --@aspect_rules_ts//ts:skipLibCheck=always
-
+common --@aspect_rules_ts//ts:skipLibCheck=always
 common --@aspect_rules_ts//ts:default_to_tsc_transpiler

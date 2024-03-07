@@ -27,12 +27,12 @@ buildArtifacts.forEach((target) => {
 
   if (!fs.existsSync(destPath)) {
     fs.mkdirSync(destPath);
-  } else if (fs.existsSync(destPath)) {
+  } else {
     // remove every content in the directory
     fs.readdirSync(destPath).forEach((file) => {
       const joined = path.join(destPath, file);
       if (fs.lstatSync(joined).isDirectory()) {
-        fs.rmdirSync(joined, { recursive: true });
+        fs.rmSync(joined, { recursive: true });
       } else {
         fs.unlinkSync(joined);
       }

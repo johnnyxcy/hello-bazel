@@ -11,10 +11,10 @@ import { sayHi } from "@hello-bazel/hello";
 const App: React.FC = () => {
   React.useEffect(() => {
     sayHi({
-      log: console.log,
+      log: console.info,
     });
   }, []);
-  return <div>Hello</div>;
+  return <div>Hello World - Johnny</div>;
 };
 
 export default App;

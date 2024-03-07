@@ -2517,7 +2517,7 @@
         "accumulatedFileDigests": {
           "@@aspect_bazel_lib~1.40.0~toolchains~yq_darwin_arm64//:yq": "db8c11ca4c1dda8fe7c211e82e28191d48bd9ae83471b952003e819de79bcb51",
           "@@//:.npmrc": "25afec638a4a1dc4a7277d8babd30464e9d942cf93d3e47505a4677adad1a901",
-          "@@//:pnpm-lock.yaml": "412e0c512990b422186605293e08428161201c4d97dfd253dc917f390c5f130d"
+          "@@//:pnpm-lock.yaml": "aa03f73b2048036648c2b2537fe5710b97246bc6d4b2a2c9e8e61624d92e20bc"
         },
         "envVariables": {},
         "generatedRepoSpecs": {
@@ -22659,6 +22659,9 @@
                 "projects/js/app": [
                   "chalk"
                 ],
+                "projects/js/hello": [
+                  "chalk"
+                ],
                 "projects/js/vite-electron-plugin": [
                   "chalk"
                 ]
@@ -32039,6 +32042,9 @@
                 "projects/js/app": [
                   "chalk"
                 ],
+                "projects/js/hello": [
+                  "chalk"
+                ],
                 "projects/js/vite-electron-plugin": [
                   "chalk"
                 ]
@@ -32823,6 +32829,35 @@
                 "//visibility:public"
               ],
               "replace_package": ""
+            }
+          },
+          "npm__at_bazel_ibazel__0.24.0": {
+            "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_rule",
+            "attributes": {
+              "name": "aspect_rules_js~1.38.0~npm~npm__at_bazel_ibazel__0.24.0",
+              "package": "@bazel/ibazel",
+              "version": "0.24.0",
+              "root_package": "",
+              "link_workspace": "",
+              "link_packages": {
+                "projects/js/app": [
+                  "@bazel/ibazel"
+                ]
+              },
+              "integrity": "sha512-lA0Ey6iorssDTJDwBQW0bCmzQyBTAtOj7L4mqmmlFT6LhIzTc3r0iFOuzxFBsDq8NbxVs/W9PRNIsC/LfpI1nA==",
+              "url": "https://registry.npmjs.org/@bazel/ibazel/-/ibazel-0.24.0.tgz",
+              "commit": "",
+              "patch_args": [],
+              "patches": [],
+              "custom_postinstall": "",
+              "npm_auth": "",
+              "npm_auth_basic": "",
+              "npm_auth_username": "",
+              "npm_auth_password": "",
+              "lifecycle_hooks": [],
+              "extra_build_content": "",
+              "generate_bzl_library_targets": false
             }
           },
           "npm__supports-preserve-symlinks-flag__1.0.0": {
@@ -41929,6 +41964,38 @@
                 ],
                 "wrappy": [
                   "1.0.2"
+                ]
+              },
+              "lifecycle_build_target": false,
+              "lifecycle_hooks_env": [],
+              "lifecycle_hooks_execution_requirements": [],
+              "lifecycle_hooks_use_default_shell_env": false,
+              "bins": {},
+              "npm_translate_lock_repo": "npm",
+              "package_visibility": [
+                "//visibility:public"
+              ],
+              "replace_package": ""
+            }
+          },
+          "npm__at_bazel_ibazel__0.24.0__links": {
+            "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_links",
+            "attributes": {
+              "name": "aspect_rules_js~1.38.0~npm~npm__at_bazel_ibazel__0.24.0__links",
+              "package": "@bazel/ibazel",
+              "version": "0.24.0",
+              "dev": true,
+              "root_package": "",
+              "link_packages": {
+                "projects/js/app": [
+                  "@bazel/ibazel"
+                ]
+              },
+              "deps": {},
+              "transitive_closure": {
+                "@bazel/ibazel": [
+                  "0.24.0"
                 ]
               },
               "lifecycle_build_target": false,
