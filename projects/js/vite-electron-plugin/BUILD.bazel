@@ -22,6 +22,7 @@ runtime_deps = [
 node_modules_deps = [
     ":node_modules/electron",
     ":node_modules/vite",
+    ":node_modules/chalk",
     ":node_modules/vite-plugin-dts",
 ]
 

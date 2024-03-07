@@ -52,7 +52,8 @@ export default defineConfig(({ command }): UserConfig => {
                 external: [...Object.keys(pkg.dependencies || {}), /^node:/],
               },
               watch: {
-                include: ["node_modules/@hello-bazel/**"],
+                clearScreen: true,
+                include: ["**/node_modules/@hello-bazel/**"],
               },
             },
             plugins: [isServe && notBundle()],
@@ -117,7 +118,8 @@ export default defineConfig(({ command }): UserConfig => {
       sourcemap,
       minify: isBuild,
       watch: {
-        include: ["node_modules/@hello-bazel/**"],
+        clearScreen: true,
+        include: ["**/node_modules/@hello-bazel/**"],
       },
       rollupOptions: {
         input: {

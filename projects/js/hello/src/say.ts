@@ -4,9 +4,9 @@ export type SayHiProvider = {
   log: (...data: any[]) => void;
 };
 
-const SayHiProvider: interfaces.ServiceIdentifier<SayHiProvider> =
+export const SayHiProvider: interfaces.ServiceIdentifier<SayHiProvider> =
   Symbol("SayHiProvider");
 
 export function sayHi(provider: SayHiProvider) {
-  provider.log("Hello World!");
+  provider.log("Hello World!!");
 }

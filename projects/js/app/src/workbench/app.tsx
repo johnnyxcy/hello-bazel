@@ -14,7 +14,17 @@ const App: React.FC = () => {
       log: console.info,
     });
   }, []);
-  return <div>Hello World - Johnny</div>;
+  return (
+    <button
+      onClick={() => {
+        sayHi({
+          log: console.warn,
+        });
+      }}
+    >
+      Click Me
+    </button>
+  );
 };
 
 export default App;

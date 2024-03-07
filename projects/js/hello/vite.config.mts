@@ -49,7 +49,7 @@ export default defineConfig(({ command }): UserConfig => {
     ],
     build: {
       minify: isProduction && "esbuild",
-      sourcemap: !isProduction,
+      sourcemap: "inline",
       outDir: ".dist/lib",
       lib: {
         entry: {
