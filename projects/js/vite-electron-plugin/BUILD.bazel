@@ -1,4 +1,5 @@
 load("@aspect_rules_js//js:defs.bzl", "js_run_binary")
+load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@npm//projects/js/hello:vite/package_json.bzl", vite = "bin")
 
@@ -28,17 +29,27 @@ vite.vite_binary(
     name = "vite",
     chdir = package_name(),
     data = ["vite.config.mts"] + runtime_deps,
-    visibility = ["//projects/js/vite-electron-plugin:__subpackages__"],
+    visibility = ["//visibility:private"],
 )
 
 js_run_binary(
-    name = "vite-electron-plugin",
+    name = "build",
     srcs = [":src"] + runtime_deps + node_modules_deps,
     args = ["build"],
-    mnemonic = "ViteBuild",
+    mnemonic = "vitebuild",
     out_dirs = [
         ".dist",
         ".build",
     ],
     tool = ":vite",
+    visibility = ["//visibility:private"],
+)
+
+npm_package(
+    name = "vite-electron-plugin",
+    srcs = [
+        "package.json",
+        ":build",
+    ],
+    visibility = ["//visibility:public"],
 )

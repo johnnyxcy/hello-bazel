@@ -2517,7 +2517,7 @@
         "accumulatedFileDigests": {
           "@@aspect_bazel_lib~1.40.0~toolchains~yq_darwin_arm64//:yq": "db8c11ca4c1dda8fe7c211e82e28191d48bd9ae83471b952003e819de79bcb51",
           "@@//:.npmrc": "25afec638a4a1dc4a7277d8babd30464e9d942cf93d3e47505a4677adad1a901",
-          "@@//:pnpm-lock.yaml": "c4fa80500cdab86b178bf15f602ddc75bb0fa6e9bff56a26f707b746128a2c8c"
+          "@@//:pnpm-lock.yaml": "412e0c512990b422186605293e08428161201c4d97dfd253dc917f390c5f130d"
         },
         "envVariables": {},
         "generatedRepoSpecs": {
@@ -3320,7 +3320,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_darwin-arm64__0.19.12__links",
               "package": "@esbuild/darwin-arm64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -3854,7 +3854,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__postcss__8.4.35__links",
               "package": "postcss",
               "version": "8.4.35",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {
@@ -4902,7 +4902,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_win32-arm64__0.19.12__links",
               "package": "@esbuild/win32-arm64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -5671,7 +5671,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_linux-mips64el__0.19.12__links",
               "package": "@esbuild/linux-mips64el",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -5701,7 +5701,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_linux-riscv64__0.19.12__links",
               "package": "@esbuild/linux-riscv64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -6244,7 +6244,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_linux-ppc64__0.19.12__links",
               "package": "@esbuild/linux-ppc64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -6968,7 +6968,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_rollup_rollup-linux-arm64-gnu__4.12.0__links",
               "package": "@rollup/rollup-linux-arm64-gnu",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -7757,7 +7757,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_rollup_rollup-android-arm64__4.12.0__links",
               "package": "@rollup/rollup-android-arm64",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -8727,7 +8727,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_win32-x64__0.19.12__links",
               "package": "@esbuild/win32-x64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -10320,7 +10320,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_openbsd-x64__0.19.12__links",
               "package": "@esbuild/openbsd-x64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -10885,7 +10885,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_android-arm__0.19.12__links",
               "package": "@esbuild/android-arm",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -12176,7 +12176,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_linux-arm64__0.19.12__links",
               "package": "@esbuild/linux-arm64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -12231,7 +12231,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__source-map-js__1.0.2__links",
               "package": "source-map-js",
               "version": "1.0.2",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -12854,6 +12854,31 @@
               "replace_package": ""
             }
           },
+          "npm__typescript__5.4.2": {
+            "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_rule",
+            "attributes": {
+              "name": "aspect_rules_js~1.38.0~npm~npm__typescript__5.4.2",
+              "package": "typescript",
+              "version": "5.4.2",
+              "root_package": "",
+              "link_workspace": "",
+              "link_packages": {},
+              "integrity": "sha512-+2/g0Fds1ERlP6JsakQQDXjZdZMM+rqpamFZJEKh4kwTIn3iDkgKtby0CeNd5ATNZ4Ry1ax15TMx0W2V+miizQ==",
+              "url": "https://registry.npmjs.org/typescript/-/typescript-5.4.2.tgz",
+              "commit": "",
+              "patch_args": [],
+              "patches": [],
+              "custom_postinstall": "",
+              "npm_auth": "",
+              "npm_auth_basic": "",
+              "npm_auth_username": "",
+              "npm_auth_password": "",
+              "lifecycle_hooks": [],
+              "extra_build_content": "",
+              "generate_bzl_library_targets": false
+            }
+          },
           "npm__at_microsoft_api-extractor-model__7.28.3__at_types_node_20.11.24__links": {
             "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
             "ruleClassName": "npm_import_links",
@@ -13122,7 +13147,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_rollup_rollup-win32-x64-msvc__4.12.0__links",
               "package": "@rollup/rollup-win32-x64-msvc",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -13315,7 +13340,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_freebsd-arm64__0.19.12__links",
               "package": "@esbuild/freebsd-arm64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -13690,7 +13715,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_rollup_rollup-darwin-x64__4.12.0__links",
               "package": "@rollup/rollup-darwin-x64",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -13750,6 +13775,31 @@
               "link_packages": {},
               "integrity": "sha512-nZD7m9iCPC5g0pYmcaxogYKggSfLsdxl8of3Q/oIbqCqLLIO9IAF0GWjX1z9NZRHPiXv8Wex4yDCaZsgEw0Y8w==",
               "url": "https://registry.npmjs.org/tmp/-/tmp-0.2.3.tgz",
+              "commit": "",
+              "patch_args": [],
+              "patches": [],
+              "custom_postinstall": "",
+              "npm_auth": "",
+              "npm_auth_basic": "",
+              "npm_auth_username": "",
+              "npm_auth_password": "",
+              "lifecycle_hooks": [],
+              "extra_build_content": "",
+              "generate_bzl_library_targets": false
+            }
+          },
+          "npm__vue-tsc__1.8.27__typescript_5.4.2": {
+            "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_rule",
+            "attributes": {
+              "name": "aspect_rules_js~1.38.0~npm~npm__vue-tsc__1.8.27__typescript_5.4.2",
+              "package": "vue-tsc",
+              "version": "1.8.27_typescript_5.4.2",
+              "root_package": "",
+              "link_workspace": "",
+              "link_packages": {},
+              "integrity": "sha512-WesKCAZCRAbmmhuGl3+VrdWItEvfoFIPXOvUJkjULi+x+6G/Dy69yO3TBRJDr9eUlmsNAwVmxsNZxvHKzbkKdg==",
+              "url": "https://registry.npmjs.org/vue-tsc/-/vue-tsc-1.8.27.tgz",
               "commit": "",
               "patch_args": [],
               "patches": [],
@@ -15080,7 +15130,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_rollup_rollup-darwin-arm64__4.12.0__links",
               "package": "@rollup/rollup-darwin-arm64",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -15693,7 +15743,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__esbuild__0.19.12__links",
               "package": "esbuild",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {
@@ -16686,7 +16736,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_rollup_rollup-linux-arm64-musl__4.12.0__links",
               "package": "@rollup/rollup-linux-arm64-musl",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -16939,6 +16989,114 @@
               ],
               "extra_build_content": "",
               "generate_bzl_library_targets": false
+            }
+          },
+          "npm__at_vue_language-core__1.8.27__typescript_5.4.2__links": {
+            "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_links",
+            "attributes": {
+              "name": "aspect_rules_js~1.38.0~npm~npm__at_vue_language-core__1.8.27__typescript_5.4.2__links",
+              "package": "@vue/language-core",
+              "version": "1.8.27_typescript_5.4.2",
+              "dev": true,
+              "root_package": "",
+              "link_packages": {},
+              "deps": {
+                "@volar/language-core": "1.11.1",
+                "@volar/source-map": "1.11.1",
+                "@vue/compiler-dom": "3.4.21",
+                "@vue/shared": "3.4.21",
+                "computeds": "0.0.1",
+                "minimatch": "9.0.3",
+                "muggle-string": "0.3.1",
+                "path-browserify": "1.0.1",
+                "typescript": "5.4.2",
+                "vue-template-compiler": "2.7.16"
+              },
+              "transitive_closure": {
+                "@babel/helper-string-parser": [
+                  "7.23.4"
+                ],
+                "@babel/helper-validator-identifier": [
+                  "7.22.20"
+                ],
+                "@babel/parser": [
+                  "7.24.0"
+                ],
+                "@babel/types": [
+                  "7.24.0"
+                ],
+                "@volar/language-core": [
+                  "1.11.1"
+                ],
+                "@volar/source-map": [
+                  "1.11.1"
+                ],
+                "@vue/compiler-core": [
+                  "3.4.21"
+                ],
+                "@vue/compiler-dom": [
+                  "3.4.21"
+                ],
+                "@vue/language-core": [
+                  "1.8.27_typescript_5.4.2"
+                ],
+                "@vue/shared": [
+                  "3.4.21"
+                ],
+                "balanced-match": [
+                  "1.0.2"
+                ],
+                "brace-expansion": [
+                  "2.0.1"
+                ],
+                "computeds": [
+                  "0.0.1"
+                ],
+                "de-indent": [
+                  "1.0.2"
+                ],
+                "entities": [
+                  "4.5.0"
+                ],
+                "estree-walker": [
+                  "2.0.2"
+                ],
+                "he": [
+                  "1.2.0"
+                ],
+                "minimatch": [
+                  "9.0.3"
+                ],
+                "muggle-string": [
+                  "0.3.1"
+                ],
+                "path-browserify": [
+                  "1.0.1"
+                ],
+                "source-map-js": [
+                  "1.0.2"
+                ],
+                "to-fast-properties": [
+                  "2.0.0"
+                ],
+                "typescript": [
+                  "5.4.2"
+                ],
+                "vue-template-compiler": [
+                  "2.7.16"
+                ]
+              },
+              "lifecycle_build_target": false,
+              "lifecycle_hooks_env": [],
+              "lifecycle_hooks_execution_requirements": [],
+              "lifecycle_hooks_use_default_shell_env": false,
+              "bins": {},
+              "npm_translate_lock_repo": "npm",
+              "package_visibility": [
+                "//visibility:public"
+              ],
+              "replace_package": ""
             }
           },
           "npm__plist__3.1.0": {
@@ -19646,7 +19804,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_types_estree__1.0.5__links",
               "package": "@types/estree",
               "version": "1.0.5",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -20743,7 +20901,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_rollup_rollup-linux-arm-gnueabihf__4.12.0__links",
               "package": "@rollup/rollup-linux-arm-gnueabihf",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -21170,7 +21328,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_rollup_rollup-linux-x64-musl__4.12.0__links",
               "package": "@rollup/rollup-linux-x64-musl",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -21318,7 +21476,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_win32-ia32__0.19.12__links",
               "package": "@esbuild/win32-ia32",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -21705,6 +21863,34 @@
               "generate_bzl_library_targets": false
             }
           },
+          "npm__typescript__5.4.2__links": {
+            "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_links",
+            "attributes": {
+              "name": "aspect_rules_js~1.38.0~npm~npm__typescript__5.4.2__links",
+              "package": "typescript",
+              "version": "5.4.2",
+              "dev": true,
+              "root_package": "",
+              "link_packages": {},
+              "deps": {},
+              "transitive_closure": {
+                "typescript": [
+                  "5.4.2"
+                ]
+              },
+              "lifecycle_build_target": false,
+              "lifecycle_hooks_env": [],
+              "lifecycle_hooks_execution_requirements": [],
+              "lifecycle_hooks_use_default_shell_env": false,
+              "bins": {},
+              "npm_translate_lock_repo": "npm",
+              "package_visibility": [
+                "//visibility:public"
+              ],
+              "replace_package": ""
+            }
+          },
           "npm__at_rushstack_rig-package__0.5.1__links": {
             "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
             "ruleClassName": "npm_import_links",
@@ -22061,6 +22247,35 @@
               "replace_package": ""
             }
           },
+          "npm__vite-plugin-dts__3.7.3__742038900": {
+            "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_rule",
+            "attributes": {
+              "name": "aspect_rules_js~1.38.0~npm~npm__vite-plugin-dts__3.7.3__742038900",
+              "package": "vite-plugin-dts",
+              "version": "3.7.3_742038900",
+              "root_package": "",
+              "link_workspace": "",
+              "link_packages": {
+                "projects/js/hello": [
+                  "vite-plugin-dts"
+                ]
+              },
+              "integrity": "sha512-26eTlBYdpjRLWCsTJebM8vkCieE+p9gP3raf+ecDnzzK5E3FG6VE1wcy55OkRpfWWVlVvKkYFe6uvRHYWx7Nog==",
+              "url": "https://registry.npmjs.org/vite-plugin-dts/-/vite-plugin-dts-3.7.3.tgz",
+              "commit": "",
+              "patch_args": [],
+              "patches": [],
+              "custom_postinstall": "",
+              "npm_auth": "",
+              "npm_auth_basic": "",
+              "npm_auth_username": "",
+              "npm_auth_password": "",
+              "lifecycle_hooks": [],
+              "extra_build_content": "",
+              "generate_bzl_library_targets": false
+            }
+          },
           "npm__vue-tsc__1.8.27__typescript_5.3.3__links": {
             "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
             "ruleClassName": "npm_import_links",
@@ -22255,7 +22470,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_rollup_rollup-win32-arm64-msvc__4.12.0__links",
               "package": "@rollup/rollup-win32-arm64-msvc",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -22605,6 +22820,123 @@
               "replace_package": ""
             }
           },
+          "npm__vue-tsc__1.8.27__typescript_5.4.2__links": {
+            "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_links",
+            "attributes": {
+              "name": "aspect_rules_js~1.38.0~npm~npm__vue-tsc__1.8.27__typescript_5.4.2__links",
+              "package": "vue-tsc",
+              "version": "1.8.27_typescript_5.4.2",
+              "dev": true,
+              "root_package": "",
+              "link_packages": {},
+              "deps": {
+                "@volar/typescript": "1.11.1",
+                "@vue/language-core": "1.8.27_typescript_5.4.2",
+                "semver": "7.6.0",
+                "typescript": "5.4.2"
+              },
+              "transitive_closure": {
+                "@babel/helper-string-parser": [
+                  "7.23.4"
+                ],
+                "@babel/helper-validator-identifier": [
+                  "7.22.20"
+                ],
+                "@babel/parser": [
+                  "7.24.0"
+                ],
+                "@babel/types": [
+                  "7.24.0"
+                ],
+                "@volar/language-core": [
+                  "1.11.1"
+                ],
+                "@volar/source-map": [
+                  "1.11.1"
+                ],
+                "@volar/typescript": [
+                  "1.11.1"
+                ],
+                "@vue/compiler-core": [
+                  "3.4.21"
+                ],
+                "@vue/compiler-dom": [
+                  "3.4.21"
+                ],
+                "@vue/language-core": [
+                  "1.8.27_typescript_5.4.2"
+                ],
+                "@vue/shared": [
+                  "3.4.21"
+                ],
+                "balanced-match": [
+                  "1.0.2"
+                ],
+                "brace-expansion": [
+                  "2.0.1"
+                ],
+                "computeds": [
+                  "0.0.1"
+                ],
+                "de-indent": [
+                  "1.0.2"
+                ],
+                "entities": [
+                  "4.5.0"
+                ],
+                "estree-walker": [
+                  "2.0.2"
+                ],
+                "he": [
+                  "1.2.0"
+                ],
+                "lru-cache": [
+                  "6.0.0"
+                ],
+                "minimatch": [
+                  "9.0.3"
+                ],
+                "muggle-string": [
+                  "0.3.1"
+                ],
+                "path-browserify": [
+                  "1.0.1"
+                ],
+                "semver": [
+                  "7.6.0"
+                ],
+                "source-map-js": [
+                  "1.0.2"
+                ],
+                "to-fast-properties": [
+                  "2.0.0"
+                ],
+                "typescript": [
+                  "5.4.2"
+                ],
+                "vue-template-compiler": [
+                  "2.7.16"
+                ],
+                "vue-tsc": [
+                  "1.8.27_typescript_5.4.2"
+                ],
+                "yallist": [
+                  "4.0.0"
+                ]
+              },
+              "lifecycle_build_target": false,
+              "lifecycle_hooks_env": [],
+              "lifecycle_hooks_execution_requirements": [],
+              "lifecycle_hooks_use_default_shell_env": false,
+              "bins": {},
+              "npm_translate_lock_repo": "npm",
+              "package_visibility": [
+                "//visibility:public"
+              ],
+              "replace_package": ""
+            }
+          },
           "npm__postcss__8.4.35": {
             "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
             "ruleClassName": "npm_import_rule",
@@ -22783,6 +23115,31 @@
                 "//visibility:public"
               ],
               "replace_package": ""
+            }
+          },
+          "npm__at_vue_language-core__1.8.27__typescript_5.4.2": {
+            "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_rule",
+            "attributes": {
+              "name": "aspect_rules_js~1.38.0~npm~npm__at_vue_language-core__1.8.27__typescript_5.4.2",
+              "package": "@vue/language-core",
+              "version": "1.8.27_typescript_5.4.2",
+              "root_package": "",
+              "link_workspace": "",
+              "link_packages": {},
+              "integrity": "sha512-L8Kc27VdQserNaCUNiSFdDl9LWT24ly8Hpwf1ECy3aFb9m6bDhBGQYOujDm21N7EW3moKIOKEanQwe1q5BK+mA==",
+              "url": "https://registry.npmjs.org/@vue/language-core/-/language-core-1.8.27.tgz",
+              "commit": "",
+              "patch_args": [],
+              "patches": [],
+              "custom_postinstall": "",
+              "npm_auth": "",
+              "npm_auth_basic": "",
+              "npm_auth_username": "",
+              "npm_auth_password": "",
+              "lifecycle_hooks": [],
+              "extra_build_content": "",
+              "generate_bzl_library_targets": false
             }
           },
           "npm__argparse__2.0.1": {
@@ -23073,7 +23430,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_rollup_rollup-android-arm-eabi__4.12.0__links",
               "package": "@rollup/rollup-android-arm-eabi",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -23586,7 +23943,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_rollup_rollup-linux-riscv64-gnu__4.12.0__links",
               "package": "@rollup/rollup-linux-riscv64-gnu",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -28163,7 +28520,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__nanoid__3.3.7__links",
               "package": "nanoid",
               "version": "3.3.7",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -30909,7 +31266,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_darwin-x64__0.19.12__links",
               "package": "@esbuild/darwin-x64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -32139,7 +32496,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__rollup__4.12.0__links",
               "package": "rollup",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {
@@ -32290,7 +32647,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__vite__5.1.5__at_types_node_20.11.24__links",
               "package": "vite",
               "version": "5.1.5_at_types_node_20.11.24",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {
                 "": [
@@ -32644,7 +33001,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_linux-arm__0.19.12__links",
               "package": "@esbuild/linux-arm",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -33272,9 +33629,6 @@
               "root_package": "",
               "link_workspace": "",
               "link_packages": {
-                "projects/js/hello": [
-                  "vite-plugin-dts"
-                ],
                 "projects/js/vite-electron-plugin": [
                   "vite-plugin-dts"
                 ]
@@ -33765,7 +34119,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_linux-x64__0.19.12__links",
               "package": "@esbuild/linux-x64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -35454,9 +35808,6 @@
               "dev": true,
               "root_package": "",
               "link_packages": {
-                "projects/js/hello": [
-                  "vite-plugin-dts"
-                ],
                 "projects/js/vite-electron-plugin": [
                   "vite-plugin-dts"
                 ]
@@ -37877,7 +38228,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_android-arm64__0.19.12__links",
               "package": "@esbuild/android-arm64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -38044,7 +38395,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_linux-ia32__0.19.12__links",
               "package": "@esbuild/linux-ia32",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -38074,7 +38425,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_android-x64__0.19.12__links",
               "package": "@esbuild/android-x64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -38129,7 +38480,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_linux-s390x__0.19.12__links",
               "package": "@esbuild/linux-s390x",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -38530,6 +38881,404 @@
               "lifecycle_hooks": [],
               "extra_build_content": "",
               "generate_bzl_library_targets": false
+            }
+          },
+          "npm__vite-plugin-dts__3.7.3__742038900__links": {
+            "bzlFile": "@@aspect_rules_js~1.38.0//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_links",
+            "attributes": {
+              "name": "aspect_rules_js~1.38.0~npm~npm__vite-plugin-dts__3.7.3__742038900__links",
+              "package": "vite-plugin-dts",
+              "version": "3.7.3_742038900",
+              "dev": true,
+              "root_package": "",
+              "link_packages": {
+                "projects/js/hello": [
+                  "vite-plugin-dts"
+                ]
+              },
+              "deps": {
+                "@microsoft/api-extractor": "7.39.0_at_types_node_20.11.24",
+                "@rollup/pluginutils": "5.1.0",
+                "@vue/language-core": "1.8.27_typescript_5.4.2",
+                "debug": "4.3.4",
+                "kolorist": "1.8.0",
+                "typescript": "5.4.2",
+                "vite": "5.1.5_at_types_node_20.11.24",
+                "vue-tsc": "1.8.27_typescript_5.4.2"
+              },
+              "transitive_closure": {
+                "@babel/helper-string-parser": [
+                  "7.23.4"
+                ],
+                "@babel/helper-validator-identifier": [
+                  "7.22.20"
+                ],
+                "@babel/parser": [
+                  "7.24.0"
+                ],
+                "@babel/types": [
+                  "7.24.0"
+                ],
+                "@esbuild/aix-ppc64": [
+                  "0.19.12"
+                ],
+                "@esbuild/android-arm": [
+                  "0.19.12"
+                ],
+                "@esbuild/android-arm64": [
+                  "0.19.12"
+                ],
+                "@esbuild/android-x64": [
+                  "0.19.12"
+                ],
+                "@esbuild/darwin-arm64": [
+                  "0.19.12"
+                ],
+                "@esbuild/darwin-x64": [
+                  "0.19.12"
+                ],
+                "@esbuild/freebsd-arm64": [
+                  "0.19.12"
+                ],
+                "@esbuild/freebsd-x64": [
+                  "0.19.12"
+                ],
+                "@esbuild/linux-arm": [
+                  "0.19.12"
+                ],
+                "@esbuild/linux-arm64": [
+                  "0.19.12"
+                ],
+                "@esbuild/linux-ia32": [
+                  "0.19.12"
+                ],
+                "@esbuild/linux-loong64": [
+                  "0.19.12"
+                ],
+                "@esbuild/linux-mips64el": [
+                  "0.19.12"
+                ],
+                "@esbuild/linux-ppc64": [
+                  "0.19.12"
+                ],
+                "@esbuild/linux-riscv64": [
+                  "0.19.12"
+                ],
+                "@esbuild/linux-s390x": [
+                  "0.19.12"
+                ],
+                "@esbuild/linux-x64": [
+                  "0.19.12"
+                ],
+                "@esbuild/netbsd-x64": [
+                  "0.19.12"
+                ],
+                "@esbuild/openbsd-x64": [
+                  "0.19.12"
+                ],
+                "@esbuild/sunos-x64": [
+                  "0.19.12"
+                ],
+                "@esbuild/win32-arm64": [
+                  "0.19.12"
+                ],
+                "@esbuild/win32-ia32": [
+                  "0.19.12"
+                ],
+                "@esbuild/win32-x64": [
+                  "0.19.12"
+                ],
+                "@microsoft/api-extractor": [
+                  "7.39.0_at_types_node_20.11.24"
+                ],
+                "@microsoft/api-extractor-model": [
+                  "7.28.3_at_types_node_20.11.24"
+                ],
+                "@microsoft/tsdoc": [
+                  "0.14.2"
+                ],
+                "@microsoft/tsdoc-config": [
+                  "0.16.2"
+                ],
+                "@rollup/pluginutils": [
+                  "5.1.0"
+                ],
+                "@rollup/rollup-android-arm-eabi": [
+                  "4.12.0"
+                ],
+                "@rollup/rollup-android-arm64": [
+                  "4.12.0"
+                ],
+                "@rollup/rollup-darwin-arm64": [
+                  "4.12.0"
+                ],
+                "@rollup/rollup-darwin-x64": [
+                  "4.12.0"
+                ],
+                "@rollup/rollup-linux-arm-gnueabihf": [
+                  "4.12.0"
+                ],
+                "@rollup/rollup-linux-arm64-gnu": [
+                  "4.12.0"
+                ],
+                "@rollup/rollup-linux-arm64-musl": [
+                  "4.12.0"
+                ],
+                "@rollup/rollup-linux-riscv64-gnu": [
+                  "4.12.0"
+                ],
+                "@rollup/rollup-linux-x64-gnu": [
+                  "4.12.0"
+                ],
+                "@rollup/rollup-linux-x64-musl": [
+                  "4.12.0"
+                ],
+                "@rollup/rollup-win32-arm64-msvc": [
+                  "4.12.0"
+                ],
+                "@rollup/rollup-win32-ia32-msvc": [
+                  "4.12.0"
+                ],
+                "@rollup/rollup-win32-x64-msvc": [
+                  "4.12.0"
+                ],
+                "@rushstack/node-core-library": [
+                  "3.62.0_at_types_node_20.11.24"
+                ],
+                "@rushstack/rig-package": [
+                  "0.5.1"
+                ],
+                "@rushstack/ts-command-line": [
+                  "4.17.1"
+                ],
+                "@types/argparse": [
+                  "1.0.38"
+                ],
+                "@types/estree": [
+                  "1.0.5"
+                ],
+                "@types/node": [
+                  "20.11.24"
+                ],
+                "@volar/language-core": [
+                  "1.11.1"
+                ],
+                "@volar/source-map": [
+                  "1.11.1"
+                ],
+                "@volar/typescript": [
+                  "1.11.1"
+                ],
+                "@vue/compiler-core": [
+                  "3.4.21"
+                ],
+                "@vue/compiler-dom": [
+                  "3.4.21"
+                ],
+                "@vue/language-core": [
+                  "1.8.27_typescript_5.4.2"
+                ],
+                "@vue/shared": [
+                  "3.4.21"
+                ],
+                "ajv": [
+                  "6.12.6"
+                ],
+                "argparse": [
+                  "1.0.10"
+                ],
+                "balanced-match": [
+                  "1.0.2"
+                ],
+                "brace-expansion": [
+                  "2.0.1"
+                ],
+                "colors": [
+                  "1.2.5"
+                ],
+                "commander": [
+                  "9.5.0"
+                ],
+                "computeds": [
+                  "0.0.1"
+                ],
+                "de-indent": [
+                  "1.0.2"
+                ],
+                "debug": [
+                  "4.3.4"
+                ],
+                "entities": [
+                  "4.5.0"
+                ],
+                "esbuild": [
+                  "0.19.12"
+                ],
+                "estree-walker": [
+                  "2.0.2"
+                ],
+                "fast-deep-equal": [
+                  "3.1.3"
+                ],
+                "fast-json-stable-stringify": [
+                  "2.1.0"
+                ],
+                "fs-extra": [
+                  "7.0.1"
+                ],
+                "fsevents": [
+                  "2.3.3"
+                ],
+                "function-bind": [
+                  "1.1.2"
+                ],
+                "graceful-fs": [
+                  "4.2.11"
+                ],
+                "hasown": [
+                  "2.0.1"
+                ],
+                "he": [
+                  "1.2.0"
+                ],
+                "import-lazy": [
+                  "4.0.0"
+                ],
+                "is-core-module": [
+                  "2.13.1"
+                ],
+                "jju": [
+                  "1.4.0"
+                ],
+                "json-schema-traverse": [
+                  "0.4.1"
+                ],
+                "jsonfile": [
+                  "4.0.0"
+                ],
+                "kolorist": [
+                  "1.8.0"
+                ],
+                "lodash": [
+                  "4.17.21"
+                ],
+                "lodash.get": [
+                  "4.4.2"
+                ],
+                "lodash.isequal": [
+                  "4.5.0"
+                ],
+                "lru-cache": [
+                  "6.0.0"
+                ],
+                "minimatch": [
+                  "9.0.3"
+                ],
+                "ms": [
+                  "2.1.2"
+                ],
+                "muggle-string": [
+                  "0.3.1"
+                ],
+                "nanoid": [
+                  "3.3.7"
+                ],
+                "path-browserify": [
+                  "1.0.1"
+                ],
+                "path-parse": [
+                  "1.0.7"
+                ],
+                "picocolors": [
+                  "1.0.0"
+                ],
+                "picomatch": [
+                  "2.3.1"
+                ],
+                "postcss": [
+                  "8.4.35"
+                ],
+                "punycode": [
+                  "2.3.1"
+                ],
+                "resolve": [
+                  "1.19.0",
+                  "1.22.8"
+                ],
+                "rollup": [
+                  "4.12.0"
+                ],
+                "semver": [
+                  "7.5.4",
+                  "7.6.0"
+                ],
+                "source-map": [
+                  "0.6.1"
+                ],
+                "source-map-js": [
+                  "1.0.2"
+                ],
+                "sprintf-js": [
+                  "1.0.3"
+                ],
+                "string-argv": [
+                  "0.3.2"
+                ],
+                "strip-json-comments": [
+                  "3.1.1"
+                ],
+                "supports-preserve-symlinks-flag": [
+                  "1.0.0"
+                ],
+                "to-fast-properties": [
+                  "2.0.0"
+                ],
+                "typescript": [
+                  "5.3.3",
+                  "5.4.2"
+                ],
+                "undici-types": [
+                  "5.26.5"
+                ],
+                "universalify": [
+                  "0.1.2"
+                ],
+                "uri-js": [
+                  "4.4.1"
+                ],
+                "validator": [
+                  "13.11.0"
+                ],
+                "vite": [
+                  "5.1.5_at_types_node_20.11.24"
+                ],
+                "vite-plugin-dts": [
+                  "3.7.3_742038900"
+                ],
+                "vue-template-compiler": [
+                  "2.7.16"
+                ],
+                "vue-tsc": [
+                  "1.8.27_typescript_5.4.2"
+                ],
+                "yallist": [
+                  "4.0.0"
+                ],
+                "z-schema": [
+                  "5.0.5"
+                ]
+              },
+              "lifecycle_build_target": false,
+              "lifecycle_hooks_env": [],
+              "lifecycle_hooks_execution_requirements": [],
+              "lifecycle_hooks_use_default_shell_env": false,
+              "bins": {},
+              "npm_translate_lock_repo": "npm",
+              "package_visibility": [
+                "//visibility:public"
+              ],
+              "replace_package": ""
             }
           },
           "npm__at_jridgewell_set-array__1.2.1": {
@@ -39074,7 +39823,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_rollup_rollup-linux-x64-gnu__4.12.0__links",
               "package": "@rollup/rollup-linux-x64-gnu",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -39808,7 +40557,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__fsevents__2.3.3__links",
               "package": "fsevents",
               "version": "2.3.3",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -40302,7 +41051,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_rollup_rollup-win32-ia32-msvc__4.12.0__links",
               "package": "@rollup/rollup-win32-ia32-msvc",
               "version": "4.12.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -40418,7 +41167,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_aix-ppc64__0.19.12__links",
               "package": "@esbuild/aix-ppc64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -40555,7 +41304,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_sunos-x64__0.19.12__links",
               "package": "@esbuild/sunos-x64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -40751,7 +41500,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_linux-loong64__0.19.12__links",
               "package": "@esbuild/linux-loong64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -41645,7 +42394,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_freebsd-x64__0.19.12__links",
               "package": "@esbuild/freebsd-x64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -42746,7 +43495,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__picocolors__1.0.0__links",
               "package": "picocolors",
               "version": "1.0.0",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},
@@ -42850,7 +43599,7 @@
               "name": "aspect_rules_js~1.38.0~npm~npm__at_esbuild_netbsd-x64__0.19.12__links",
               "package": "@esbuild/netbsd-x64",
               "version": "0.19.12",
-              "dev": true,
+              "dev": false,
               "root_package": "",
               "link_packages": {},
               "deps": {},

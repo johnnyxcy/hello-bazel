@@ -49,8 +49,8 @@
     ".venv": true,
     // exclude clangd cache
     ".cache": true,
-    ".ruff_cache": true,
-    "**/node_modules": true
+    ".ruff_cache": true
+    // "**/node_modules": true
   },
   "lldb.verboseLogging": true,
   "ruff.lint.enable": true,

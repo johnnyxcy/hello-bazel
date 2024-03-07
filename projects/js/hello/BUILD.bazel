@@ -53,6 +53,7 @@ js_run_binary(
         ".build",
     ],
     tool = ":vite",
+    visibility = ["//visibility:public"],
 )
 
 vitest.vitest_test(

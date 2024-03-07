@@ -1,24 +1,19 @@
-/*
- * File: @/src/plugin.ts
- *
- * Copyright (c) 2023 - 2024 Maspectra Dev Team
- */
-import vite from "vite";
-
+import type { Plugin } from "vite";
+import { build as viteBuild } from "vite";
 import type { ElectronOptions } from "@/options";
 import { resolveViteConfigWithOptions } from "@/resolve-config";
 import { resolveBuiltinAsExternal } from "@/resolve-external";
 import { resolveServerUrl } from "@/server";
 
 export function build(options: ElectronOptions) {
-  return vite.build(
+  return viteBuild(
     resolveBuiltinAsExternal(resolveViteConfigWithOptions(options))
   );
 }
 
 export default function electron(
   options: ElectronOptions | ElectronOptions[]
-): vite.Plugin[] {
+): Plugin[] {
   const optionsArray = Array.isArray(options) ? options : [options];
   let mode: string;
 
@@ -82,14 +77,13 @@ export default function electron(
  * It will mount the Electron App child-process to `process.electronApp`.
  * @param argv default value `['.', '--no-sandbox']`
  */
-export async function startup(argv = [".", "--no-sandbox"]) {
+export async function startup(argv: string[] = [".", "--no-sandbox"]) {
   const { spawn } = await import("node:child_process");
   const electron = await import("electron");
-  const electronPath = electron.default ?? electron;
+  const electronPath: any = electron.default ?? electron;
 
   startup.exit();
   // Start Electron.app
-  // @ts-ignore should work
   process.electronApp = spawn(electronPath, argv, { stdio: "inherit" });
   // Exit command after Electron.app exits
   process.electronApp.once("exit", process.exit);

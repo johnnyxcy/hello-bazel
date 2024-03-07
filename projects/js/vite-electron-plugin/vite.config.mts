@@ -5,7 +5,7 @@ import { rmSync } from "node:fs";
 import { defineConfig } from "vite";
 
 import dts from "vite-plugin-dts";
-
+import pkg from "./package.json";
 export default defineConfig(({ command }) => {
   if (command === "build") {
     rmSync(".dist/", { recursive: true, force: true });
@@ -29,13 +29,19 @@ export default defineConfig(({ command }) => {
       },
     },
     build: {
+      minify: process.env.MINIFY_JS === "1" ?? false,
       outDir: ".dist/lib",
       lib: {
         entry: "./src/index.ts",
-        formats: ["cjs" as const],
+        formats: ["cjs" as const, "es" as const],
+        fileName: (format) => (format === "es" ? "[name].mjs" : "[name].js"),
       },
       rollupOptions: {
-        external: ["vite", /^electron/, /^node:/],
+        external: [
+          ...Object.keys(pkg.dependencies || {}),
+          "electron",
+          /^node:/,
+        ],
       },
     },
     test: {
