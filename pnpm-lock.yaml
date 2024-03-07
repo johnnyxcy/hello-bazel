@@ -30,9 +30,6 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      '@bazel/ibazel':
-        specifier: latest
-        version: 0.24.0
       '@hello-bazel/vite-electron-plugin':
         specifier: workspace:^1
         version: link:../vite-electron-plugin
@@ -353,11 +350,6 @@ packages:
       '@babel/helper-string-parser': 7.23.4
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
-    dev: true
-
-  /@bazel/ibazel@0.24.0:
-    resolution: {integrity: sha512-lA0Ey6iorssDTJDwBQW0bCmzQyBTAtOj7L4mqmmlFT6LhIzTc3r0iFOuzxFBsDq8NbxVs/W9PRNIsC/LfpI1nA==}
-    hasBin: true
     dev: true
 
   /@develar/schema-utils@2.6.5:
