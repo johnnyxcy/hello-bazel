@@ -1,0 +1,57 @@
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@npm//projects/js/app:vite/package_json.bzl", vite = "bin")
+
+npm_link_all_packages(name = "node_modules")
+
+runtime_deps = [
+    "vite.config.mts",
+    "package.json",
+    "tsconfig.json",
+    "tsconfig.node.json",
+]
+
+internal_deps = [
+    # "//projects/js/hello",
+]
+
+node_modules_deps = [
+    ":node_modules/@hello-bazel/vite-electron-plugin",
+    ":node_modules/electron",
+    ":node_modules/vite",
+    ":node_modules/chalk",
+    ":node_modules/@vitejs/plugin-react",
+    ":node_modules/react",
+    ":node_modules/react-dom",
+]
+
+filegroup(
+    name = "src",
+    srcs = glob(
+        include = ["src/**"],
+        exclude = ["**/*.test.ts"],
+    ),
+)
+
+# vite.vite_binary(
+#     name = "vite",
+#     chdir = package_name(),
+#     data = runtime_deps,
+# )
+
+# Fast developer round-trip under ibazel
+# js_run_devserver(
+#     name = "dev",
+#     data = [
+#         "vite.config.mts",
+#         ":src",
+#     ] + runtime_deps + internal_deps + node_modules_deps,
+#     tool = ":vite",
+# )
+
+vite.vite_binary(
+    name = "dev",
+    chdir = package_name(),
+    data = [
+        ":src",
+    ] + runtime_deps + internal_deps + node_modules_deps,
+)

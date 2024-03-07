@@ -39,11 +39,7 @@ export default defineConfig(({ command }): UserConfig => {
               minify: isBuild,
               outDir: ".dist/e",
               rollupOptions: {
-                external: [
-                  ...Object.keys(pkg.dependencies || {}),
-                  /@mas\/i18n(.+)?/,
-                  /^node:/,
-                ],
+                external: [...Object.keys(pkg.dependencies || {}), /^node:/],
               },
             },
             plugins: [isServe && notBundle()],
