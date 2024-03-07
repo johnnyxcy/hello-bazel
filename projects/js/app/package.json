@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "vite",
-    "dev": "ibazel run dev",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "e2e": "playwright test",
@@ -21,7 +21,6 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@bazel/ibazel": "latest",
     "@hello-bazel/vite-electron-plugin": "workspace:^1",
     "@types/node": "latest",
     "@types/react": "^18.2.48",
