@@ -20,10 +20,13 @@ runtime_deps = [
 ]
 
 node_modules_deps = [
-    ":node_modules/electron",
-    ":node_modules/vite",
-    ":node_modules/chalk",
-    ":node_modules/vite-plugin-dts",
+    ":node_modules/" + d
+    for d in [
+        "electron",
+        "vite",
+        "chalk",
+        "vite-plugin-dts",
+    ]
 ]
 
 vite.vite(
@@ -42,6 +45,10 @@ npm_package(
     srcs = [
         "package.json",
         ":build",
+    ],
+    tags = [
+        "devkits",
+        "lib",
     ],
     visibility = ["//visibility:public"],
 )

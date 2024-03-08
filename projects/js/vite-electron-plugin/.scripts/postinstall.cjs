@@ -18,19 +18,35 @@ const workspaceRoot = path.resolve(__dirname, "../../../..");
 const packageRelPath = path.relative(workspaceRoot, packageRoot);
 
 /**
- * @type {string[]} List of build artifacts to symlink
+ * @type {string[]} Command line arguments
  */
-const buildArtifacts = [".dist"];
+const args = process.argv.slice(2);
 
-buildArtifacts.forEach((target) => {
-  const destPath = path.join(packageRoot, target);
+/**
+ * @type {string} Target package to symlink. Defaults to the package name
+ */
+const target =
+  args.find((arg) => /^--target=.+$/.test(arg))?.split("=")[1] ??
+  path.basename(packageRoot);
 
-  if (!fs.existsSync(destPath)) {
-    fs.mkdirSync(destPath);
+/**
+ * @type {string[]} List of build artifacts to symlink. Defaults to .dist
+ */
+const artifactDirs = args
+  .find((arg) => /^--artifacts=.+$/.test(arg))
+  ?.split("=")[1]
+  ?.split(":") ?? [".dist"];
+
+// symlink the build artifacts
+artifactDirs.forEach((artifactName) => {
+  const destDir = path.join(packageRoot, artifactName);
+
+  if (!fs.existsSync(destDir)) {
+    fs.mkdirSync(destDir);
   } else {
     // remove every content in the directory
-    fs.readdirSync(destPath).forEach((file) => {
-      const joined = path.join(destPath, file);
+    fs.readdirSync(destDir).forEach((file) => {
+      const joined = path.join(destDir, file);
       if (fs.lstatSync(joined).isDirectory()) {
         fs.rmSync(joined, { recursive: true });
       } else {
@@ -39,14 +55,15 @@ buildArtifacts.forEach((target) => {
     });
   }
 
-  const sourceDir = path.join(
+  const artifactDir = path.join(
     workspaceRoot,
     "bazel-bin",
     packageRelPath,
-    target
+    target,
+    artifactName
   );
 
-  if (!fs.existsSync(sourceDir)) {
+  if (!fs.existsSync(artifactDir)) {
     console.warn(
       `No build artifacts found for '${packageRelPath}'. Consider to build the package with bazel first.`
     );
@@ -55,17 +72,17 @@ buildArtifacts.forEach((target) => {
   }
 
   // symlink the build artifacts
-  fs.readdirSync(sourceDir).forEach((file) => {
-    const source = path.join(sourceDir, file);
-    const dest = path.join(destPath, file);
-    fs.symlinkSync(source, dest);
+  fs.readdirSync(artifactDir).forEach((file) => {
+    const artifactPath = path.join(artifactDir, file);
+    const destPath = path.join(destDir, file);
+    fs.symlinkSync(artifactPath, destPath, "junction");
   });
 
   // fs.symlinkSync(targetDir, targetPath, "junction");
 
   console.log(
-    path.relative(workspaceRoot, sourceDir),
+    path.relative(workspaceRoot, artifactDir),
     " -> ",
-    path.relative(workspaceRoot, destPath)
+    path.relative(workspaceRoot, destDir)
   );
 });

@@ -27,8 +27,11 @@
     "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "latest",
     "chalk": "latest",
-    "electron": "^28.1.4",
-    "electron-builder": "24.9.1",
+    "electron": "^29",
+    "electron-builder": "24.13.3",
     "vite": "latest"
+  },
+  "optionalDependencies": {
+    "dmg-builder": "latest"
   }
 }

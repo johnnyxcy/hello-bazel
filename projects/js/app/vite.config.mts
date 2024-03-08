@@ -124,7 +124,7 @@ export default defineConfig(({ command }): UserConfig => {
       rollupOptions: {
         input: {
           workbench: path.resolve(__dirname, "src/workbench/index.html"),
-          launcher: path.resolve(__dirname, "src/launcher/index.html"),
+          // launcher: path.resolve(__dirname, "src/launcher/index.html"),
         },
         plugins: [
           {
@@ -141,7 +141,7 @@ export default defineConfig(({ command }): UserConfig => {
                 }
               }
               renameHtml("workbench");
-              renameHtml("launcher");
+              // renameHtml("launcher");
             },
           },
         ],

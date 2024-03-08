@@ -2,6 +2,7 @@
   "private": true,
   "devDependencies": {
     "eslint": "latest",
+    "prettier": "latest",
     "vite": "latest",
     "vitest": "latest"
   }

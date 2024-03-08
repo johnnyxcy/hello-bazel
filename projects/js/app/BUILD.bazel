@@ -10,7 +10,7 @@ runtime_deps = [
     "tsconfig.node.json",
 ]
 
-node_modules_deps = [":node_modules" + d for d in [
+node_modules_deps = [":node_modules/" + d for d in [
     "@hello-bazel/hello",
     "@hello-bazel/vite-electron-plugin",
     "electron",
