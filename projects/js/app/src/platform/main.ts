@@ -5,8 +5,10 @@
  */
 import { BrowserWindow, app, ipcMain, shell } from "electron";
 import { release } from "node:os";
-import { join, dirname } from "node:path";
+import path, { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import fs from "fs";
+import cp from "child_process";
 
 /**
  * @see: ESModule Support for CommonJS __dirname and __filename
@@ -42,6 +44,13 @@ const devUrl = process.env.VITE_DEV_SERVER_URL;
 const workbenchHtml = devUrl
   ? join(devUrl, "src/workbench/index.html")
   : join(process.env.DIST, "renderer/workbench.html");
+
+const staticDir = path.join(process.resourcesPath, "static");
+const calculator = path.join(staticDir, "calculator");
+const calculatorProcess = cp.spawn(calculator, []);
+calculatorProcess.stdout.on("data", (data) => {
+  fs.writeFileSync("/Users/johnnyxcy/Workspace/hello-bazel/temp/log.txt", data);
+});
 
 async function createWindow(): Promise<void> {
   win = new BrowserWindow({

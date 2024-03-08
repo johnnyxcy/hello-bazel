@@ -1,18 +1,46 @@
+// @ts-check
+
 import electronBuilder from "electron-builder";
+
 import path from "node:path";
 import * as url from "url";
+import yargs from "yargs";
+import electronPkg from "electron/package.json" with { type: "json" };
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
-const rootDir = path.resolve(__dirname, "../");
-const staticDir = path.join(rootDir, "static");
-const buildDir = path.join(rootDir, "build");
+const packageDir = path.resolve(__dirname, "../");
+const staticDir = path.join(packageDir, "static");
+const buildDir = path.join(packageDir, "build");
 
-import electronPkg from "electron/package.json" with { type: "json" };
+const argv = yargs(process.argv)
+  .option("out", {
+    type: "string",
+    alias: "o",
+    description: "Output directory",
+  })
+  .option("extra-resources", {
+    type: "string",
+    array: true,
+    description:
+      "Extra path to collect. Follow the pattern `from:to`. Example: `../some/src:some/dest`",
+  })
+  .parseSync();
+
+const outputDir = argv.out || path.join(buildDir, "dist");
+
+/**
+ * @type {[string, string][]}
+ */
+const extraResources =
+  argv.extraResources?.map((v) => {
+    const [from, to] = v.split(":");
+    return [path.resolve(packageDir, from), to];
+  }) ?? [];
 
 electronBuilder.build({
-  projectDir: rootDir,
+  projectDir: packageDir,
   config: {
     appId: "com.johnnyxcy.hello.azel",
     productName: "HelloBazel",
@@ -30,13 +58,13 @@ electronBuilder.build({
     },
     directories: {
       buildResources: buildDir,
-      output: path.join(buildDir, "dist"),
+      output: outputDir,
     },
     electronVersion: electronPkg.version,
     asar: false,
     files: [
       {
-        from: path.join(rootDir, ".dist"),
+        from: path.join(packageDir, ".dist"),
         to: "./.dist",
       },
       "package.json",
@@ -46,6 +74,12 @@ electronBuilder.build({
         from: staticDir,
         to: "./static",
       },
+      ...extraResources.map(([from, to]) => {
+        return {
+          from,
+          to: `./static/${to}`,
+        };
+      }),
     ],
     // fileAssociations: [
     //   {

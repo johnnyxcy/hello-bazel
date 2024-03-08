@@ -1,47 +1,40 @@
 # This forces Bazel's C++ rules use platforms to select toolchains instead of the default
 
 # --crosstool_top, --compiler, etc.
-
 build --incompatible_enable_cc_toolchain_resolution
 
 # Dont enable Bazel's MODULE support
-
 common --enable_bzlmod
 
 # stdout colors
-
 common --color=yes
 
 # use platform config feature
-
 common --enable_platform_specific_config
 
 # Enable Windows symlink support
-
 startup --windows_enable_symlinks
 
 # Enable runfiles support
-
 build --enable_runfiles
 
-# MacOS
+# Always use local mode for builds
+# see https://bazel.build/docs/user-manual#spawn-strategy
+build --spawn_strategy=local
 
+# MacOS
 build:macos --features=-libtool
 
 # cxx debug build
-
 build:debug -c dbg --copt="-g" --strip="never"
 build:debug --features=oso_prefix_is_pwd
-build:debug --spawn_strategy=standalone
 
 # gtest
-
 test --test_output=errors --action_env="GTEST_COLOR=1"
 
 # Typescript
 
 # passes an argument `--skipLibCheck` to _every_ spawn of the TypeScript compiler, tsc
-
 common --@aspect_rules_ts//ts:skipLibCheck=always
 common --@aspect_rules_ts//ts:default_to_tsc_transpiler
 

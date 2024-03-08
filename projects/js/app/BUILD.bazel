@@ -1,4 +1,4 @@
-load("@aspect_rules_js//js:defs.bzl", "js_run_devserver")
+load("@aspect_rules_js//js:defs.bzl", "js_binary", "js_run_devserver")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@npm//projects/js/app:vite/package_json.bzl", vite = "bin")
 
@@ -43,4 +43,36 @@ js_run_devserver(
     ] + runtime_deps + node_modules_deps,
     tags = ["ibazel_notify_changes"],
     tool = ":vite",
+)
+
+vite.vite(
+    name = "build",
+    srcs = [
+        "vite.config.mts",
+        ":src",
+    ] + runtime_deps + node_modules_deps,
+    args = ["build"],
+    chdir = package_name(),
+    out_dirs = [
+        ".dist",
+    ],
+)
+
+js_binary(
+    name = "package",
+    args = [
+        "--extra-resources",
+        "./../../cxx/calculator/calculator:calculator",
+    ],
+    chdir = package_name(),
+    data = [
+        "package.json",
+        ":build",
+        ":node_modules/electron",
+        ":node_modules/electron-builder",
+        "//:node_modules/yargs",
+        "//projects/cxx/calculator",
+    ] + glob(include = ["static/**"]),
+    entry_point = ".scripts/build.mjs",
+    patch_node_fs = False,
 )

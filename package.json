@@ -4,6 +4,12 @@
     "eslint": "latest",
     "prettier": "latest",
     "vite": "latest",
-    "vitest": "latest"
+    "vitest": "latest",
+    "yargs": "latest",
+    "@types/yargs": "latest"
+  },
+  "engines": {
+    "node": "~20",
+    "pnpm": ">=8"
   }
 }
