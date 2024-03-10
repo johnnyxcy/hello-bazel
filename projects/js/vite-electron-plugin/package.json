@@ -30,6 +30,6 @@
     "vitest": "latest"
   },
   "peerDependencies": {
-    "electron": "*"
+    "electron": "^29"
   }
 }
