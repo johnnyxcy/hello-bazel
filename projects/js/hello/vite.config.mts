@@ -15,7 +15,7 @@ export default defineConfig(({ command }): UserConfig => {
 
   if (isBuild) {
     console.info(
-      `Cleaning up the .dist/ directory before ${chalk.green("build")}...`
+      `Cleaning up the .dist/ directory before ${chalk.green("build")}...`,
     );
     if (fs.existsSync(".dist")) {
       // remove every content in the directory
@@ -31,6 +31,7 @@ export default defineConfig(({ command }): UserConfig => {
   }
 
   const isProduction = process.env.NODE_ENV === "production";
+
   return {
     plugins: [
       {
@@ -49,7 +50,7 @@ export default defineConfig(({ command }): UserConfig => {
     ],
     build: {
       minify: isProduction && "esbuild",
-      sourcemap: "inline",
+      sourcemap: true,
       outDir: ".dist/lib",
       lib: {
         entry: {

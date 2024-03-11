@@ -45,14 +45,8 @@ const workbenchHtml = devUrl
   ? join(devUrl, "src/workbench/index.html")
   : join(process.env.DIST, "renderer/workbench.html");
 
-const staticDir = path.join(process.resourcesPath, "static");
-const calculator = path.join(staticDir, "calculator");
-const calculatorProcess = cp.spawn(calculator, []);
-calculatorProcess.stdout.on("data", (data) => {
-  fs.writeFileSync("/Users/johnnyxcy/Workspace/hello-bazel/temp/log.txt", data);
-});
-
 async function createWindow(): Promise<void> {
+  console.log("Creating window...");
   win = new BrowserWindow({
     title: "Main window",
     webPreferences: {
@@ -81,6 +75,8 @@ async function createWindow(): Promise<void> {
     if (url.startsWith("https:")) shell.openExternal(url);
     return { action: "deny" };
   });
+
+  console.log("Window created!");
 
   // Apply electron-updater
   // update(win);

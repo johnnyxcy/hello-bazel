@@ -1,6 +1,7 @@
 // @ts-check
-const fs = require("fs");
-const path = require("path");
+
+const fs = require("node:fs");
+const path = require("node:path");
 
 /**
  * @type {string} Absolute path of this package
@@ -60,12 +61,12 @@ artifactDirs.forEach((artifactName) => {
     "bazel-bin",
     packageRelPath,
     target,
-    artifactName
+    artifactName,
   );
 
   if (!fs.existsSync(artifactDir)) {
     console.warn(
-      `No build artifacts found for '${packageRelPath}'. Consider to build the package with bazel first.`
+      `No build artifacts found for '${packageRelPath}'. Consider to build the package with bazel first.`,
     );
     console.warn(`bazel build //${packageRelPath}`);
     return;
@@ -78,11 +79,9 @@ artifactDirs.forEach((artifactName) => {
     fs.symlinkSync(artifactPath, destPath, "junction");
   });
 
-  // fs.symlinkSync(targetDir, targetPath, "junction");
-
   console.log(
     path.relative(workspaceRoot, artifactDir),
     " -> ",
-    path.relative(workspaceRoot, destDir)
+    path.relative(workspaceRoot, destDir),
   );
 });

@@ -17,7 +17,7 @@ export default defineConfig(({ command }): UserConfig => {
 
   if (isBuild) {
     console.info(
-      `Cleaning up the .dist/ directory before ${chalk.green("build")}...`
+      `Cleaning up the .dist/ directory before ${chalk.green("build")}...`,
     );
     if (fs.existsSync(".dist")) {
       // remove every content in the directory
@@ -53,7 +53,7 @@ export default defineConfig(({ command }): UserConfig => {
               },
               watch: {
                 clearScreen: true,
-                include: ["**/node_modules/@hello-bazel/**"],
+                include: ["**/node_modules/@hello-bazel/**", "src/platform/**"],
               },
             },
             plugins: [isServe && notBundle()],
@@ -62,15 +62,15 @@ export default defineConfig(({ command }): UserConfig => {
           onstart(options) {
             console.info(
               `${chalk.dim(
-                "[Electron:Main]"
+                "[Electron:Main]",
               )} Starting Application ${chalk.bold(
-                chalk.yellow(pkg.name)
-              )}@${chalk.yellow(pkg.version)}`
+                chalk.yellow(pkg.name),
+              )}@${chalk.yellow(pkg.version)}`,
             );
             if (isVscodeDebug) {
               if (!process.env._REMOTE_DEBUGGING_PORT) {
                 throw new Error(
-                  "Missing environment variable `_REMOTE_DEBUGGING_PORT` with vscode debugging."
+                  "Missing environment variable `_REMOTE_DEBUGGING_PORT` with vscode debugging.",
                 );
               }
               options.startup([
@@ -101,8 +101,8 @@ export default defineConfig(({ command }): UserConfig => {
           onstart(options) {
             console.info(
               `${chalk.dim(
-                "[Electron:Preload]"
-              )} Notify the Renderer-Process to reload`
+                "[Electron:Preload]",
+              )} Notify the Renderer-Process to reload`,
             );
             // Notify the Renderer-Process to reload the page when the Preload-Scripts build is complete,
             // instead of restarting the entire Electron App.
@@ -119,7 +119,7 @@ export default defineConfig(({ command }): UserConfig => {
       minify: isBuild,
       watch: {
         clearScreen: true,
-        include: ["**/node_modules/@hello-bazel/**"],
+        include: ["**/node_modules/@hello-bazel/**", "src/workbench/**"],
       },
       rollupOptions: {
         input: {
@@ -136,7 +136,7 @@ export default defineConfig(({ command }): UserConfig => {
                   html.fileName = `${name}.html`;
                   html.source = html.source.replace(
                     /\.\.\/\.\.\/chunks/g,
-                    "./chunks"
+                    "./chunks",
                   );
                 }
               }

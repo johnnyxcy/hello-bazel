@@ -22,7 +22,7 @@ const App: React.FC = () => {
         });
       }}
     >
-      Click Me
+      Click Me Now!
     </button>
   );
 };

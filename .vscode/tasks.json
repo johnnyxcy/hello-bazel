@@ -7,14 +7,27 @@
     //   "command": "bazel",
     //   "args": ["build", "--config", "debug", "${input:pickBazelBuildTarget}"],
     //   "detail": "bazel build with '--config debug' flag",
-    //   "problemMatcher": {
-    //     "pattern": {
-    //       "regexp": "^(INFO|WARNING|ERROR):\\s+(.*)$",
-    //       "severity": 1,
-    //       "message": 2
-    //     }
+    // "problemMatcher": {
+    //   "pattern": {
+    //     "regexp": "^(INFO|WARNING|ERROR):\\s+(.*)$",
+    //     "severity": 1,
+    //     "message": 2
     //   }
     // }
+    // }
+    {
+      "label": "Bazel Build App Dev",
+      "type": "process",
+      "command": "bazel",
+      "args": ["build", "//projects/js/app:dev", "--config", "debug"],
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(INFO|WARNING|ERROR):\\s+(.*)$",
+          "severity": 1,
+          "message": 2
+        }
+      }
+    }
   ],
   "inputs": []
 }

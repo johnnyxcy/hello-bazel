@@ -47,6 +47,51 @@
         }
       },
       "pid": "${command:pickProcess}"
+    },
+    {
+      "name": "app::main",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/vite",
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/vite.cmd"
+      },
+      "cwd": "${workspaceFolder}/projects/js/app",
+      "console": "integratedTerminal",
+      "env": {
+        "_VSCODE_DEBUG": "1",
+        "_REMOTE_DEBUGGING_PORT": "9229"
+      },
+      "presentation": {
+        "hidden": true
+      }
+    },
+    {
+      "name": "app::renderer",
+      "port": 9229,
+      "request": "attach",
+      "type": "chrome",
+      "timeout": 60000,
+      "webRoot": "${workspaceFolder}/projects/js/app",
+      "skipFiles": [
+        // Skip node internals
+        "<node_internals>/**",
+        // Skip root node_modules folder
+        "${workspaceFolder}/node_modules/**",
+        // Skip any node_modules nested in folders of the workspace
+        "${workspaceFolder}/**/node_modules/**",
+
+        // Skip files in host(VITE_DEV_SERVER_URL)
+        "http://127.0.0.1:7777/**",
+        "http://localhost:7777/**"
+      ],
+      "pathMapping": {
+        "/": "${workspaceFolder}/projects/js/app",
+        "/@fs/": "/"
+      },
+      "presentation": {
+        "hidden": true
+      }
     }
   ],
   "inputs": [
@@ -58,6 +103,18 @@
         "projects/cxx/calculator/calculator",
         "projects/cxx/sayhi/sayhi"
       ]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "app",
+      "stopAll": true,
+      "configurations": ["app::main", "app::renderer"],
+      "presentation": {
+        "hidden": false,
+        "order": 1
+      },
+      "preLaunchTask": "Bazel Build App Dev"
     }
   ]
 }
