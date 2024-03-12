@@ -8,11 +8,6 @@ hpps = ["src/libcalc/libcalc.hpp"] + glob(
     exclude = ["*.py.hpp"],
 )
 
-# pyhpps = ["src/libcalc/_libcalc.py.cc"] + glob([
-#     "src/libcalc/grammar/**/*.py.hpp",
-#     "src/libcalc/math/**/*.py.hpp",
-# ])
-
 filegroup(
     name = "srcs",
     srcs = hpps,
@@ -53,9 +48,3 @@ pybind_extension(
     stubgen = True,
     deps = ["@eigen"],
 )
-
-# py_library(
-#     name = "py_libcalc",
-#     data = [":_libcalc"],
-#     visibility = ["//visibility:public"],
-# )

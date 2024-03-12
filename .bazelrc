@@ -40,10 +40,10 @@ common --@aspect_rules_ts//ts:default_to_tsc_transpiler
 
 # Buildbuddy setups
 
-build --bes_results_url=https://app.buildbuddy.io/invocation/
-build --bes_backend=grpcs://remote.buildbuddy.io
-build --remote_cache=grpcs://remote.buildbuddy.io
-build --remote_timeout=3600
-build --remote_header=x-buildbuddy-api-key=sss1R34k09KE8UtTdRta
-build --build_metadata=REPO_URL=https://github.com/johnnyxcy/hello-bazel.git
-build --experimental_remote_cache_compression
+# build --bes_results_url=https://app.buildbuddy.io/invocation/
+# build --bes_backend=grpcs://remote.buildbuddy.io
+# build --remote_cache=grpcs://remote.buildbuddy.io
+# build --remote_timeout=3600
+# build --remote_header=x-buildbuddy-api-key=sss1R34k09KE8UtTdRta
+# build --build_metadata=REPO_URL=https://github.com/johnnyxcy/hello-bazel.git
+# build --experimental_remote_cache_compression

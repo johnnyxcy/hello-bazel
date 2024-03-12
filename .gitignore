@@ -7,11 +7,6 @@ bazel-*
 **/temp
 **/tmp
 
-**/.build
-**/build
-**/.dist
-**/dist
-
 .cache/**
 __pycache__
 
