@@ -110,7 +110,7 @@ def pybind_extension(
         name = "stubs",
         tool = "//tools/pybind11:stubgen",
         srcs = srcs + [":pyd"],
-        out_dirs = [name],
+        out_dirs = ["stubs"],
         args = [
             "--syspath",
             "$(RULEDIR)",
