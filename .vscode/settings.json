@@ -11,6 +11,9 @@
   "[typescriptreact]": {
     "editor.rulers": [80]
   },
+  "files.associations": {
+    ".bazelrc": "dotenv"
+  },
   // Disable the following to not use debug configs
   "bazel.commandLine.commandArgs": ["--config", "debug"],
   "bazel.lsp.enabled": true,
