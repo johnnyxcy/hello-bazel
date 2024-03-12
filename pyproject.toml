@@ -17,6 +17,7 @@ ruff = "^0.2"
 
 [tool.pyright]
 include = ["projects/python"]
+stubPath = "stubs"
 exclude = ["**/__pycache__"]
 typeCheckingMode = "strict"
 

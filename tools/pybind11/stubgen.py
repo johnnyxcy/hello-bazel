@@ -6,6 +6,7 @@ import inspect
 import itertools
 import logging
 import os
+import pathlib
 import re
 import sys
 import warnings
@@ -1074,7 +1075,7 @@ def main(args=None):
         prog="pybind11-stubgen",
         description="Generates stubs for specified modules",
     )
-    parser.add_argument("--working-dir", default=None, dest="working_dir")
+    parser.add_argument("--syspath", dest="syspath")
     parser.add_argument(
         "-o",
         "--output-dir",
@@ -1120,10 +1121,19 @@ def main(args=None):
         help="Render `numpy.ndarray` without (non-standardized) bracket-enclosed type and shape info",
     )
     parser.add_argument(
-        "module_names",
+        "--module-paths",
+        nargs="+",
+        type=str,
+        help="module paths relative to workspace root",
+        metavar="MODULE_PATH",
+        dest="module_paths",
+    )
+    parser.add_argument(
+        "--module-names",
         nargs="+",
         metavar="MODULE_NAME",
         type=str,
+        dest="module_names",
         help="modules names",
     )
     parser.add_argument(
@@ -1131,10 +1141,13 @@ def main(args=None):
     )
 
     sys_args = parser.parse_args(args or sys.argv[1:])
-
-    if sys_args.working_dir:
-        working_dir = os.path.join(os.getcwd(), sys_args.working_dir)
-        sys.path.append(working_dir)
+    if sys_args.syspath:
+        appending = sys_args.syspath.split(os.pathsep)
+        # Note, we will append every part on the syspath to the module search path
+        for p in appending:
+            while p:
+                sys.path.append(os.path.join(os.getcwd(), p))
+                p = os.path.dirname(p)
 
     if sys_args.non_stop:
         sys_args.ignore_invalid = ["all"]
@@ -1174,9 +1187,20 @@ def main(args=None):
         format="[%(asctime)s] {%(filename)s:%(lineno)d} %(levelname)s - %(message)s",
         handlers=handlers,
     )
+    out_dir = sys_args.output_dir
+    modules = []  # type: list[str]
+    if sys_args.module_names:
+        modules.extend(sys_args.module_names)
+    if sys_args.module_paths:
+        for module_path in sys_args.module_paths:
+            path = pathlib.Path(module_path)
+            if path.is_dir():
+                raise ValueError()
 
-    with DirectoryWalkerGuard(sys_args.output_dir):
-        for _module_name in sys_args.module_names:
+            modules.append(".".join(path.with_suffix("").parts))
+
+    with DirectoryWalkerGuard(out_dir):
+        for _module_name in modules:
             _module = ModuleStubsGenerator(_module_name)
             _module.parse()
             if FunctionSignature.n_fatal_errors() == 0:

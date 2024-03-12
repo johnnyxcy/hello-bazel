@@ -36,7 +36,6 @@ PYBIND_DEPS = [
 def pybind_extension(
         name,
         srcs,
-        stubgen = True,
         copts = [],
         features = [],
         linkopts = [],
@@ -48,7 +47,6 @@ def pybind_extension(
     Args:
         name: The name of the extension module.
         srcs: A list of source files.
-        stubgen: Whether to generate a .pyi file using stubgen.
         copts: A list of compiler options.
         features: A list of features.
         linkopts: A list of linker options.
@@ -79,47 +77,73 @@ def pybind_extension(
         **kwargs
     )
     copy_file(
-        name = name + "_copy_so_to_pyd",
+        name = "copy_so_to_pyd",
         src = name + ".so",
         out = name + ".pyd",
     )
-    alias_name = name + "_pyext"
     native.alias(
-        name = alias_name,
+        name = "pyd",
         actual = select({
             "@platforms//os:windows": name + ".pyd",
             "//conditions:default": name + ".so",
         }),
     )
 
-    data = [alias_name]
+    data = [":pyd"]
+    run_binary(
+        name = "copy_artifacts",
+        tool = "//tools/copy:copy_artifacts",
+        srcs = [":pyd"],
+        outs = ["copy_{name}_artifacts.log".format(name = name)],
+        args = [
+            "--src",
+            "$(execpath :pyd)",
+            "--dest",
+            "$(rootpath :pyd)",
+            "--log",
+            "$(RULEDIR)/copy_{name}_artifacts.log".format(name = name),
+        ],
+    )
+    data.append(":copy_artifacts")
 
-    if stubgen:
-        run_binary(
-            name = name + "_stubgen",
-            tool = "//tools/pybind11:stubgen",
-            srcs = srcs + [":{alias_name}".format(alias_name = alias_name)],
-            out_dirs = [name],
-            args = [
-                "--working-dir",
-                "$(RULEDIR)",
-                "--output-dir",
-                "$(RULEDIR)",
-                "--no-setup-py",
-                "--ignore-invalid",
-                "all",
-                # "--bare-numpy-ndarray",
-                "--root-module-suffix",
-                "",
-                name,
-            ],
-            execution_requirements = {
-                "no-sandbox": "1",
-            },
-        )
+    run_binary(
+        name = "stubs",
+        tool = "//tools/pybind11:stubgen",
+        srcs = srcs + [":pyd"],
+        out_dirs = [name],
+        args = [
+            "--syspath",
+            "$(RULEDIR)",
+            "--output-dir",
+            "$(RULEDIR)/stubs",
+            "--no-setup-py",
+            "--ignore-invalid",
+            "all",
+            # "--bare-numpy-ndarray",
+            "--root-module-suffix",
+            "",
+            # name,
+            "--module-paths",
+            "$(rootpath :pyd)",
+        ],
+    )
 
-        data.append(":{name}_stubgen".format(name = name))
-
+    data.append(":stubs")
+    run_binary(
+        name = "copy_stubs",
+        tool = "//tools/copy:copy_artifacts",
+        srcs = [":stubs"],
+        outs = ["copy_{name}_stubs.log".format(name = name)],
+        args = [
+            "--src",
+            "$(execpath :stubs)",
+            "--dest",
+            "stubs",
+            "--log",
+            "$(RULEDIR)/copy_{name}_stubs.log".format(name = name),
+        ],
+    )
+    data.append(":copy_stubs")
     native.py_library(
         name = name,
         data = data,

@@ -1,5 +1,7 @@
 # This forces Bazel's C++ rules use platforms to select toolchains instead of the default
 
+try-import %workspace%/bootstrap.bazelrc
+
 # --crosstool_top, --compiler, etc.
 build --incompatible_enable_cc_toolchain_resolution
 
