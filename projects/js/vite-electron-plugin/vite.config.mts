@@ -12,7 +12,7 @@ export default defineConfig(({ command }) => {
 
   if (isBuild) {
     console.info(
-      `Cleaning up the .dist/ directory before ${chalk.green("build")}...`
+      `Cleaning up the .dist/ directory before ${chalk.green("build")}...`,
     );
     if (fs.existsSync(".dist")) {
       // remove every content in the directory
@@ -44,7 +44,7 @@ export default defineConfig(({ command }) => {
       },
     },
     build: {
-      minify: process.env.MINIFY_JS === "1" ?? false,
+      minify: false,
       outDir: ".dist/lib",
       lib: {
         entry: "./src/index.ts",
