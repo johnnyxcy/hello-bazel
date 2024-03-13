@@ -2,8 +2,10 @@ node_modules
 projects/js/hello/node_modules
 projects/js/vite-electron-plugin/node_modules
 projects/js/app/node_modules
+projects/js/app/build/dist
 
 temp
 .ruff_cache
 .venv
-.cache/clangd
+.cache/clangd/**
+stubs

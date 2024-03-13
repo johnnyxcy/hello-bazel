@@ -1,0 +1,11 @@
+load("@aspect_rules_py//py:defs.bzl", "py_binary")
+
+exports_files([
+    "link_artifacts.py",
+])
+
+py_binary(
+    name = "link_artifacts",
+    srcs = ["link_artifacts.py"],
+    visibility = ["//visibility:public"],
+)

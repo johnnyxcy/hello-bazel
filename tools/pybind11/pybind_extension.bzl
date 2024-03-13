@@ -6,6 +6,7 @@ On top of the original code, this module adds support for stubgen and outputting
 """
 
 load("@aspect_bazel_lib//lib:run_binary.bzl", "run_binary")
+load("@aspect_rules_py//py:defs.bzl", "py_binary")
 load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 
 PYBIND_COPTS = select({
@@ -20,7 +21,7 @@ PYBIND_FEATURES = [
 
 PYBIND_DEPS = [
     Label("@pybind11//:pybind11"),
-    "@rules_python//python/cc:current_py_cc_headers",
+    Label("@rules_python//python/cc:current_py_cc_headers"),
 ]
 
 # Builds a Python extension module using pybind11.
@@ -90,21 +91,26 @@ def pybind_extension(
     )
 
     data = [":pyd"]
-    run_binary(
-        name = "copy_artifacts",
-        tool = "//tools/copy:copy_artifacts",
-        srcs = [":pyd"],
-        outs = ["copy_{name}_artifacts.log".format(name = name)],
+
+    py_binary(
+        name = "link_pyd",
+        srcs = ["//tools/artifacts:link_artifacts.py"],
+        data = [":pyd"],
         args = [
             "--src",
-            "$(execpath :pyd)",
+            "$(rootpath :pyd)",
             "--dest",
             "$(rootpath :pyd)",
-            "--log",
-            "$(RULEDIR)/copy_{name}_artifacts.log".format(name = name),
         ],
+        visibility = ["//visibility:public"],
     )
-    data.append(":copy_artifacts")
+
+    # run_binary(
+    #     name = "do_link_pyd",
+    #     outs = [],
+    #     tool = ":link_pyd",
+    # )
+    # data.append(":do_link_pyd")
 
     run_binary(
         name = "stubs",
@@ -127,23 +133,27 @@ def pybind_extension(
             "$(rootpath :pyd)",
         ],
     )
-
-    data.append(":stubs")
-    run_binary(
-        name = "copy_stubs",
-        tool = "//tools/copy:copy_artifacts",
-        srcs = [":stubs"],
-        outs = ["copy_{name}_stubs.log".format(name = name)],
+    py_binary(
+        name = "link_stubs",
+        srcs = ["//tools/artifacts:link_artifacts.py"],
+        data = [":stubs"],
         args = [
+            "--is-dir",
             "--src",
-            "$(execpath :stubs)",
+            "$(rootpath :stubs)",
             "--dest",
             "stubs",
-            "--log",
-            "$(RULEDIR)/copy_{name}_stubs.log".format(name = name),
         ],
+        visibility = ["//visibility:public"],
     )
-    data.append(":copy_stubs")
+
+    # run_binary(
+    #     name = "do_link_stubs",
+    #     outs = [],
+    #     tool = ":link_stubs",
+    # )
+    # data.append(":do_link_stubs")
+
     native.py_library(
         name = name,
         data = data,

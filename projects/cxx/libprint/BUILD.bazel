@@ -1,0 +1,18 @@
+load("//tools/pybind11:defs.bzl", "pybind_extension")
+
+filegroup(
+    name = "_pyext_srcs",
+    srcs = [
+        # entry
+        "src/_libprint.py.cc",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+pybind_extension(
+    name = "_libprint",
+    srcs = [
+        ":_pyext_srcs",
+    ],
+    includes = ["./src"],
+)
