@@ -1,0 +1,6 @@
+exports_files(
+    [
+        "pytest.py.tpl",
+    ],
+    visibility = ["//visibility:public"],
+)

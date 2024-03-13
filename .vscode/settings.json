@@ -12,7 +12,8 @@
     "editor.rulers": [80]
   },
   "files.associations": {
-    ".bazelrc": "dotenv"
+    ".bazelrc": "dotenv",
+    ".bazelignore": "ignore"
   },
   // Disable the following to not use debug configs
   "bazel.commandLine.commandArgs": ["--config", "debug"],
@@ -49,7 +50,7 @@
     // "bazel-bi[^n]*": true,
     // "external": true,
     // exclude python venv
-    ".venv": true,
+    // ".venv": true,
     // exclude clangd cache
     ".cache": true,
     ".ruff_cache": true
@@ -60,6 +61,7 @@
   "ruff.organizeImports": true,
   "ruff.path": ["external/pypi_ruff/bin/ruff", "ruff"],
   "ruff.trace.server": "verbose",
+  "python.terminal.activateEnvironment": true,
   "testMate.cpp.debug.configTemplate": {
     "args": "${argsArray}",
     "cwd": "${cwd}",

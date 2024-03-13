@@ -1,6 +1,6 @@
 {
   "lockFileVersion": 6,
-  "moduleFileHash": "9383ce771d8307d5c1955f728d469856998c1bff7381ea72e9c2cd88d34724c2",
+  "moduleFileHash": "733f42b84eb6d8af41805bce4ddcc98a7b48654475e01f0fb3362fd97212b24d",
   "flags": {
     "cmdRegistries": [
       "https://bcr.bazel.build/"
@@ -33,7 +33,7 @@
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 45,
+            "line": 46,
             "column": 21
           },
           "imports": {
@@ -53,7 +53,7 @@
               "devDependency": false,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 47,
+                "line": 48,
                 "column": 15
               }
             }
@@ -67,7 +67,7 @@
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 57,
+            "line": 58,
             "column": 21
           },
           "imports": {
@@ -84,7 +84,7 @@
               "devDependency": false,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 59,
+                "line": 60,
                 "column": 15
               }
             }
@@ -98,7 +98,7 @@
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 65,
+            "line": 66,
             "column": 21
           },
           "imports": {
@@ -117,7 +117,7 @@
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 68,
+            "line": 69,
             "column": 20
           },
           "imports": {
@@ -149,7 +149,7 @@
               "devDependency": true,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 69,
+                "line": 70,
                 "column": 23
               }
             }
@@ -163,7 +163,7 @@
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 86,
+            "line": 87,
             "column": 29
           },
           "imports": {
@@ -179,7 +179,7 @@
               "devDependency": true,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 91,
+                "line": 92,
                 "column": 18
               }
             }
@@ -197,7 +197,6 @@
         "aspect_bazel_lib": "aspect_bazel_lib@1.40.0",
         "aspect_rules_js": "aspect_rules_js@1.38.0",
         "aspect_rules_ts": "aspect_rules_ts@2.2.0",
-        "aspect_rules_py": "aspect_rules_py@0.7.1",
         "aspect_rules_lint": "aspect_rules_lint@_",
         "eigen": "eigen@3.4.0",
         "googletest": "googletest@1.14.0",
@@ -779,72 +778,6 @@
           "strip_prefix": "rules_ts-2.2.0",
           "remote_patches": {
             "https://bcr.bazel.build/modules/aspect_rules_ts/2.2.0/patches/module_dot_bazel_version.patch": "sha256-ZXpbh7K/pfFWjDXMGsrpQ6Y9IOSsp7LYHJAUtyqs6+8="
-          },
-          "remote_patch_strip": 1
-        }
-      }
-    },
-    "aspect_rules_py@0.7.1": {
-      "name": "aspect_rules_py",
-      "version": "0.7.1",
-      "key": "aspect_rules_py@0.7.1",
-      "repoName": "aspect_rules_py",
-      "executionPlatformsToRegister": [],
-      "toolchainsToRegister": [
-        "@rules_py_tools//:all",
-        "@aspect_rules_py//py/private/toolchain/venv/...",
-        "@aspect_rules_py//py/private/toolchain/unpack/..."
-      ],
-      "extensionUsages": [
-        {
-          "extensionBzlFile": "@aspect_rules_py//py:extensions.bzl",
-          "extensionName": "py_tools",
-          "usingModule": "aspect_rules_py@0.7.1",
-          "location": {
-            "file": "https://bcr.bazel.build/modules/aspect_rules_py/0.7.1/MODULE.bazel",
-            "line": 16,
-            "column": 22
-          },
-          "imports": {
-            "rules_py_tools": "rules_py_tools"
-          },
-          "devImports": [],
-          "tags": [
-            {
-              "tagName": "rules_py_tools",
-              "attributeValues": {},
-              "devDependency": false,
-              "location": {
-                "file": "https://bcr.bazel.build/modules/aspect_rules_py/0.7.1/MODULE.bazel",
-                "line": 17,
-                "column": 21
-              }
-            }
-          ],
-          "hasDevUseExtension": false,
-          "hasNonDevUseExtension": true
-        }
-      ],
-      "deps": {
-        "aspect_bazel_lib": "aspect_bazel_lib@1.40.0",
-        "bazel_skylib": "bazel_skylib@1.5.0",
-        "rules_python": "rules_python@0.31.0",
-        "platforms": "platforms@0.0.8",
-        "bazel_tools": "bazel_tools@_",
-        "local_config_platform": "local_config_platform@_"
-      },
-      "repoSpec": {
-        "bzlFile": "@@bazel_tools//tools/build_defs/repo:http.bzl",
-        "ruleClassName": "http_archive",
-        "attributes": {
-          "urls": [
-            "https://github.com/aspect-build/rules_py/releases/download/v0.7.1/rules_py-v0.7.1.tar.gz"
-          ],
-          "integrity": "sha256-a0fj4gr+9owz+w4QNGLWyjWjNCPGN0KVZsQSreVVp3g=",
-          "strip_prefix": "rules_py-0.7.1",
-          "remote_patches": {
-            "https://bcr.bazel.build/modules/aspect_rules_py/0.7.1/patches/rust_dev_dep.patch": "sha256-zpZuz+YgZOu1rLFYqWs58Qh8b01eswYO1vaNjpJUYpY=",
-            "https://bcr.bazel.build/modules/aspect_rules_py/0.7.1/patches/module_dot_bazel_version.patch": "sha256-iYDqbPGOkf3Kn82zICsBkKgJYBlvd/Dx/IJpyIro488="
           },
           "remote_patch_strip": 1
         }
@@ -48399,58 +48332,6 @@
             "aspect_rules_js~",
             "yq_darwin_arm64",
             "aspect_bazel_lib~~toolchains~yq_darwin_arm64"
-          ]
-        ]
-      }
-    },
-    "@@aspect_rules_py~//py:extensions.bzl%py_tools": {
-      "general": {
-        "bzlTransitiveDigest": "0PZnvJ3iIbhQQmQWVc7AFdJi/zGOjaXLDJRSridKrK8=",
-        "recordedFileInputs": {},
-        "recordedDirentsInputs": {},
-        "envVariables": {},
-        "generatedRepoSpecs": {
-          "rules_py_tools": {
-            "bzlFile": "@@aspect_rules_py~//py/private/toolchain:repo.bzl",
-            "ruleClassName": "toolchains_repo",
-            "attributes": {
-              "user_repository_name": "rules_py_tools"
-            }
-          },
-          "rules_py_tools.darwin_arm64": {
-            "bzlFile": "@@aspect_rules_py~//py/private/toolchain:tools.bzl",
-            "ruleClassName": "prebuilt_tool_repo",
-            "attributes": {
-              "platform": "darwin_arm64"
-            }
-          },
-          "rules_py_tools.linux_arm64": {
-            "bzlFile": "@@aspect_rules_py~//py/private/toolchain:tools.bzl",
-            "ruleClassName": "prebuilt_tool_repo",
-            "attributes": {
-              "platform": "linux_arm64"
-            }
-          },
-          "rules_py_tools.darwin_amd64": {
-            "bzlFile": "@@aspect_rules_py~//py/private/toolchain:tools.bzl",
-            "ruleClassName": "prebuilt_tool_repo",
-            "attributes": {
-              "platform": "darwin_amd64"
-            }
-          },
-          "rules_py_tools.linux_amd64": {
-            "bzlFile": "@@aspect_rules_py~//py/private/toolchain:tools.bzl",
-            "ruleClassName": "prebuilt_tool_repo",
-            "attributes": {
-              "platform": "linux_amd64"
-            }
-          }
-        },
-        "recordedRepoMappingEntries": [
-          [
-            "aspect_rules_py~",
-            "bazel_tools",
-            "bazel_tools"
           ]
         ]
       }

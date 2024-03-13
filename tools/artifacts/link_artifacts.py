@@ -53,8 +53,8 @@ def main():
     if workspace_root:
         src: pathlib.Path = args.src
         dest: pathlib.Path = pathlib.Path(workspace_root) / args.dest
-        logging.info(f"Linking {src} to {dest}")
 
+        logging.info(f"Linking {src} to {dest}")
         if args.is_dir:
             for src_file in src.rglob("*"):
                 if src_file.is_file():

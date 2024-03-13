@@ -1,4 +1,3 @@
-load("@aspect_rules_py//py:defs.bzl", "py_library")
 load("@pypi//:requirements.bzl", "requirement")
 load("//tools/lint:linters.bzl", "ruff_lint_test")
 

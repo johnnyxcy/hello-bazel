@@ -7,9 +7,9 @@ register_coreutils_toolchains()
 # Python
 
 # Load the repositories for the Python rules
-load("@aspect_rules_py//py:repositories.bzl", "rules_py_dependencies")
+# load("@aspect_rules_py//py:repositories.bzl", "rules_py_dependencies")
 
-rules_py_dependencies()
+# rules_py_dependencies()
 
 # Load the repositories for the Python rules
 load("@rules_python//python:repositories.bzl", "py_repositories", "python_register_toolchains")

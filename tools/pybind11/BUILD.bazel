@@ -1,4 +1,3 @@
-load("@aspect_rules_py//py:defs.bzl", "py_binary")
 load("@pypi//:requirements.bzl", "requirement")
 
 filegroup(

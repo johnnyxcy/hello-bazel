@@ -4,7 +4,7 @@ filegroup(
     name = "_pyext_srcs",
     srcs = [
         # entry
-        "src/_libprint.py.cc",
+        "src/libprint/_libprint.py.cc",
     ],
     visibility = ["//visibility:public"],
 )

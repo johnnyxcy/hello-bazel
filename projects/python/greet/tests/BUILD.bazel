@@ -1,6 +1,7 @@
-load("@aspect_rules_py//py:defs.bzl", "py_pytest_main", "py_test")
+# load("@aspect_rules_py//py:defs.bzl", "py_pytest_main", "py_test")
 load("@pypi//:requirements.bzl", "requirement")
 load("//tools/lint:linters.bzl", "ruff_lint_test")
+load("//tools/pytest:pytest_main.bzl", "py_pytest_main")
 
 filegroup(
     name = "srcs",
@@ -15,6 +16,7 @@ py_pytest_main(
 
 py_test(
     name = "tests",
+    testonly = True,
     srcs = [
         ":__test__",
         ":srcs",

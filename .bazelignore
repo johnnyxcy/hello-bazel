@@ -7,5 +7,11 @@ projects/js/app/build/dist
 temp
 .ruff_cache
 .venv
-.cache/clangd/**
+.cache/clangd/index
 stubs
+
+# pyd
+projects/cxx/libprint/_libprint.so
+projects/cxx/libprint/_libprint.pyd
+projects/cxx/libcalc/_libcalc.so
+projects/cxx/libcalc/_libcalc.pyd

@@ -6,7 +6,6 @@ On top of the original code, this module adds support for stubgen and outputting
 """
 
 load("@aspect_bazel_lib//lib:run_binary.bzl", "run_binary")
-load("@aspect_rules_py//py:defs.bzl", "py_binary")
 load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 
 PYBIND_COPTS = select({
@@ -92,10 +91,11 @@ def pybind_extension(
 
     data = [":pyd"]
 
-    py_binary(
+    native.py_binary(
         name = "link_pyd",
         srcs = ["//tools/artifacts:link_artifacts.py"],
         data = [":pyd"],
+        main = "link_artifacts.py",
         args = [
             "--src",
             "$(rootpath :pyd)",
@@ -104,13 +104,21 @@ def pybind_extension(
         ],
         visibility = ["//visibility:public"],
     )
-
-    # run_binary(
-    #     name = "do_link_pyd",
-    #     outs = [],
-    #     tool = ":link_pyd",
-    # )
-    # data.append(":do_link_pyd")
+    run_binary(
+        name = "do_link_pyd",
+        srcs = srcs + [":pyd"],
+        outs = ["link_pyd.log"],
+        args = [
+            "--src",
+            "$(execpath :pyd)",
+            "--dest",
+            "$(rootpath :pyd)",
+            "--log",
+            "$(RULEDIR)/link_pyd.log",
+        ],
+        tool = ":link_pyd",
+    )
+    data.append(":do_link_pyd")
 
     run_binary(
         name = "stubs",
@@ -133,10 +141,11 @@ def pybind_extension(
             "$(rootpath :pyd)",
         ],
     )
-    py_binary(
+    native.py_binary(
         name = "link_stubs",
         srcs = ["//tools/artifacts:link_artifacts.py"],
         data = [":stubs"],
+        main = "link_artifacts.py",
         args = [
             "--is-dir",
             "--src",
@@ -146,13 +155,22 @@ def pybind_extension(
         ],
         visibility = ["//visibility:public"],
     )
-
-    # run_binary(
-    #     name = "do_link_stubs",
-    #     outs = [],
-    #     tool = ":link_stubs",
-    # )
-    # data.append(":do_link_stubs")
+    run_binary(
+        name = "do_link_stubs",
+        srcs = srcs + [":stubs"],
+        outs = ["link_stubs.log"],
+        args = [
+            "--is-dir",
+            "--src",
+            "$(execpath :stubs)",
+            "--dest",
+            "stubs",
+            "--log",
+            "$(RULEDIR)/link_stubs.log",
+        ],
+        tool = ":link_stubs",
+    )
+    data.append(":do_link_stubs")
 
     native.py_library(
         name = name,
