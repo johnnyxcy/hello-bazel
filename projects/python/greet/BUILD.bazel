@@ -15,7 +15,9 @@ py_library(
     srcs = [":srcs"],
     imports = ["./src"],
     visibility = ["//projects/python:__subpackages__"],
-    deps = [requirement("pydantic")],
+    deps = [
+        requirement("pydantic"),
+    ],
 )
 
 ruff_lint_test(
