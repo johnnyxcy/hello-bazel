@@ -2,6 +2,6 @@
 
 alias(
     name = "ruff",
-    actual = "@pypi_ruff//:ruff.copy",
+    actual = "@pypi_ruff//:ruff.bin.copy",
     visibility = ["//visibility:public"],
 )

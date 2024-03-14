@@ -32,8 +32,6 @@ poetry_lock(
     lockfile = "//:poetry.lock",
 )
 
-load("@python_toolchain//:defs.bzl", "interpreter")
-
 # Load the pip_parse macro which will parse the requirements_lock.txt file
 load("@rules_python//python:pip.bzl", "package_annotation", "pip_parse")
 
@@ -44,11 +42,10 @@ pip_parse(
     annotations = {
         "ruff": package_annotation(
             copy_executables = {
-                "bin/ruff": "ruff",
+                "bin/ruff": "ruff.bin",
             },
         ),
     },
-    python_interpreter_target = interpreter,
     requirements_lock = "@py_requirements_lock//:requirements_lock.txt",
 )
 
@@ -57,7 +54,6 @@ load("@pypi//:requirements.bzl", "install_deps")
 
 # Call it to define repos for your requirements.
 install_deps(
-    python_interpreter_target = interpreter,
     quiet = False,
 )
 
