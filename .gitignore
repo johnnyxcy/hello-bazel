@@ -1,5 +1,6 @@
 # bazel build output
 bazel-*
+external
 
 # temporary files
 **/.tmp
