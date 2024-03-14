@@ -28,7 +28,7 @@ build --spawn_strategy=local
 build:macos --features=-libtool
 
 # cxx debug build
-build:debug -c dbg --copt="-g" --strip="never"
+build:debug --compilation_mode=dbg --copt="-g" --strip="never"
 build:debug --features=oso_prefix_is_pwd
 
 # gtest

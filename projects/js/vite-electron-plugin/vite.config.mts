@@ -45,6 +45,7 @@ export default defineConfig(({ command }): UserConfig => {
     },
     build: {
       minify: false,
+      sourcemap: false,
       outDir: ".dist/lib",
       lib: {
         entry: "./src/index.ts",

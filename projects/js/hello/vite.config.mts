@@ -29,7 +29,14 @@ export default defineConfig(({ command }): UserConfig => {
     }
   }
 
-  const isProduction = process.env.NODE_ENV === "production";
+  fs.writeFileSync(
+    "/Users/johnnyxcy/Workspace/hello-bazel/temp/log",
+    JSON.stringify(process.env, null, 2),
+  );
+
+  const isProduction =
+    process.env.NODE_ENV === "production" &&
+    !(process.env.BAZEL_COMPILATION_MODE === "dbg");
 
   return {
     plugins: [
@@ -53,8 +60,8 @@ export default defineConfig(({ command }): UserConfig => {
       },
     },
     build: {
-      minify: isProduction && "esbuild",
-      sourcemap: true,
+      minify: isProduction ? "esbuild" : false,
+      sourcemap: !isProduction,
       outDir: ".dist/lib",
       lib: {
         entry: {

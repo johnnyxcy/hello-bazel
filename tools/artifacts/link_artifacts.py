@@ -14,6 +14,13 @@ def build_parser():
         default=False,
     )
     parser.add_argument(
+        "--resolve",
+        dest="resolve",
+        action="store_true",
+        default=False,
+        help="If set, the link will be resolved and 'copy' mode will be used",
+    )
+    parser.add_argument(
         "--src",
         type=pathlib.Path,
         required=True,
@@ -50,9 +57,12 @@ def main():
     workspace_root = os.environ.get(
         "__WORKSPACE_ROOT__", os.environ.get("BUILD_WORKSPACE_DIRECTORY", None)
     )
+    should_resolve = args.resolve
     if workspace_root:
         src: pathlib.Path = args.src
         dest: pathlib.Path = pathlib.Path(workspace_root) / args.dest
+
+        do_link = os.link if should_resolve else os.symlink
 
         logging.info(f"Linking {src} to {dest}")
         if args.is_dir:
@@ -61,16 +71,14 @@ def main():
                     dest_file = dest / src_file.relative_to(src)
                     dest_file.parent.mkdir(parents=True, exist_ok=True)
                     logging.info(f"{src_file} -> {dest_file}")
-                    if dest_file.is_symlink():
-                        logging.info("Removing existing file")
+                    if dest_file.is_symlink() or dest_file.is_file():
                         dest_file.unlink()
-                    os.symlink(src_file.resolve(), dest_file)
+                    do_link(src_file.resolve(), dest_file)
         else:
-            if dest.is_symlink():
-                logging.info("Removing existing file")
+            if dest.is_symlink() or dest.is_file():
                 dest.unlink()
             logging.info(f"{src} -> {dest}")
-            os.symlink(src.resolve(), dest)
+            do_link(src.resolve(), dest)
         logging.info("Done")
     else:
         logging.warning(

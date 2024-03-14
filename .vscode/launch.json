@@ -81,9 +81,7 @@
         // Skip any node_modules nested in folders of the workspace
         "${workspaceFolder}/**/node_modules/**",
 
-        // Skip files in host(VITE_DEV_SERVER_URL)
-        "http://127.0.0.1:7777/**",
-        "http://localhost:7777/**"
+        "!${workspaceFolder}/projects/js/**"
       ],
       "pathMapping": {
         "/": "${workspaceFolder}/projects/js/app",

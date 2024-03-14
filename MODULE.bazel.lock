@@ -2501,7 +2501,7 @@
       "general": {
         "bzlTransitiveDigest": "M8+xFJy30PXuntYY9Fp8CkGXuA74YqYmpFnJqoXDaSY=",
         "recordedFileInputs": {
-          "@@//pnpm-lock.yaml": "f0e3f0d164f39bf98446659dc39b8db0895f99bfb60e542db871e08d63ee997b",
+          "@@//pnpm-lock.yaml": "b5b9a94c905d7fdd98f4b16734ed842a7a16596336ef985a0f336ec8b5235726",
           "@@//.npmrc": "a57af408b0feb8533ce7f5806c1f7df8839db2120dd8f5bdb08a12145c1dfcb7",
           "@@aspect_bazel_lib~~toolchains~yq_darwin_arm64//yq": "db8c11ca4c1dda8fe7c211e82e28191d48bd9ae83471b952003e819de79bcb51"
         },
@@ -5402,9 +5402,11 @@
                   "4.0.0"
                 ]
               },
-              "lifecycle_build_target": false,
+              "lifecycle_build_target": true,
               "lifecycle_hooks_env": [],
-              "lifecycle_hooks_execution_requirements": [],
+              "lifecycle_hooks_execution_requirements": [
+                "no-sandbox"
+              ],
               "lifecycle_hooks_use_default_shell_env": false,
               "bins": {},
               "npm_translate_lock_repo": "npm",
@@ -30415,7 +30417,11 @@
               "npm_auth_basic": "",
               "npm_auth_username": "",
               "npm_auth_password": "",
-              "lifecycle_hooks": [],
+              "lifecycle_hooks": [
+                "preinstall",
+                "install",
+                "postinstall"
+              ],
               "extra_build_content": "",
               "generate_bzl_library_targets": false
             }
@@ -35237,9 +35243,11 @@
                   "2.0.1"
                 ]
               },
-              "lifecycle_build_target": false,
+              "lifecycle_build_target": true,
               "lifecycle_hooks_env": [],
-              "lifecycle_hooks_execution_requirements": [],
+              "lifecycle_hooks_execution_requirements": [
+                "no-sandbox"
+              ],
               "lifecycle_hooks_use_default_shell_env": false,
               "bins": {},
               "npm_translate_lock_repo": "npm",
@@ -47480,7 +47488,11 @@
               "npm_auth_basic": "",
               "npm_auth_username": "",
               "npm_auth_password": "",
-              "lifecycle_hooks": [],
+              "lifecycle_hooks": [
+                "preinstall",
+                "install",
+                "postinstall"
+              ],
               "extra_build_content": "",
               "generate_bzl_library_targets": false
             }

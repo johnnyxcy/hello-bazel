@@ -26,6 +26,7 @@ def npm_module(name, srcs, tool, out_dirs, **kwargs):
         data = [":vite.build"],
         main = "link_artifacts.py",
         args = [
+            "--resolve",
             "--is-dir",
             "--src",
             "$(rootpath :vite.build)",
@@ -39,6 +40,7 @@ def npm_module(name, srcs, tool, out_dirs, **kwargs):
         srcs = srcs + [":vite.build"],
         outs = ["link_dist.log"],
         args = [
+            "--resolve",
             "--is-dir",
             "--src",
             "$(execpath :vite.build)",
