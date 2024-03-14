@@ -1,6 +1,7 @@
 """Python Binary"""
 
 load("@pypi//:requirements.bzl", "requirement")
+load("//tools/lint:linters.bzl", "ruff_lint_test")
 
 py_binary(
     name = "hello",
@@ -11,4 +12,9 @@ py_binary(
         requirement("pandas"),
         "//projects/python/greet",
     ],
+)
+
+ruff_lint_test(
+    name = "lint",
+    srcs = [":hello"],
 )
