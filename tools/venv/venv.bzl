@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""pyvenv rule."""
+
 load("@rules_python//python:defs.bzl", "py_binary")
 
 PYTHON_TOOLCHAIN_TYPE = "@bazel_tools//tools/python:toolchain_type"
@@ -64,6 +66,17 @@ _py_venv_deps = rule(
 )
 
 def py_venv(name, deps = None, data = None, extra_pip_commands = None, always_link = False, venv_location = None, **kwargs):
+    """Creates a virtual environment with the given dependencies.
+
+    Args:
+        name: The name of the rule.
+        deps: A list of dependencies. Defaults to None.
+        data: A list of data dependencies. Defaults to None.
+        extra_pip_commands: A list of extra pip commands to run. Defaults to None.
+        always_link: Whether to always link the dependencies. Defaults to False.
+        venv_location: The location of the virtual environment. Defaults to None.
+        **kwargs: Additional arguments to pass to the underlying py_binary rule.
+    """
     deps = deps or []
     data = data or []
     extra_pip_commands = extra_pip_commands or []
