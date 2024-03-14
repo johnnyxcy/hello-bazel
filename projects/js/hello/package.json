@@ -17,8 +17,7 @@
     "build": "vite build",
     "test:run": "vitest --run --coverage",
     "test:ui": "vitest --ui --coverage",
-    "lint": "eslint ./src ./tests --config ./.eslintrc.cjs",
-    "postinstall": "node ./.scripts/postinstall.cjs --target=hello --artifacts=.dist"
+    "lint": "eslint ./src ./tests --config ./.eslintrc.cjs"
   },
   "keywords": [],
   "author": "",

@@ -1,6 +1,8 @@
 node_modules
 projects/js/hello/node_modules
+projects/js/hello/.dist
 projects/js/vite-electron-plugin/node_modules
+projects/js/vite-electron-plugin/.dist
 projects/js/app/node_modules
 projects/js/app/build/dist
 

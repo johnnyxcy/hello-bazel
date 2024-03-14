@@ -43,7 +43,7 @@ export default defineConfig(({ command }): UserConfig => {
         apply: "build",
       },
       {
-        ...visualizer({ open: false, filename: "./.build/stat.html" }),
+        ...visualizer({ open: false, filename: "./.dist/bundle.html" }),
         apply: "build",
       },
     ],

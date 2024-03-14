@@ -9,5 +9,5 @@ export const SayHiProvider: interfaces.ServiceIdentifier<SayHiProvider> =
 
 export function sayHi(provider: SayHiProvider, name?: string) {
   const name_ = name ?? "World";
-  provider.log(`Hello ${name_}!`);
+  provider.log(`Hello ${name_}!!`);
 }

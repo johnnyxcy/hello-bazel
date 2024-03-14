@@ -1,4 +1,3 @@
-load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@npm//projects/js/hello:vite/package_json.bzl", vite = "bin")
 load("@npm//projects/js/hello:vitest/package_json.bzl", vitest = "bin")
@@ -40,26 +39,26 @@ node_modules_deps_test = [
     ":node_modules/@vitest/coverage-istanbul",
 ]
 
-vite.vite(
-    name = "build",
-    srcs = [":src"] + runtime_deps + node_modules_deps,
-    args = ["build"],
-    chdir = package_name(),
-    out_dirs = [
-        ".dist",
-        ".build",
-    ],
-)
+# vite.vite(
+#     name = "build",
+#     srcs = [":src"] + runtime_deps + node_modules_deps,
+#     args = ["build"],
+#     chdir = package_name(),
+#     out_dirs = [
+#         ".dist",
+#         ".build",
+#     ],
+# )
 
-npm_package(
-    name = "hello",
-    srcs = [
-        "package.json",
-        ":build",
-    ],
-    tags = ["lib"],
-    visibility = ["//visibility:public"],
-)
+# npm_package(
+#     name = "hello",
+#     srcs = [
+#         "package.json",
+#         ":build",
+#     ],
+#     tags = ["lib"],
+#     visibility = ["//visibility:public"],
+# )
 
 vite.vite_binary(
     name = "vite",
@@ -71,7 +70,7 @@ vite.vite_binary(
 )
 
 npm_module(
-    name = "hello_npm_rule",
+    name = "hello",
     srcs = [":src"] + runtime_deps + node_modules_deps,
     out_dirs = [
         ".dist",

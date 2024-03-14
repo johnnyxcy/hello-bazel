@@ -13,8 +13,7 @@
     }
   },
   "scripts": {
-    "build": "vite build",
-    "postinstall": "node ./.scripts/postinstall.cjs --target=vite-electron-plugin --artifacts=.dist"
+    "build": "vite build"
   },
   "keywords": [],
   "license": "MIT",

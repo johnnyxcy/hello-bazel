@@ -1,6 +1,6 @@
-load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@npm//projects/js/hello:vite/package_json.bzl", vite = "bin")
+load("//tools/npm_module:defs.bzl", "npm_module")
 
 npm_link_all_packages(name = "node_modules")
 
@@ -29,26 +29,45 @@ node_modules_deps = [
     ]
 ]
 
-vite.vite(
-    name = "build",
-    srcs = [":src"] + runtime_deps + node_modules_deps,
-    args = ["build"],
+# vite.vite(
+#     name = "build",
+#     srcs = [":src"] + runtime_deps + node_modules_deps,
+#     args = ["build"],
+#     chdir = package_name(),
+#     out_dirs = [
+#         ".dist",
+#         ".build",
+#     ],
+# )
+
+# npm_package(
+#     name = "vite-electron-plugin",
+#     srcs = [
+#         "package.json",
+#         ":build",
+#     ],
+#     tags = [
+#         "devkits",
+#         "lib",
+#     ],
+#     visibility = ["//visibility:public"],
+# )
+
+vite.vite_binary(
+    name = "vite",
     chdir = package_name(),
-    out_dirs = [
-        ".dist",
-        ".build",
+    data = [
+        "package.json",
+        "vite.config.mts",
     ],
 )
 
-npm_package(
+npm_module(
     name = "vite-electron-plugin",
-    srcs = [
-        "package.json",
-        ":build",
+    srcs = [":src"] + runtime_deps + node_modules_deps,
+    out_dirs = [
+        ".dist",
     ],
-    tags = [
-        "devkits",
-        "lib",
-    ],
+    tool = ":vite",
     visibility = ["//visibility:public"],
 )
