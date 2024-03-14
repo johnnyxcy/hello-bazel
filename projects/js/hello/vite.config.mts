@@ -5,9 +5,8 @@ import chalk from "chalk";
 import { defineConfig } from "vite";
 import type { UserConfig } from "vite";
 import { visualizer } from "rollup-plugin-visualizer";
-
+import { fileURLToPath, URL } from "node:url";
 import dts from "vite-plugin-dts";
-
 import pkg from "./package.json";
 
 export default defineConfig(({ command }): UserConfig => {
@@ -48,6 +47,11 @@ export default defineConfig(({ command }): UserConfig => {
         apply: "build",
       },
     ],
+    resolve: {
+      alias: {
+        "@": fileURLToPath(new URL("./src", import.meta.url)),
+      },
+    },
     build: {
       minify: isProduction && "esbuild",
       sourcemap: true,
@@ -56,8 +60,8 @@ export default defineConfig(({ command }): UserConfig => {
         entry: {
           index: "./src/index.ts",
         },
-        formats: ["es" as const],
-        fileName: (_, entryName) => `${entryName}.js`,
+        formats: ["cjs" as const, "es" as const],
+        fileName: (format) => (format === "es" ? "[name].mjs" : "[name].js"),
       },
 
       rollupOptions: {

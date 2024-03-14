@@ -3,21 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./.dist/types/index.d.ts",
+      "import": "./.dist/lib/index.mjs",
+      "require": "./.dist/lib/index.js"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    }
+  },
   "scripts": {
     "build": "vite build",
     "test:run": "vitest --run --coverage",
     "test:ui": "vitest --ui --coverage",
     "lint": "eslint ./src ./tests --config ./.eslintrc.cjs",
     "postinstall": "node ./.scripts/postinstall.cjs --target=hello --artifacts=.dist"
-  },
-  "exports": {
-    ".": {
-      "types": "./.dist/types/index.d.ts",
-      "default": "./.dist/lib/index.js"
-    },
-    "./package.json": {
-      "default": "./package.json"
-    }
   },
   "keywords": [],
   "author": "",
@@ -34,5 +35,8 @@
     "vite": "latest",
     "vite-plugin-dts": "latest",
     "vitest": "latest"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

@@ -3,11 +3,11 @@ import fs from "node:fs";
 import path from "node:path";
 import chalk from "chalk";
 import { fileURLToPath, URL } from "node:url";
-import { defineConfig } from "vite";
-
+import { defineConfig, UserConfig } from "vite";
 import dts from "vite-plugin-dts";
 import pkg from "./package.json";
-export default defineConfig(({ command }) => {
+
+export default defineConfig(({ command }): UserConfig => {
   const isBuild = command === "build";
 
   if (isBuild) {

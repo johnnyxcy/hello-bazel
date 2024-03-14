@@ -2,6 +2,7 @@ load("@aspect_rules_js//npm:defs.bzl", "npm_package")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@npm//projects/js/hello:vite/package_json.bzl", vite = "bin")
 load("@npm//projects/js/hello:vitest/package_json.bzl", vitest = "bin")
+load("//tools/npm_module:defs.bzl", "npm_module")
 
 npm_link_all_packages(name = "node_modules")
 
@@ -57,6 +58,25 @@ npm_package(
         ":build",
     ],
     tags = ["lib"],
+    visibility = ["//visibility:public"],
+)
+
+vite.vite_binary(
+    name = "vite",
+    chdir = package_name(),
+    data = [
+        "package.json",
+        "vite.config.mts",
+    ],
+)
+
+npm_module(
+    name = "hello_npm_rule",
+    srcs = [":src"] + runtime_deps + node_modules_deps,
+    out_dirs = [
+        ".dist",
+    ],
+    tool = ":vite",
     visibility = ["//visibility:public"],
 )
 

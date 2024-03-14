@@ -1,6 +1,6 @@
 import { expect, test, vi } from "vitest";
 
-import { sayHi } from "./say";
+import { sayHi } from "@/say";
 
 test("sayhi", () => {
   // spy on console.log
