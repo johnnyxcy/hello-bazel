@@ -1,19 +1,21 @@
 # Hello Bazel
 
-This is a simple example of a Bazel project.
+This is a simple example of a Bazel project with Multi-language support.
 
-## Project Structure
-
-```
-.
-├── README.md
-├── WORKSPACE
-├── bazel
-│   ├── BUILD
-│   └── download.bzl
-├── pyproject.toml
-└── python
-    └── hello
-        ├── BUILD
-        └── main.py
-```
+1. Node.js
+   - TypeScript
+   - Electron
+   - Vite/Vitest
+   - ESM
+   - Pnpm Monorepo Setup
+2. Python
+   - Virtual Environment
+   - Pybind11
+   - Pytest
+   - Poetry Lock
+   - Ruff
+3. C++
+   - LLVM Toolchain
+   - GTest
+   - Pybind11 + Stubgen
+   - Clangd Compile Commands
