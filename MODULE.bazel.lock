@@ -1,6 +1,6 @@
 {
   "lockFileVersion": 6,
-  "moduleFileHash": "166a32e42c6f37e513989093c80f1de2647df97f43fb2446ab88379a33cd64d5",
+  "moduleFileHash": "3edd824efac5394c92bafab52f386df9432b324b22377e3c7936a2c561d9cbbd",
   "flags": {
     "cmdRegistries": [
       "https://bcr.bazel.build/"
@@ -47,7 +47,7 @@
                 "name": "llvm_toolchain",
                 "llvm_version": "17.0.6",
                 "toolchain_roots": {
-                  "": "/opt/homebrew/opt/llvm"
+                  "darwin-aarch64": "/opt/homebrew/opt/llvm"
                 }
               },
               "devDependency": false,
@@ -67,7 +67,7 @@
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 58,
+            "line": 60,
             "column": 21
           },
           "imports": {
@@ -84,7 +84,7 @@
               "devDependency": false,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 60,
+                "line": 62,
                 "column": 15
               }
             }
@@ -98,7 +98,7 @@
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 66,
+            "line": 68,
             "column": 21
           },
           "imports": {
@@ -117,7 +117,7 @@
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 69,
+            "line": 71,
             "column": 20
           },
           "imports": {
@@ -149,7 +149,7 @@
               "devDependency": true,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 70,
+                "line": 72,
                 "column": 23
               }
             }
@@ -163,7 +163,7 @@
           "usingModule": "<root>",
           "location": {
             "file": "@@//:MODULE.bazel",
-            "line": 87,
+            "line": 89,
             "column": 29
           },
           "imports": {
@@ -179,7 +179,7 @@
               "devDependency": true,
               "location": {
                 "file": "@@//:MODULE.bazel",
-                "line": 92,
+                "line": 94,
                 "column": 18
               }
             }
@@ -49748,7 +49748,7 @@
               "sysroot": {},
               "target_settings": {},
               "toolchain_roots": {
-                "": "/opt/homebrew/opt/llvm"
+                "darwin-aarch64": "/opt/homebrew/opt/llvm"
               },
               "unfiltered_compile_flags": {}
             }

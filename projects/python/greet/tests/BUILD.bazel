@@ -14,29 +14,38 @@ py_pytest_main(
     deps = [requirement("pytest")],
 )
 
-py_test(
-    name = "tests",
-    testonly = True,
-    srcs = [
-        ":__test__",
-        ":srcs",
-    ],
+py_library(
+    name = "lib",
+    srcs = [":srcs"],
     imports = ["../src"],
-    main = ":__test__.py",
     visibility = ["//visibility:public"],
     deps = [
-        ":__test__",
         "//projects/python/greet",
         requirement("pytest"),
     ],
 )
 
+py_test(
+    name = "tests",
+    testonly = True,
+    srcs = [
+        ":__test__",
+        ":lib",
+    ],
+    main = ":__test__.py",
+    visibility = ["//visibility:public"],
+    deps = [
+        ":__test__",
+        "//projects/python/greet",
+    ],
+)
+
 ruff_lint_test(
     name = "ruff",
-    srcs = [":tests"],
+    srcs = [":lib"],
 )
 
 pyright_lint_test(
     name = "pyright",
-    srcs = [":tests"],
+    srcs = [":lib"],
 )
