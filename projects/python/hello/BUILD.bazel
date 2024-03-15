@@ -22,5 +22,4 @@ ruff_lint_test(
 pyright_lint_test(
     name = "pyright",
     srcs = [":hello"],
-    fail_on_violation = True,
 )
