@@ -98,6 +98,7 @@ def main():
 
 
 if __name__ == "__main__":
+    print(json.dumps({**os.environ}, indent=2))
     working_dir = os.environ.get("BAZEL_BINDIR") or os.environ.get(
         "BUILD_WORKSPACE_DIRECTORY"
     )
