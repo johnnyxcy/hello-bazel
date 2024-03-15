@@ -28,12 +28,12 @@ bazel_dep(name = "aspect_rules_js", version = "1.38.0")
 bazel_dep(name = "aspect_rules_ts", version = "2.2.0")
 
 # bazel_dep(name = "aspect_rules_py", version = "0.7.1")
-bazel_dep(name = "aspect_rules_lint", version = "0.12.0", dev_dependency = True)
-git_override(
-    module_name = "aspect_rules_lint",
-    remote = "https://github.com/aspect-build/rules_lint.git",
-    commit = "c22174195342e4d4f87b258edb4b22a2574a6427",
-)
+bazel_dep(name = "aspect_rules_lint", version = "0.13.0", dev_dependency = True)
+# git_override(
+#     module_name = "aspect_rules_lint",
+#     remote = "https://github.com/aspect-build/rules_lint.git",
+#     commit = "c22174195342e4d4f87b258edb4b22a2574a6427",
+# )
 
 # bazel_dep(name = "pybind11_bazel", version = "2.11.1.bzl.3")
 bazel_dep(name = "eigen", version = "3.4.0")

@@ -11,6 +11,11 @@ exports_files([
     "pyproject.toml",
 ])
 
+filegroup(
+    name = "pystubs",
+    srcs = glob(["stubs/**/*.pyi"]),
+)
+
 refresh_compile_commands(
     name = "refresh_cc",
 )

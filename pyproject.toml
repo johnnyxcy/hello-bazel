@@ -19,7 +19,33 @@ ruff = "^0.2"
 include = ["projects/python"]
 stubPath = "stubs"
 exclude = ["**/__pycache__"]
-typeCheckingMode = "strict"
+typeCheckingMode = "standard"
+
+strictListInference = true
+strictDictionaryInference = true
+strictSetInference = true
+strictParameterNoneValue = true
+
+reportDuplicateImport = "error"
+reportImplicitOverride = "error"
+reportImportCycles = "error"
+reportInconsistentConstructor = "error"
+reportMissingSuperCall = "error"
+reportPrivateUsage = "warning"
+reportPropertyTypeMismatch = "error"
+reportUnnecessaryCast = "error"
+reportUnnecessaryComparison = "error"
+reportUnnecessaryContains = "error"
+reportUnnecessaryIsInstance = "error"
+reportUnnecessaryTypeIgnoreComment = "error"
+reportUntypedBaseClass = "error"
+reportUntypedClassDecorator = "error"
+reportUntypedFunctionDecorator = "error"
+reportUntypedNamedTuple = "error"
+reportUnusedClass = "error"
+reportUnusedFunction = "error"
+reportUnusedImport = "error"
+reportUnusedVariable = "error"
 
 executionEnvironments = [
     { root = "projects/cxx/libcalc", extraPaths = [

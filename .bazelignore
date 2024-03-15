@@ -8,9 +8,7 @@ projects/js/app/build/dist
 
 temp
 .ruff_cache
-.venv
 .cache/clangd/index
-stubs
 
 # pyd
 projects/cxx/libprint/_libprint.so

@@ -1,7 +1,7 @@
 """Python Binary"""
 
 load("@pypi//:requirements.bzl", "requirement")
-load("//tools/lint:linters.bzl", "ruff_lint_test")
+load("//tools/lint:linters.bzl", "pyright_lint_test", "ruff_lint_test")
 
 py_binary(
     name = "hello",
@@ -15,6 +15,12 @@ py_binary(
 )
 
 ruff_lint_test(
-    name = "lint",
+    name = "ruff",
     srcs = [":hello"],
+)
+
+pyright_lint_test(
+    name = "pyright",
+    srcs = [":hello"],
+    fail_on_violation = True,
 )

@@ -1,12 +1,13 @@
 {
   "private": true,
   "devDependencies": {
+    "@types/yargs": "latest",
     "eslint": "latest",
     "prettier": "latest",
+    "pyright": "latest",
     "vite": "latest",
     "vitest": "latest",
-    "yargs": "latest",
-    "@types/yargs": "latest"
+    "yargs": "latest"
   },
   "engines": {
     "node": "~20",

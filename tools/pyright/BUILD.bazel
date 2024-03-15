@@ -1,0 +1,8 @@
+"""Python Binary"""
+
+load("@npm//:pyright/package_json.bzl", pyright = "bin")
+
+pyright.pyright_binary(
+    name = "pyright",
+    visibility = ["//visibility:public"],
+)

@@ -1,6 +1,6 @@
 {
   "lockFileVersion": 6,
-  "moduleFileHash": "733f42b84eb6d8af41805bce4ddcc98a7b48654475e01f0fb3362fd97212b24d",
+  "moduleFileHash": "166a32e42c6f37e513989093c80f1de2647df97f43fb2446ab88379a33cd64d5",
   "flags": {
     "cmdRegistries": [
       "https://bcr.bazel.build/"
@@ -197,7 +197,7 @@
         "aspect_bazel_lib": "aspect_bazel_lib@1.40.0",
         "aspect_rules_js": "aspect_rules_js@1.38.0",
         "aspect_rules_ts": "aspect_rules_ts@2.2.0",
-        "aspect_rules_lint": "aspect_rules_lint@_",
+        "aspect_rules_lint": "aspect_rules_lint@0.13.0",
         "eigen": "eigen@3.4.0",
         "googletest": "googletest@1.14.0",
         "buildifier_prebuilt": "buildifier_prebuilt@6.4.0",
@@ -724,7 +724,7 @@
       ],
       "deps": {
         "aspect_bazel_lib": "aspect_bazel_lib@1.40.0",
-        "aspect_rules_lint": "aspect_rules_lint@_",
+        "aspect_rules_lint": "aspect_rules_lint@0.13.0",
         "bazel_features": "bazel_features@1.1.1",
         "bazel_skylib": "bazel_skylib@1.5.0",
         "rules_nodejs": "rules_nodejs@6.0.5",
@@ -783,10 +783,10 @@
         }
       }
     },
-    "aspect_rules_lint@_": {
+    "aspect_rules_lint@0.13.0": {
       "name": "aspect_rules_lint",
-      "version": "0.0.0",
-      "key": "aspect_rules_lint@_",
+      "version": "0.13.0",
+      "key": "aspect_rules_lint@0.13.0",
       "repoName": "aspect_rules_lint",
       "executionPlatformsToRegister": [],
       "toolchainsToRegister": [],
@@ -802,6 +802,21 @@
         "io_bazel_rules_go": "rules_go@0.39.1",
         "bazel_tools": "bazel_tools@_",
         "local_config_platform": "local_config_platform@_"
+      },
+      "repoSpec": {
+        "bzlFile": "@@bazel_tools//tools/build_defs/repo:http.bzl",
+        "ruleClassName": "http_archive",
+        "attributes": {
+          "urls": [
+            "https://github.com/aspect-build/rules_lint/releases/download/v0.13.0/rules_lint-v0.13.0.tar.gz"
+          ],
+          "integrity": "sha256-wIJN6EAPHiccVWj8R1geFlshMvnSFpH8/v6L+JrUE70=",
+          "strip_prefix": "rules_lint-0.13.0",
+          "remote_patches": {
+            "https://bcr.bazel.build/modules/aspect_rules_lint/0.13.0/patches/module_dot_bazel_version.patch": "sha256-N1U5vOAovCrNdOuRWvW0/tYQr3XKUgAScYt2RqDpElI="
+          },
+          "remote_patch_strip": 1
+        }
       }
     },
     "eigen@3.4.0": {
@@ -2501,7 +2516,7 @@
       "general": {
         "bzlTransitiveDigest": "M8+xFJy30PXuntYY9Fp8CkGXuA74YqYmpFnJqoXDaSY=",
         "recordedFileInputs": {
-          "@@//pnpm-lock.yaml": "b5b9a94c905d7fdd98f4b16734ed842a7a16596336ef985a0f336ec8b5235726",
+          "@@//pnpm-lock.yaml": "ee6d656a030c9be7f2ef43d8c3f09c9423e0381103bef1621fc4be67820c5697",
           "@@//.npmrc": "a57af408b0feb8533ce7f5806c1f7df8839db2120dd8f5bdb08a12145c1dfcb7",
           "@@aspect_bazel_lib~~toolchains~yq_darwin_arm64//yq": "db8c11ca4c1dda8fe7c211e82e28191d48bd9ae83471b952003e819de79bcb51"
         },
@@ -16190,6 +16205,34 @@
                 "//visibility:public"
               ],
               "replace_package": ""
+            }
+          },
+          "npm__pyright__1.1.354": {
+            "bzlFile": "@@aspect_rules_js~//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_rule",
+            "attributes": {
+              "package": "pyright",
+              "version": "1.1.354",
+              "root_package": "",
+              "link_workspace": "",
+              "link_packages": {
+                "": [
+                  "pyright"
+                ]
+              },
+              "integrity": "sha512-lUojJFZqg4St+4E2WrZbqODeqLvhuRJXRDros59bJcK485hXJLlCb3DzTd/9KYfaisf2TqvDV79qhc0grwyf/w==",
+              "url": "https://registry.npmjs.org/pyright/-/pyright-1.1.354.tgz",
+              "commit": "",
+              "patch_args": [],
+              "patches": [],
+              "custom_postinstall": "",
+              "npm_auth": "",
+              "npm_auth_basic": "",
+              "npm_auth_username": "",
+              "npm_auth_password": "",
+              "lifecycle_hooks": [],
+              "extra_build_content": "",
+              "generate_bzl_library_targets": false
             }
           },
           "npm__at_electron_asar__3.2.9": {
@@ -32715,6 +32758,42 @@
               "lifecycle_hooks": [],
               "extra_build_content": "",
               "generate_bzl_library_targets": false
+            }
+          },
+          "npm__pyright__1.1.354__links": {
+            "bzlFile": "@@aspect_rules_js~//npm/private:npm_import.bzl",
+            "ruleClassName": "npm_import_links",
+            "attributes": {
+              "package": "pyright",
+              "version": "1.1.354",
+              "dev": true,
+              "root_package": "",
+              "link_packages": {
+                "": [
+                  "pyright"
+                ]
+              },
+              "deps": {
+                "fsevents": "2.3.3"
+              },
+              "transitive_closure": {
+                "fsevents": [
+                  "2.3.3"
+                ],
+                "pyright": [
+                  "1.1.354"
+                ]
+              },
+              "lifecycle_build_target": false,
+              "lifecycle_hooks_env": [],
+              "lifecycle_hooks_execution_requirements": [],
+              "lifecycle_hooks_use_default_shell_env": false,
+              "bins": {},
+              "npm_translate_lock_repo": "npm",
+              "package_visibility": [
+                "//visibility:public"
+              ],
+              "replace_package": ""
             }
           },
           "npm__fflate__0.8.2": {
