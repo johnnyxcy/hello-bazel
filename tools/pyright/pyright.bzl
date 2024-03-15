@@ -5,7 +5,7 @@ load("//tools/lint/private:aspect.bzl", "filter_srcs", "report_file")
 _MNEMONIC = "pyright"
 PYTHON_TOOLCHAIN_TYPE = "@bazel_tools//tools/python:toolchain_type"
 
-def pyright_action(ctx, executable, srcs, config, stubs, report, use_exit_code = False):
+def pyright_action(ctx, executable, srcs, config, stubs, report):
     """Run pyright as an action under Bazel.
 
     Args:
@@ -15,7 +15,6 @@ def pyright_action(ctx, executable, srcs, config, stubs, report, use_exit_code =
         config: label of the pyright config file (pyrightconfig.json or pyproject.toml)
         stubs: label of the stubs directory
         report: output file to generate
-        use_exit_code: whether to fail the build when a lint violation is reported
     """
 
     inputs = srcs + stubs + [config]
@@ -38,32 +37,26 @@ def pyright_action(ctx, executable, srcs, config, stubs, report, use_exit_code =
 
     # Wire command-line options, see
     args = ctx.actions.args()
+    args.add("--report")
+    args.add(report.path)
+    args.add("--fix-relpath")
+    args.add("--pyright")
+    args.add(executable.path)
+    args.add("--")
+    args.add("--project={config}".format(config = config.path))
+    args.add("--pythonpath={interpreter}".format(interpreter = interpreter))
     args.add_all(srcs)
-    args.add(config, format = "--project=%s")
 
-    args.add_all(["--pythonpath", interpreter])
-
-    # args.add("--verbose")
-    if use_exit_code:
-        command = "{pyright} $@ && touch {report}"
-    else:
-        args.add("--outputjson")
-        command = "{pyright} $@ >{report}"
-    command = command.format(
-        pyright = executable.path,
-        report = report.path,
-    )
-
-    ctx.actions.run_shell(
+    ctx.actions.run(
         inputs = inputs,
         outputs = outputs,
+        arguments = [args],
+        executable = ctx.executable._entry,
+        env = env,
+        mnemonic = _MNEMONIC,
         tools = [
             executable,
         ],
-        command = command,
-        arguments = [args],
-        env = env,
-        mnemonic = _MNEMONIC,
     )
 
 # buildifier: disable=function-docstring
@@ -74,7 +67,6 @@ def _pyright_aspect_impl(target, ctx):
     report, info = report_file(_MNEMONIC, target, ctx)
 
     pyright_action(
-        use_exit_code = ctx.attr.fail_on_violation,
         report = report,
         stubs = ctx.files._stubs,
         config = ctx.file._config_file,
@@ -98,9 +90,13 @@ def lint_pyright_aspect(binary, config, stubs = []):
         # Needed for linters that need semantic information like transitive type declarations.
         # attr_aspects = ["deps"],
         attrs = {
-            "fail_on_violation": attr.bool(),
             "_pyright": attr.label(
                 default = binary,
+                executable = True,
+                cfg = "exec",
+            ),
+            "_entry": attr.label(
+                default = "//tools/pyright:run",
                 executable = True,
                 cfg = "exec",
             ),

@@ -60,6 +60,8 @@ def main():
         pipe = subprocess.PIPE
     else:
         pipe = None
+
+    print("$", " ".join(command))
     p = subprocess.run(command, stdout=pipe, stderr=pipe)
 
     if pipe and options.report:
@@ -83,16 +85,22 @@ def main():
                 **pyright_out["summary"]
             )
         )
-        open(options.report, mode="w", encoding="utf-8").write(
-            json.dumps(pyright_out, indent=2)
-        )
-        sys.exit(p.returncode)
+
+        with open(options.report, mode="w", encoding="utf-8") as f:
+            if pyright_out["summary"]["errorCount"] > 0:
+                f.write(json.dumps(pyright_out, indent=2))
+            else:
+                # dont put anything in the report file if there are no errors
+                f.write("")
+        # sys.exit(p.returncode)
     else:
         sys.exit(p.returncode)
 
 
 if __name__ == "__main__":
-    working_dir = os.environ.get("BUILD_WORKSPACE_DIRECTORY")
+    working_dir = os.environ.get("BAZEL_BINDIR") or os.environ.get(
+        "BUILD_WORKSPACE_DIRECTORY"
+    )
     if working_dir:
         os.chdir(working_dir)
     main()

@@ -12,5 +12,9 @@ py_binary(
     srcs = [
         "run_pyright.py",
     ],
+    data = [
+        ":pyright",
+    ],
     main = "run_pyright.py",
+    visibility = ["//visibility:public"],
 )
