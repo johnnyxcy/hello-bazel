@@ -1,3 +1,5 @@
+"""npm pakcage wrapper"""
+
 load("@aspect_bazel_lib//lib:run_binary.bzl", "run_binary")
 load("@aspect_rules_js//js:defs.bzl", "js_run_binary")
 load("@aspect_rules_js//npm:defs.bzl", "npm_package")
