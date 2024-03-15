@@ -48,7 +48,7 @@ def pyright_action(ctx, executable, srcs, config, stubs, report, use_exit_code =
         command = "{pyright} $@ && touch {report}"
     else:
         args.add("--outputjson")
-        command = "{pyright} $@ >{report} || true"
+        command = "{pyright} $@ >{report}"
     command = command.format(
         pyright = executable.path,
         report = report.path,

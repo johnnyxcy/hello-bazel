@@ -6,3 +6,11 @@ pyright.pyright_binary(
     name = "pyright",
     visibility = ["//visibility:public"],
 )
+
+py_binary(
+    name = "run",
+    srcs = [
+        "run_pyright.py",
+    ],
+    main = "run_pyright.py",
+)

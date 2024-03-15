@@ -1,6 +1,6 @@
 # load("@aspect_rules_py//py:defs.bzl", "py_pytest_main", "py_test")
 load("@pypi//:requirements.bzl", "requirement")
-load("//tools/lint:linters.bzl", "ruff_lint_test")
+load("//tools/lint:linters.bzl", "pyright_lint_test", "ruff_lint_test")
 load("//tools/pytest:pytest_main.bzl", "py_pytest_main")
 
 filegroup(
@@ -32,6 +32,11 @@ py_test(
 )
 
 ruff_lint_test(
-    name = "lint",
+    name = "ruff",
+    srcs = [":tests"],
+)
+
+pyright_lint_test(
+    name = "pyright",
     srcs = [":tests"],
 )

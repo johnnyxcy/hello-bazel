@@ -1,5 +1,5 @@
 load("@pypi//:requirements.bzl", "requirement")
-load("//tools/lint:linters.bzl", "ruff_lint_test")
+load("//tools/lint:linters.bzl", "pyright_lint_test", "ruff_lint_test")
 
 filegroup(
     name = "srcs",
@@ -21,6 +21,11 @@ py_library(
 )
 
 ruff_lint_test(
-    name = "lint",
+    name = "ruff",
+    srcs = [":greet"],
+)
+
+pyright_lint_test(
+    name = "pyright",
     srcs = [":greet"],
 )
